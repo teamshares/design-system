@@ -1,7 +1,6 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  extends: [ "github>teamshares/renovate-config:default.json5" ],
-  lockFileMaintenance: { "enabled": false },
+  extends: [ "github>teamshares/renovate-config:lib.json5" ],
   ignoreDeps: [],
   packageRules: [
     { matchPackagePrefixes: ["@tailwindcss"], enabled: false }, // Skipping until we're all on tailwind 3+
