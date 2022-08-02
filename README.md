@@ -1,4 +1,4 @@
-# TeamsharesUI
+# @teamshares/ui
 
 JavaScript package to share frontend UI components, styles, and configuration.
 
@@ -14,9 +14,9 @@ To _help_ make sure that isn't forgotten, there's a pre-commit hook that detects
 
 ## Local Development _Setup_
 
-Instructions on testing changes to this shared package _within another full Rails app in development_ (e.g. to have OS read your _local_ TeamsharesUI, without having to deploy all changes first). If you'd rather see it visually, I've walked through the steps [in this Loom video](https://www.loom.com/share/856ecb06ed1945eab4d19cf7a6ec12b8).
+Instructions on testing changes to this shared package _within another full Rails app in development_ (e.g. to have OS read your _local_ shared-ui, without having to deploy all changes first). If you'd rather see it visually, I've walked through the steps [in this Loom video](https://www.loom.com/share/856ecb06ed1945eab4d19cf7a6ec12b8).
 
-0. Check this repo out _as a sibling of the primary Rails apps_ (e.g. I use `~/code`): `git clone git@github.com:teamshares/shared-ui.git teamshares-ui` (and then run `yarn` once to install dependencies)
+0. Check this repo out _as a sibling of the primary Rails apps_ (e.g. I use `~/code`): `git clone git@github.com:teamshares/shared-ui.git` (and then run `yarn` once to install dependencies)
 
 1. CD into **this new directory**, then tell yarn that we want to register it as a local override available for other apps on this computer: `yarn link`
 
@@ -48,7 +48,7 @@ Once the steps from above have been completed, to actually make changes you'll w
 
 #### Details
 
-* **Changes to SCSS files** (loaded directly, no SCSS->CSS compilation needed within teamshares-ui) are picked up immediately by the Rails app as long as you have `bin/webpack-dev-server` running.
+* **Changes to SCSS files** (loaded directly, no SCSS->CSS compilation needed within shared-ui) are picked up immediately by the Rails app as long as you have `bin/webpack-dev-server` running.
 
 * **Changes to JS files** _are also_ picked up immediately, as long as you're running `yarn compile:watch` in this directory.
 
