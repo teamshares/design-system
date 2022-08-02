@@ -11,6 +11,9 @@
     "scss/*.scss"
   ],
   "scripts": {
+    "lint_js": "eslint --ext .js,.jsx,.ts,.tsx src/",
+    "lint_css": "stylelint --fix --color --config .stylelintrc.json scss/",
+    "lint": "yarn run lint_js & yarn run lint_css",
     "compile": "rollup -c",
     "compile:watch": "rollup -c -w",
     "precommit": "lint-staged --quiet"
@@ -34,14 +37,15 @@
     "@rollup/plugin-babel": "^5.3.1",
     "@rollup/plugin-node-resolve": "^13.3.0",
     "eslint": "^8.20.0",
-    "eslint-config-standard": "^16.0.3",
+    "eslint-config-standard": "^17.0.0",
     "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.2.4",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^6.0.0",
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
     "rollup": "^2.77.0",
-    "stylelint": "^13.13.1",
-    "stylelint-config-sass-guidelines": "^8.0.0"
+    "stylelint": "^14.0.0",
+    "stylelint-config-sass-guidelines": "^9.0.0"
   }
 }
