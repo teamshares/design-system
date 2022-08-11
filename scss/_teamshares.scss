@@ -1172,7 +1172,7 @@ a.icon-button-view-component {
   }
 
   &.destructive-outlined {
-    @apply bg-white font-semibold text-red-800 border-red-200 hover:bg-red-100 active:bg-red-300;
+    @apply bg-white font-semibold text-red-800 border-red-200 hover:bg-red-100 active:bg-red-200;
   }
 
   &:focus-visible {
