@@ -162,8 +162,11 @@ module.exports = {
       backgroundColor: ["active", "odd"],
       borderColor: ["active"],
       borderStyle: ["group-hover", "hover", "focus", "active"],
+      borderWidth: ["first", "last"],
       fill: ["hover", "focus"],
       padding: ["first", "last"],
+      ringColor: ["focus-visible"],
+      ringWidth: ["focus-visible"],
       textColor: ["active"],
       visibility: ["group-hover", "hover"]
     }
