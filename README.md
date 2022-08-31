@@ -61,3 +61,8 @@ When you're done doing local development you _can_ undo this config:
 0. From _within this directory_: `yarn unlink`
 
 1. From _within the linked Rails app_: `yarn unlink @teamshares/ui` and then `yarn install --force` to re-installed the previously-linked package from remote instead.
+
+
+### After Merging
+
+1. From _within the linked Rails app_: `yarn upgrade @teamshares/ui` to make necessary version updates
