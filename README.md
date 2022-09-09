@@ -4,7 +4,7 @@ JavaScript package to share frontend UI components, styles, and configuration.
 
 ## Setup
 
-When you first check this repo out, run `yarn` to install dependencies, then make sure you're run once: `yarn husky install`.  This _was_ a `prepare` script to be run automatically, but [the presence of that script name in package.json that causes weird broken-cache issues](https://github.com/yarnpkg/yarn/issues/7212#issuecomment-493720324) with downstream consumers who pull the library in via git (i.e. everyone).
+When you first check this repo out, run `yarn` to install dependencies, then make sure you're run once: `yarn husky install`.  This _was_ a `prepare` script to be run automatically, but [the presence of that script name in package.json causes weird broken-cache issues](https://github.com/yarnpkg/yarn/issues/7212#issuecomment-493720324) with downstream consumers who pull the library in via git (i.e. everyone).
 
 ## Editing javascript
 
@@ -40,7 +40,6 @@ Once the steps from above have been completed, to actually make changes you'll w
 
 1. **In this directory**: Start the compilation script with `yarn compile:watch` (only needed for JS changes)
 
-
 2. Now make a change in this repo and it should show up "immediately" (after compilation completes) in the consuming app (e.g. OS).
 
     * NOTE: For Rails 6 apps you don't even need a browser reload, as some fast-refresh config appears to be triggering it for us (although that can be a bit delayed if the recompilation takes a while... which, in my testing, it tends to). Leadership is on Rails 7 and it appears to require a manual browser refresh to pick up changes, but no server restarts are required as long as the various JS and CSS watcher commands are running.
@@ -62,7 +61,5 @@ When you're done doing local development you _can_ undo this config:
 
 1. From _within the linked Rails app_: `yarn unlink @teamshares/ui` and then `yarn install --force` to re-installed the previously-linked package from remote instead.
 
-
-### After Merging
-
-1. From _within the linked Rails app_: `yarn upgrade @teamshares/ui` to make necessary version updates
+## After merging your PR
+Your changes _won't go live_ in any consuming Rails apps until their `yarn.lock` is updated to point to the newest-released git SHA (i.e. you merge a PR in that app in which you've run `yarn upgrade @teamshares/ui`).
