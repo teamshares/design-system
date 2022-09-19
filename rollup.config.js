@@ -1,5 +1,5 @@
 import { babel } from "@rollup/plugin-babel";
-import { nodeResolve } from '@rollup/plugin-node-resolve';
+import { nodeResolve } from "@rollup/plugin-node-resolve";
 import pkg from "./package.json";
 
 
@@ -15,7 +15,7 @@ const external = ["stimulus"];
 
 export default [
   {
-    input: "src/application.js",
+    input: "src/index.js",
     external,
     plugins,
     output: {
@@ -26,7 +26,7 @@ export default [
     }
   },
   {
-    input: "src/application.js",
+    input: "src/index.js",
     plugins,
     external,
     output: {
