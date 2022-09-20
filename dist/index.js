@@ -5,8 +5,8 @@
 })(this, (function (exports) { 'use strict';
 
     /*
-    Stimulus 3.0.1
-    Copyright © 2021 Basecamp, LLC
+    Stimulus 3.1.0
+    Copyright © 2022 Basecamp, LLC
      */
 
     function camelize(value) {
@@ -147,7 +147,7 @@
             valueDescriptorMap: {
                 get() {
                     return valueDefinitionPairs.reduce((result, valueDefinitionPair) => {
-                        const valueDescriptor = parseValueDefinitionPair(valueDefinitionPair);
+                        const valueDescriptor = parseValueDefinitionPair(valueDefinitionPair, this.identifier);
                         const attributeName = this.data.getAttributeNameForKey(valueDescriptor.key);
                         return Object.assign(result, { [attributeName]: valueDescriptor });
                     }, {});
@@ -158,8 +158,8 @@
             return Object.assign(properties, propertiesForValueDefinitionPair(valueDefinitionPair));
         }, propertyDescriptorMap);
     }
-    function propertiesForValueDefinitionPair(valueDefinitionPair) {
-        const definition = parseValueDefinitionPair(valueDefinitionPair);
+    function propertiesForValueDefinitionPair(valueDefinitionPair, controller) {
+        const definition = parseValueDefinitionPair(valueDefinitionPair, controller);
         const { key, name, reader: read, writer: write } = definition;
         return {
             [name]: {
@@ -188,8 +188,12 @@
             }
         };
     }
-    function parseValueDefinitionPair([token, typeDefinition]) {
-        return valueDescriptorForTokenAndTypeDefinition(token, typeDefinition);
+    function parseValueDefinitionPair([token, typeDefinition], controller) {
+        return valueDescriptorForTokenAndTypeDefinition({
+            controller,
+            token,
+            typeDefinition,
+        });
     }
     function parseValueTypeConstant(constant) {
         switch (constant) {
@@ -211,24 +215,30 @@
         if (Object.prototype.toString.call(defaultValue) === "[object Object]")
             return "object";
     }
-    function parseValueTypeObject(typeObject) {
-        const typeFromObject = parseValueTypeConstant(typeObject.type);
-        if (typeFromObject) {
-            const defaultValueType = parseValueTypeDefault(typeObject.default);
-            if (typeFromObject !== defaultValueType) {
-                throw new Error(`Type "${typeFromObject}" must match the type of the default value. Given default value: "${typeObject.default}" as "${defaultValueType}"`);
-            }
-            return typeFromObject;
+    function parseValueTypeObject(payload) {
+        const typeFromObject = parseValueTypeConstant(payload.typeObject.type);
+        if (!typeFromObject)
+            return;
+        const defaultValueType = parseValueTypeDefault(payload.typeObject.default);
+        if (typeFromObject !== defaultValueType) {
+            const propertyPath = payload.controller ? `${payload.controller}.${payload.token}` : payload.token;
+            throw new Error(`The specified default value for the Stimulus Value "${propertyPath}" must match the defined type "${typeFromObject}". The provided default value of "${payload.typeObject.default}" is of type "${defaultValueType}".`);
         }
+        return typeFromObject;
     }
-    function parseValueTypeDefinition(typeDefinition) {
-        const typeFromObject = parseValueTypeObject(typeDefinition);
-        const typeFromDefaultValue = parseValueTypeDefault(typeDefinition);
-        const typeFromConstant = parseValueTypeConstant(typeDefinition);
+    function parseValueTypeDefinition(payload) {
+        const typeFromObject = parseValueTypeObject({
+            controller: payload.controller,
+            token: payload.token,
+            typeObject: payload.typeDefinition
+        });
+        const typeFromDefaultValue = parseValueTypeDefault(payload.typeDefinition);
+        const typeFromConstant = parseValueTypeConstant(payload.typeDefinition);
         const type = typeFromObject || typeFromDefaultValue || typeFromConstant;
         if (type)
             return type;
-        throw new Error(`Unknown value type "${typeDefinition}"`);
+        const propertyPath = payload.controller ? `${payload.controller}.${payload.typeDefinition}` : payload.token;
+        throw new Error(`Unknown value type "${propertyPath}" for "${payload.token}" value`);
     }
     function defaultValueForDefinition(typeDefinition) {
         const constant = parseValueTypeConstant(typeDefinition);
@@ -239,15 +249,15 @@
             return defaultValue;
         return typeDefinition;
     }
-    function valueDescriptorForTokenAndTypeDefinition(token, typeDefinition) {
-        const key = `${dasherize(token)}-value`;
-        const type = parseValueTypeDefinition(typeDefinition);
+    function valueDescriptorForTokenAndTypeDefinition(payload) {
+        const key = `${dasherize(payload.token)}-value`;
+        const type = parseValueTypeDefinition(payload);
         return {
             type,
             key,
             name: camelize(key),
-            get defaultValue() { return defaultValueForDefinition(typeDefinition); },
-            get hasCustomDefaultValue() { return parseValueTypeDefault(typeDefinition) !== undefined; },
+            get defaultValue() { return defaultValueForDefinition(payload.typeDefinition); },
+            get hasCustomDefaultValue() { return parseValueTypeDefault(payload.typeDefinition) !== undefined; },
             reader: readers[type],
             writer: writers[type] || writers.default
         };
@@ -263,12 +273,12 @@
         array(value) {
             const array = JSON.parse(value);
             if (!Array.isArray(array)) {
-                throw new TypeError("Expected array");
+                throw new TypeError(`expected value of type "array" but instead got value "${value}" of type "${parseValueTypeDefault(array)}"`);
             }
             return array;
         },
         boolean(value) {
-            return !(value == "0" || value == "false");
+            return !(value == "0" || String(value).toLowerCase() == "false");
         },
         number(value) {
             return Number(value);
@@ -276,7 +286,7 @@
         object(value) {
             const object = JSON.parse(value);
             if (object === null || typeof object != "object" || Array.isArray(object)) {
-                throw new TypeError("Expected object");
+                throw new TypeError(`expected value of type "object" but instead got value "${value}" of type "${parseValueTypeDefault(object)}"`);
             }
             return object;
         },
@@ -457,10 +467,31 @@
 
     _defineProperty(_class, "targets", ["switchable", "clickable"]);
 
+    const Honeybadger = require("@honeybadger-io/js");
+
+    const initHoneybadger = (opts = {}) => {
+      if (process.env.RAILS_ENV !== "production" || !process.env.HEROKU_APP_NAME) return;
+      const heroku = process.env.HEROKU_APP_NAME;
+      const appContext = heroku.includes("-production") ? "production" : heroku.includes("-staging") ? "staging" : "review";
+
+      if (!process.env.HONEYBADGER_JS_API_KEY) {
+        console.log(`Honeybadger not configured -- set HONEYBADGER_JS_API_KEY to enable (for ${heroku})`);
+        return;
+      }
+
+      const config = Object.assign({
+        apiKey: process.env.HONEYBADGER_JS_API_KEY,
+        environment: appContext
+      }, opts);
+      Honeybadger.configure(config);
+      window.Honeybadger = Honeybadger;
+    };
+
     exports.InputClipboardController = input_clipboard_controller;
     exports.InputMaskController = input_mask_controller;
     exports.SwitchController = _class;
     exports.ToggleController = _class$1;
+    exports.initHoneybadger = initHoneybadger;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
