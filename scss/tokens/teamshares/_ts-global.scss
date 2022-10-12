@@ -1,0 +1,22 @@
+
+:host,
+:root,
+sp-theme {
+  /** ************* **/
+  /** Miscellaneous **/
+  /** ************* **/
+
+  /* Shadows */
+  --ts-shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+
+  /* Spacing */
+  --ts-spacing-large: 1.5rem; /* 24px */
+  --ts-spacing-2x-large: 2rem; /* 32px */
+  --ts-spacing-4x-large: 4rem; /* 64px */
+
+  /* Input sizes */
+  --ts-input-height-small: 1.75rem; /* 28px */
+  --ts-input-height-medium: 2.5rem; /* 40px */
+  --ts-input-height-large: 3rem; /* 48px */
+  --ts-input-height-xlarge: 4rem; /* 64px */
+}

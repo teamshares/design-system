@@ -22,6 +22,7 @@
     "@github/clipboard-copy-element": "^1.1.2",
     "@honeybadger-io/js": "^4.3.0",
     "@hotwired/stimulus": "^3.1.0",
+    "@shoelace-style/shoelace": "^2.0.0-beta.83",
     "@tailwindcss/aspect-ratio": "^0.4.0",
     "@tailwindcss/forms": "^0.2.1",
     "@tailwindcss/line-clamp": "^0.4.0",
