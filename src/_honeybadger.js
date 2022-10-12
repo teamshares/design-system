@@ -3,6 +3,7 @@ const Honeybadger = require("@honeybadger-io/js");
 const getAppContext = () => {
   // TODO: Kali - remove this var once upstream Heroku/Doppler issues resolved
   if (process.env.EXPLICIT_APP_CONTEXT) return process.env.EXPLICIT_APP_CONTEXT;
+
   if (!process.env.HEROKU_APP_NAME) {
     console.log("WARN: production-ish environment is missing both HEROKU_APP_NAME and EXPLICIT_APP_CONTEXT");
     return;
