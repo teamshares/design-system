@@ -18817,22 +18817,19 @@
   const Honeybadger = require("@honeybadger-io/js");
 
   const getAppContext = () => {
-    // TODO: Kali - remove this var once upstream Heroku/Doppler issues resolved
-    if (process.env.EXPLICIT_APP_CONTEXT) return process.env.EXPLICIT_APP_CONTEXT;
-
-    if (!process.env.HEROKU_APP_NAME) {
-      console.log("WARN: production-ish environment is missing both HEROKU_APP_NAME and EXPLICIT_APP_CONTEXT");
-      return;
-    }
-
-    const heroku = process.env.HEROKU_APP_NAME;
+    const heroku = process.env.HEROKU_APP_NAME || "";
+    if (heroku.length === 0) return;
     return heroku.includes("-production") ? "production" : heroku.includes("-staging") ? "staging" : "review";
   };
 
   const initHoneybadger = (opts = {}) => {
     if (process.env.RAILS_ENV !== "production") return;
     const appContext = getAppContext();
-    if (!appContext) return;
+
+    if (!appContext) {
+      console.log("WARN: production-ish environment is missing HEROKU_APP_NAME -- NOT initializing Honeybadger");
+      return;
+    }
 
     if (!process.env.HONEYBADGER_JS_API_KEY) {
       console.log(`Honeybadger not configured -- set HONEYBADGER_JS_API_KEY to enable (for ${process.env.HEROKU_APP_NAME})`);
