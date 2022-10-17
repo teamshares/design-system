@@ -1,0 +1,50 @@
+sl-icon.info::part(base) {
+  color: var(--ts-color-text-info);
+}
+
+sl-icon.info {
+  background: var(--ts-color-blue-100);
+}
+
+sl-icon.warning::part(base) {
+  color: var(--ts-color-text-warning);
+}
+
+sl-icon.warning {
+  background: var(--ts-color-yellow-100);
+}
+
+sl-icon.danger::part(base) {
+  color: var(--ts-color-text-danger);
+}
+
+sl-icon.danger {
+  background: var(--ts-color-red-100);
+}
+
+sl-icon.contained {
+  border-radius: var(--sl-border-radius-circle);
+  flex-shrink: 0;
+  padding: var(--sl-spacing-small);
+}
+
+/** ********** **/
+/* Icon button custom */
+/** ********** **/
+sl-icon-button::part(base),
+sl-dialog::part(close-button__base) {
+  border-radius: var(--sl-border-radius-circle);
+  color: var(--ts-color-text-subdued);    
+}
+
+sl-icon-button::part(base):hover,
+sl-dialog::part(close-button__base):hover {
+  background-color: var(--sl-color-neutral-200);
+  color: var(--ts-color-text-default);
+}
+
+sl-icon-button::part(base):active,
+sl-dialog::part(close-button__base):active {
+  background-color: var(--sl-color-neutral-300);
+  color: var(--ts-color-text-default);
+}
