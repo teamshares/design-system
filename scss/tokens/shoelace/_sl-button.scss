@@ -7,6 +7,7 @@ sl-theme {
 
 /** ********** **/
 /* Button custom colors */
+/** ********** **/
 sl-button[variant='primary']::part(base):hover {
   background-color: var(--sl-color-primary-700);
   border-color: var(--sl-color-primary-600);
@@ -97,7 +98,7 @@ sl-button[outline]::part(base) {
 
 /** ********** **/
 /* Button custom font size + padding */
-
+/** ********** **/
 sl-button[size='medium']::part(base) {
   padding: 0 var(--sl-spacing-medium); /* 16px */
 }
@@ -128,6 +129,7 @@ sl-button[size='large'][circle]::part(base) {
   font-size: var(--ts-font-xl); /* 20px */
 }
 
+/* To remove default padding from split buttons */
 sl-button.no-pad-l::part(base) {
   padding-left: 0;
 }
@@ -136,9 +138,15 @@ sl-button.no-pad-r::part(base) {
   padding-right: 0;
 }
 
+/* To remove margin from buttons that are slotted, so that a gap style can be added to the  parent part */
+sl-button.no-gap {
+  margin: 0;
+}
+
+
 /** ********** **/
 /* Button custom size, x-large */
-
+/** ********** **/
 sl-button.x-large::part(base) {
   height: var(--sl-spacing-4x-large); /* 64px */
   padding: 0 var(--sl-spacing-2x-large); /* 32px */
