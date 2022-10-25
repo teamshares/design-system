@@ -7249,6 +7249,22 @@
   function getIconLibrary(name) {
     return registry.find((lib) => lib.name === name);
   }
+  function registerIconLibrary(name, options) {
+    unregisterIconLibrary(name);
+    registry.push({
+      name,
+      resolver: options.resolver,
+      mutator: options.mutator
+    });
+    watchedIcons.forEach((icon) => {
+      if (icon.library === name) {
+        icon.redraw();
+      }
+    });
+  }
+  function unregisterIconLibrary(name) {
+    registry = registry.filter((lib) => lib.name !== name);
+  }
 
   // src/components/include/request.ts
   var includeFiles = /* @__PURE__ */ new Map();
@@ -18844,11 +18860,18 @@
     window.Honeybadger = Honeybadger;
   };
 
+  const registerIcons = () => {
+    registerIconLibrary("default", {
+      resolver: name => `https://cdn.jsdelivr.net/npm/heroicons@2.0.1/24/outline/${name}.svg`
+    });
+  };
+
   exports.InputClipboardController = input_clipboard_controller;
   exports.InputMaskController = input_mask_controller;
   exports.SwitchController = _class;
   exports.ToggleController = _class$1;
   exports.initHoneybadger = initHoneybadger;
+  exports.registerIcons = registerIcons;
 
   Object.defineProperty(exports, '__esModule', { value: true });
 

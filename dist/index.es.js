@@ -7243,6 +7243,22 @@ function unwatchIcon(icon) {
 function getIconLibrary(name) {
   return registry.find((lib) => lib.name === name);
 }
+function registerIconLibrary(name, options) {
+  unregisterIconLibrary(name);
+  registry.push({
+    name,
+    resolver: options.resolver,
+    mutator: options.mutator
+  });
+  watchedIcons.forEach((icon) => {
+    if (icon.library === name) {
+      icon.redraw();
+    }
+  });
+}
+function unregisterIconLibrary(name) {
+  registry = registry.filter((lib) => lib.name !== name);
+}
 
 // src/components/include/request.ts
 var includeFiles = /* @__PURE__ */ new Map();
@@ -18838,4 +18854,10 @@ const initHoneybadger = (opts = {}) => {
   window.Honeybadger = Honeybadger;
 };
 
-export { input_clipboard_controller as InputClipboardController, input_mask_controller as InputMaskController, _class as SwitchController, _class$1 as ToggleController, initHoneybadger };
+const registerIcons = () => {
+  registerIconLibrary("default", {
+    resolver: name => `https://cdn.jsdelivr.net/npm/heroicons@2.0.1/24/outline/${name}.svg`
+  });
+};
+
+export { input_clipboard_controller as InputClipboardController, input_mask_controller as InputMaskController, _class as SwitchController, _class$1 as ToggleController, initHoneybadger, registerIcons };
