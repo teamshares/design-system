@@ -9,18 +9,45 @@
   /* Overlay */
   --sl-overlay-background-color: rgba(var(--ts-color-blue-900-rgb), 0.5);
 
+  /* Border radius */
+  --sl-border-radius-small: var(--ts-border-radius-small);
+
+  /* Because Menu component doesn't allow radius to be customized to another radius token */
+  --sl-border-radius-medium: var(--sl-border-radius-large); /* 8px  */
+
   /* Shadows */
-  --sl-shadow-x-large: var(--ts-shadow-2xl);
+  --sl-shadow-x-small: var(--ts-shadow-x-small);
+  --sl-shadow-small: var(--ts-shadow-small);
+  --sl-shadow-medium: var(--ts-shadow-large);
+  --sl-shadow-large: var(--ts-shadow-medium);
+  --sl-shadow-x-large: var(--ts-shadow-x-large);
 
   /* Spacing */
   --sl-spacing-large: var(--ts-spacing-large);
   --sl-spacing-2x-large: var(--ts-spacing-2x-large);
   --sl-spacing-4x-large: var(--ts-spacing-4x-large);
 
+  /* Input font color */
+  --sl-input-color: var(--ts-color-text-default);
+
   /* Input sizes */
   --sl-input-height-small: var(--ts-input-height-small);
   --sl-input-height-medium: var(--ts-input-height-medium);
   --sl-input-height-large: var(--ts-input-height-large);
+
+  /* Input border radius */
+  --sl-input-border-radius-small: var(--sl-border-radius-small);
+  --sl-input-border-radius-medium: var(--sl-border-radius-large);
+  --sl-input-border-radius-large: var(--sl-border-radius-large);
+
+  /* Input border colors */
+  --sl-input-border-color: var(--sl-color-neutral-400);
+  --sl-input-border-color-hover: var(--sl-color-neutral-400);
+
+  /* Input icon colors */
+  --sl-input-icon-color: var(--sl-color-neutral-600);
+  --sl-input-icon-color-hover: var(--sl-color-neutral-700);
+  --sl-input-icon-color-focus: var(--sl-color-neutral-700);
 
   /* Focus rings */
   --sl-focus-ring-color: rgba(var(--ts-color-blue-500-rgb), 0.5);
@@ -33,7 +60,7 @@
   /** Necessary because of tailwind '*' resets **/
 
   --sl-panel-background-color: var(--sl-color-neutral-0);
-  --sl-panel-border-color: var(--sl-color-neutral-200);
+  --sl-panel-border-color: var(--sl-color-neutral-300);
   --sl-panel-border-width: 1px;
 
   sl-menu {

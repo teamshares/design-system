@@ -1,3 +1,13 @@
+:root,
+:host,
+sl-theme {
+  /* input font size override */
+  --sl-input-font-size-large: var(--sl-font-size-medium);
+}
+
+/** ********** **/
+/* Form label, help text, input styling */
+/** ********** **/
 ::part(form-control-label) {
   color: var(--ts-color-text-default);
   font-size: var(--ts-font-sm); /* 14px */
@@ -15,17 +25,54 @@
 }
 
 ::part(form-control-input) {
-  /* input styling */
-  border-radius: var(--sl-border-radius-large);
-  margin: var(--sl-spacing-x-small) 0;
+  margin: var(--sl-spacing-2x-small) 0 var(--sl-spacing-x-small);
 }
 
 ::part(input),
 ::part(textarea) {
   color: var(--ts-color-text-default);
-  font-size: var(--ts-font-base); /* 16px */
-  font-weight: var(--ts-font-normal); /* 400 */
-  letter-spacing: var(--ts-tracking-normal); /* normal */
-  line-height: var(--ts-leading-6); /* 1.5rem * 24px */
-  padding: var(--sl-spacing-x-small);
+  padding: var(--sl-spacing-x-small) var(--sl-spacing-medium);
+}
+
+sl-select::part(control):not(:focus),
+sl-input::part(input):not(:focus),
+sl-textarea::part(textarea):not(:focus) {
+  box-shadow: var(--sl-shadow-small);
+}
+
+/** ********** **/
+/* Checkbox & radio */
+/** ********** **/
+sl-checkbox::part(control) {
+  border-radius: var(--ts-border-radius-x-small);
+}
+
+/* Replace Shoelace checkbox with custom svg */
+sl-checkbox::part(checked-icon) {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M10.0242 3.17579C10.1367 3.28831 10.1999 3.4409 10.1999 3.59999C10.1999 3.75909 10.1367 3.91168 10.0242 4.02419L5.2242 8.82419C5.11168 8.93668 4.9591 8.99987 4.8 8.99987C4.6409 8.99987 4.48832 8.93668 4.3758 8.82419L1.9758 6.42419C1.86651 6.31103 1.80603 6.15947 1.8074 6.00215C1.80876 5.84484 1.87186 5.69435 1.98311 5.5831C2.09435 5.47186 2.24484 5.40876 2.40216 5.40739C2.55948 5.40602 2.71104 5.4665 2.8242 5.57579L4.8 7.55159L9.1758 3.17579C9.28832 3.06331 9.4409 3.00012 9.6 3.00012C9.7591 3.00012 9.91168 3.06331 10.0242 3.17579Z' fill='white' stroke='white'/%3E%3C/svg%3E");
+  background-position: center;
+  background-repeat: no-repeat;
+  color: transparent;
+}
+
+sl-checkbox::part(label),
+sl-radio::part(label) {
+  margin-inline-start: 0.75em;
+}
+
+sl-radio::part(base) {
+  margin-top: var(--sl-spacing-medium);
+}
+
+/** ********** **/
+/* Switch & range */
+/** ********** **/
+sl-switch {
+  --height: calc(var(--sl-toggle-size) + 6px);
+  --thumb-size: calc(var(--sl-toggle-size) + 4px);
+  --width: calc(var(--height) * 1.8);
+}
+
+sl-range::part(input) {
+  padding: 0;
 }

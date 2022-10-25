@@ -1,42 +1,22 @@
+sl-dialog {
+  --body-spacing: 0 16px;
+  --footer-spacing: 16px;
+  --header-spacing: 24px 16px 16px;
+}
+
 sl-dialog::part(panel) {
-  --width: 480px;
-  --header-spacing: 32px 32px 0;
-  --body-spacing: 16px 32px 24px;
-  --footer-spacing: 0 32px 32px;
   border-radius: var(--sl-border-radius-x-large);
   box-shadow: var(--sl-shadow-x-large);
 }
 
 sl-dialog::part(close-button) {
-  padding: 32px 32px 8px;
+  display: none;
 }
 
-sl-dialog::part(close-button__base) {
-  font-size: 32px;
-  padding: 0;
-}
-
-sl-dialog.small::part(panel) {
-  --width: 400px;
-}
-
-sl-dialog.large::part(panel) {
-  --width: 600px;
-}
-
-sl-dialog.has-icon > div > :first-child {
-  font-size: var(--ts-font-2xl); /* 24px */
-  margin-right: var(--sl-spacing-medium); /* 16px */
-}
-
-sl-dialog.has-icon > div,
-sl-dialog::part(header) {
-  align-items: center;
+sl-dialog::part(footer) {
   display: flex;
-}
-
-sl-dialog::part(close-button__base) {
-  padding: var(--sl-spacing-2x-small);
+  gap: var(--sl-spacing-x-small);
+  justify-content: flex-end;
 }
 
 sl-dialog::part(title) {
@@ -63,4 +43,77 @@ sl-dialog.small::part(body) {
   font-weight: var(--ts-font-normal); /* 400 */
   letter-spacing: var(--ts-tracking-normal); /* normal */
   line-height: var(--ts-leading-5); /* 1.25rem * 20px */
+}
+
+
+@media (max-width: 400px) {
+  sl-dialog {
+    height: max-content;
+    max-height: 90vh;
+  }
+
+  sl-dialog.has-icon > div {
+    display: flex;
+    flex-direction: column;
+  }
+
+  sl-dialog.has-icon > div > :first-child {
+    margin-bottom: var(--sl-spacing-medium); /* 16px */
+  }
+
+  /* Make footer buttons go full width at < 400px */
+  sl-dialog::part(footer) {
+    flex: 1 0 100%;
+    flex-direction: column-reverse;
+    flex-wrap: wrap;
+  }
+
+}
+
+@media (min-width: 401px) {
+  sl-dialog {
+    --body-spacing: 0 32px;
+    --footer-spacing: 24px 32px;
+    --header-spacing: 32px 0 16px 32px;
+  }
+
+  sl-dialog.has-icon {
+    --body-spacing: 0 32px 0 80px;
+    --header-spacing: 32px 0 16px 24px;
+  }
+
+  sl-dialog.has-icon > div {
+    align-items: center;
+    display: flex;
+  }
+
+  sl-dialog.has-icon > div * {
+    margin-right: var(--sl-spacing-medium); /* 16px */
+  }
+
+  sl-dialog::part(close-button) {
+    align-items: center;
+    display: flex;
+    flex: none;
+    padding: 24px 24px 16px 16px;
+  }
+
+  sl-dialog::part(close-button__base) {
+    font-size: 24px;
+    padding: var(--sl-spacing-2x-small);
+  }
+
+  /* Dialog widths, only apply at > 401px */
+
+  sl-dialog {
+    --width: 480px;
+  }
+
+  sl-dialog.small {
+    --width: 400px;
+  }
+
+  sl-dialog.large {
+    --width: 600px;
+  }
 }

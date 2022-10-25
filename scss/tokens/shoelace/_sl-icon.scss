@@ -25,7 +25,8 @@ sl-icon.danger {
 sl-icon.contained {
   border-radius: var(--sl-border-radius-circle);
   flex-shrink: 0;
-  padding: var(--sl-spacing-small);
+  font-size: var(--ts-font-2xl); /* 24px */
+  padding: var(--sl-spacing-x-small);
 }
 
 /** ********** **/
@@ -34,7 +35,7 @@ sl-icon.contained {
 sl-icon-button::part(base),
 sl-dialog::part(close-button__base) {
   border-radius: var(--sl-border-radius-circle);
-  color: var(--ts-color-text-subdued);    
+  color: var(--ts-color-text-subdued);
 }
 
 sl-icon-button::part(base):hover,

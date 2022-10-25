@@ -1,0 +1,6 @@
+:root,
+:host,
+sl-theme {
+  /* Tooltip border radius override */
+  --sl-tooltip-border-radius: var(--ts-border-radius-x-small);
+}
