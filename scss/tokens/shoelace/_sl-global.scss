@@ -57,13 +57,13 @@
   --sl-focus-ring-offset: 0;
   --sl-input-focus-ring-color: rgba(var(--ts-color-blue-500-rgb), 0.5);
 
-  --sl-panel-background-color: var(--sl-color-neutral-0);
-  --sl-panel-border-color: var(--sl-color-neutral-300);
-  --sl-panel-border-width: 1px;
-
   /** *********************************** */
   /** Override aggressive Tailwind resets */
   /** *********************************** */
+
+  --sl-panel-background-color: var(--sl-color-neutral-0);
+  --sl-panel-border-color: var(--sl-color-neutral-300);
+  --sl-panel-border-width: 1px;
 
   sl-input[type],
   sl-input[multiple],
