@@ -7249,6 +7249,22 @@
   function getIconLibrary(name) {
     return registry.find((lib) => lib.name === name);
   }
+  function registerIconLibrary(name, options) {
+    unregisterIconLibrary(name);
+    registry.push({
+      name,
+      resolver: options.resolver,
+      mutator: options.mutator
+    });
+    watchedIcons.forEach((icon) => {
+      if (icon.library === name) {
+        icon.redraw();
+      }
+    });
+  }
+  function unregisterIconLibrary(name) {
+    registry = registry.filter((lib) => lib.name !== name);
+  }
 
   // src/components/include/request.ts
   var includeFiles = /* @__PURE__ */ new Map();
@@ -18351,6 +18367,36 @@
     n$1("sl-avatar")
   ], SlAvatar);
 
+  const Honeybadger = require("@honeybadger-io/js");
+
+  const getAppContext = () => {
+    const heroku = process.env.HEROKU_APP_NAME || "";
+    if (heroku.length === 0) return;
+    return heroku.includes("-production") ? "production" : heroku.includes("-staging") ? "staging" : "review";
+  };
+
+  const initHoneybadger = (opts = {}) => {
+    if (process.env.RAILS_ENV !== "production") return;
+    const appContext = getAppContext();
+
+    if (!appContext) {
+      console.log("WARN: production-ish environment is missing HEROKU_APP_NAME -- NOT initializing Honeybadger");
+      return;
+    }
+
+    if (!process.env.HONEYBADGER_JS_API_KEY) {
+      console.log(`Honeybadger not configured -- set HONEYBADGER_JS_API_KEY to enable (for ${process.env.HEROKU_APP_NAME})`);
+      return;
+    }
+
+    const config = Object.assign({
+      apiKey: process.env.HONEYBADGER_JS_API_KEY,
+      environment: appContext
+    }, opts);
+    Honeybadger.configure(config);
+    window.Honeybadger = Honeybadger;
+  };
+
   /*
   Stimulus 3.1.0
   Copyright © 2022 Basecamp, LLC
@@ -18814,34 +18860,19 @@
 
   _defineProperty(_class, "targets", ["switchable", "clickable"]);
 
-  const Honeybadger = require("@honeybadger-io/js");
+  /** ***************************************** */
 
-  const getAppContext = () => {
-    const heroku = process.env.HEROKU_APP_NAME || "";
-    if (heroku.length === 0) return;
-    return heroku.includes("-production") ? "production" : heroku.includes("-staging") ? "staging" : "review";
-  };
+  /**  Apps should call this method on startup  */
 
-  const initHoneybadger = (opts = {}) => {
-    if (process.env.RAILS_ENV !== "production") return;
-    const appContext = getAppContext();
+  /** ***************************************** */
 
-    if (!appContext) {
-      console.log("WARN: production-ish environment is missing HEROKU_APP_NAME -- NOT initializing Honeybadger");
-      return;
-    }
-
-    if (!process.env.HONEYBADGER_JS_API_KEY) {
-      console.log(`Honeybadger not configured -- set HONEYBADGER_JS_API_KEY to enable (for ${process.env.HEROKU_APP_NAME})`);
-      return;
-    }
-
-    const config = Object.assign({
-      apiKey: process.env.HONEYBADGER_JS_API_KEY,
-      environment: appContext
-    }, opts);
-    Honeybadger.configure(config);
-    window.Honeybadger = Honeybadger;
+  const initialize = () => {
+    initHoneybadger({
+      debug: true
+    });
+    registerIconLibrary("default", {
+      resolver: name => `https://cdn.jsdelivr.net/npm/heroicons@2.0.1/24/outline/${name}.svg`
+    });
   };
 
   exports.InputClipboardController = input_clipboard_controller;
@@ -18849,6 +18880,7 @@
   exports.SwitchController = _class;
   exports.ToggleController = _class$1;
   exports.initHoneybadger = initHoneybadger;
+  exports.initialize = initialize;
 
   Object.defineProperty(exports, '__esModule', { value: true });
 

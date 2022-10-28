@@ -57,11 +57,26 @@
   --sl-focus-ring-offset: 0;
   --sl-input-focus-ring-color: rgba(var(--ts-color-blue-500-rgb), 0.5);
 
-  /** Necessary because of tailwind '*' resets **/
+  /** *********************************** */
+  /** Override aggressive Tailwind resets */
+  /** *********************************** */
 
   --sl-panel-background-color: var(--sl-color-neutral-0);
   --sl-panel-border-color: var(--sl-color-neutral-300);
   --sl-panel-border-width: 1px;
+
+  sl-input[type],
+  sl-input[multiple],
+  sl-input textarea,
+  sl-input select
+  sl-input {
+    border-width: 0;
+    padding: initial;
+  }
+
+  sl-icon[type] {
+    border-width: 0;
+  }
 
   sl-menu {
     border: solid var(--sl-panel-border-color) var(--sl-panel-border-width);
