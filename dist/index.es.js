@@ -18854,18 +18854,19 @@ class _class extends Controller {
 
 _defineProperty(_class, "targets", ["switchable", "clickable"]);
 
-/** ***************************************** */
+/** ********************************************************** */
 
-/**  Apps should call this method on startup  */
+/**  Apps should import Teamshares and call init() on startup  */
 
-/** ***************************************** */
+/** ********************************************************** */
 
 class Teamshares {}
 
 _defineProperty(Teamshares, "init", () => {
   initHoneybadger({
     debug: true
-  });
+  }); // Registers Heroicons as the default icon library in Shoelace
+
   registerIconLibrary("default", {
     resolver: name => `https://cdn.jsdelivr.net/npm/heroicons@2.0.1/24/outline/${name}.svg`
   });
