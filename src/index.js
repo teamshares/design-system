@@ -8,10 +8,12 @@ export * from "./_honeybadger"; // Leaving this for legacy sake; should be remov
 /** ***************************************** */
 /**  Apps should call this method on startup  */
 /** ***************************************** */
-export const initialize = () => {
-  initHoneybadger({ debug: true });
+export default class Teamshares {
+  static init = () => {
+    initHoneybadger({ debug: true });
 
-  registerIconLibrary("default", {
-    resolver: name => `https://cdn.jsdelivr.net/npm/heroicons@2.0.1/24/outline/${name}.svg`
-  });
+    registerIconLibrary("default", {
+      resolver: name => `https://cdn.jsdelivr.net/npm/heroicons@2.0.1/24/outline/${name}.svg`
+    });
+  };
 };
