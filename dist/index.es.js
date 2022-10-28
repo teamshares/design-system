@@ -1,3 +1,18 @@
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
 // node_modules/@lit/reactive-element/css-tag.js
 var t$3 = window.ShadowRoot && (void 0 === window.ShadyCSS || window.ShadyCSS.nativeShadow) && "adoptedStyleSheets" in Document.prototype && "replace" in CSSStyleSheet.prototype;
 var e$3 = Symbol();
@@ -18758,21 +18773,6 @@ class input_mask_controller extends Controller {
 
 }
 
-function _defineProperty(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
-
-  return obj;
-}
-
 class _class$1 extends Controller {
   connect() {
     this.element[this.identifier] = this;
@@ -18854,19 +18854,22 @@ class _class extends Controller {
 
 _defineProperty(_class, "targets", ["switchable", "clickable"]);
 
-/** ***************************************** */
+/** ********************************************************** */
 
-/**  Apps should call this method on startup  */
+/**  Apps should import Teamshares and call init() on startup  */
 
-/** ***************************************** */
+/** ********************************************************** */
 
-const initialize = () => {
+class Teamshares {}
+
+_defineProperty(Teamshares, "init", () => {
   initHoneybadger({
     debug: true
-  });
+  }); // Registers Heroicons as the default icon library in Shoelace
+
   registerIconLibrary("default", {
     resolver: name => `https://cdn.jsdelivr.net/npm/heroicons@2.0.1/24/outline/${name}.svg`
   });
-};
+});
 
-export { input_clipboard_controller as InputClipboardController, input_mask_controller as InputMaskController, _class as SwitchController, _class$1 as ToggleController, initHoneybadger, initialize };
+export { input_clipboard_controller as InputClipboardController, input_mask_controller as InputMaskController, _class as SwitchController, _class$1 as ToggleController, Teamshares as default, initHoneybadger };
