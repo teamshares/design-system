@@ -7,11 +7,6 @@
     "standard"
   ],
   "ignorePatterns": [],
-  "parser": "@babel/eslint-parser",
-  "parserOptions": {
-    "ecmaVersion": 11,
-    "sourceType": "module"
-  },
   "root": true,
   "rules": {
     "quotes": [2, "double"],

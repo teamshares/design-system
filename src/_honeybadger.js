@@ -1,14 +1,18 @@
 const Honeybadger = require("@honeybadger-io/js");
 
+const HEROKU_APP_NAME = process.env.HEROKU_APP_NAME;
+const RAILS_ENV = process.env.RAILS_ENV;
+const HONEYBADGER_JS_API_KEY = process.env.HONEYBADGER_JS_API_KEY;
+
 const getAppContext = () => {
-  const heroku = process.env.HEROKU_APP_NAME || "";
+  const heroku = HEROKU_APP_NAME || "";
   if (heroku.length === 0) return;
 
   return heroku.includes("-production") ? "production" : (heroku.includes("-staging") ? "staging" : "review");
 };
 
 export const initHoneybadger = (opts = {}) => {
-  if (process.env.RAILS_ENV !== "production") return;
+  if (RAILS_ENV !== "production") return;
 
   const appContext = getAppContext();
   if (!appContext) {
@@ -16,13 +20,13 @@ export const initHoneybadger = (opts = {}) => {
     return;
   }
 
-  if (!process.env.HONEYBADGER_JS_API_KEY) {
-    console.log(`Honeybadger not configured -- set HONEYBADGER_JS_API_KEY to enable (for ${process.env.HEROKU_APP_NAME})`);
+  if (!HONEYBADGER_JS_API_KEY) {
+    console.log(`Honeybadger not configured -- set HONEYBADGER_JS_API_KEY to enable (for ${HEROKU_APP_NAME})`);
     return;
   }
 
   const config = Object.assign({
-    apiKey: process.env.HONEYBADGER_JS_API_KEY,
+    apiKey: HONEYBADGER_JS_API_KEY,
     environment: appContext
   }, opts);
 
