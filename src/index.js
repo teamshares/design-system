@@ -10,6 +10,7 @@ export * from "./_honeybadger"; // Leaving this for legacy sake; should be remov
 /** ********************************************************** */
 export default class Teamshares {
   static init = () => {
+    console.log("Initializing Teamshares JS");
     initHoneybadger({ debug: true });
 
     // Registers Heroicons as the default icon library in Shoelace
