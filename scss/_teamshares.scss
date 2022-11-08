@@ -1121,7 +1121,7 @@ a.icon-button-view-component {
 }
 
 .button-view-component {
-  // The following lines are required for buttons to render properly in older versions of safari
+  // The following line is required for buttons to render properly in older versions of safari
   appearance: none;
 
   @apply rounded-full border;
