@@ -36,22 +36,17 @@ That's it! You're all configured.
 
 Once the steps from above have been completed, to actually make changes you'll want to:
 
-0. **In the Rails app** (e.g. `OS`): Start the Rails server and whatever script needs to be running to compile assets (`bin/webpack-dev-server` in older apps, probably something like `yarn build --watch` and `yarn build:css --watch` for Rails 7+).
+0. **In the Rails app** (e.g. `OS`): Start the Rails server and whatever script needs to be running to compile assets (probably something like `yarn build --watch` and `yarn build:css --watch` for Rails 7+).
 
-1. **In this directory**: Start the compilation script with `yarn compile:watch` (only needed for JS changes)
-
-2. Now make a change in this repo and it should show up "immediately" (after compilation completes) in the consuming app (e.g. OS).
-
-    * NOTE: For Rails 6 apps you don't even need a browser reload, as some fast-refresh config appears to be triggering it for us (although that can be a bit delayed if the recompilation takes a while... which, in my testing, it tends to). Leadership is on Rails 7 and it appears to require a manual browser refresh to pick up changes, but no server restarts are required as long as the various JS and CSS watcher commands are running.
-
+1. Now make a change in this repo and it should show up on the next page refresh in the consuming app (e.g. OS).
 
 #### Details
 
-* **Changes to SCSS files** (loaded directly, no SCSS->CSS compilation needed within shared-ui) are picked up immediately by the Rails app as long as you have `bin/webpack-dev-server` running.
+* **Changes to SCSS files** (loaded directly, no SCSS->CSS compilation needed within shared-ui) are picked up immediately by the Rails app as long as you have `yarn build:css --watch` running.
 
 * **Changes to JS files** _are also_ picked up immediately, as long as you're running `yarn compile:watch` in this directory.
 
-* **Changes to `tailwind.config.js`** _do not_ hotreload -- changes there require a restart of the Rails app's compiler (e.g. `bin/webpack-dev-server`).
+* **Changes to `tailwind.config.js`** _do not_ hotreload -- changes there require a restart of the Rails app's compiler.
 
 ### Cleanup
 
