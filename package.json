@@ -26,7 +26,6 @@
     "@tailwindcss/typography": "^0.4.1",
     "@webcomponents/custom-elements": "^1.5.0",
     "inputmask": "^5.0.7",
-    "material-icons": "^1.11.6",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat"
   },
   "devDependencies": {
