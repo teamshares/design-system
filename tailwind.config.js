@@ -7,17 +7,15 @@
 
 module.exports = {
   content: [
-    './app/views/**/*',
-    './app/helpers/**/*.rb',
-    './app/javascript/**/*.js',
-    './app/components/**/*',
-    './public/*.html'
+    "./app/**/*.{html,js,rb}",
+    "./app/assets/stylesheets/**/*.scss",
+    "./public/*.html"
   ],
   theme: {
     extend: {
       colors: {
         blue: {
-          50: '#F6FAFD',
+          50: "#F6FAFD",
           100: "#e1eff9",
           200: "#b7d8f0",
           300: "#84bafa",
@@ -63,7 +61,7 @@ module.exports = {
           900: "#004d49"
         },
         yellow: {
-          50: '#FFFBF0',
+          50: "#FFFBF0",
           100: "#faf4ea",
           200: "#f2eade",
           300: "#fce491",
@@ -101,7 +99,7 @@ module.exports = {
       // TODO: delete height and width configs after updating Tailwind > 2.1
       height: {
         "680px": "680px",
-        "38": "38rem"
+        38: "38rem"
       },
       width: {
         "300px": "300px",
@@ -119,7 +117,7 @@ module.exports = {
         "900px": "900px",
         "950px": "950px",
         "1000px": "1000px",
-       },
+      },
       margin: {
         "54px": "54px"
       },
@@ -131,27 +129,27 @@ module.exports = {
         height: "height",
       },
       gridTemplateRows: {
-        "7": "repeat(8, minmax(0, 1fr))",
-        "12": "repeat(12, minmax(0, 1fr))",
+        7: "repeat(8, minmax(0, 1fr))",
+        12: "repeat(12, minmax(0, 1fr))"
       },
       inset: {
-        '-16': '-4rem'
+        "-16": "-4rem"
       },
       opacity: {
-        '95': '0.95'
+        95: "0.95"
       },
       screens: {
-        'container-md': [
+        "container-md": [
           // Sidebar appears at 768px, so revert to `sm:` styles
           // between 768px and 868px, after which the main
           // content area is wide enough again to apply the
           // `md:` styles.
           {
-            'min': '641px',
-            'max': '767px'
+            min: "641px",
+            max: "767px"
           },
           {
-            'min': '868px'
+            min: "868px"
           }
         ],
       },
