@@ -1,9 +1,7 @@
-/*
- * To load new changes in this file,
- * the Webpack server needs to be restarted.
- * TODO: Support webpack-dev-server livereload (or the equivalent in Rails 7+)
- *
- */
+
+// Provides a shared base tailwind config for all Teamshares apps
+
+// Note: to load new changes in this file, the consuming app's asset pipeline may need to be restarted
 
 module.exports = {
   content: [
