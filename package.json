@@ -7,9 +7,14 @@
     "src/*.js",
     "tailwind.config.js",
     "images/*",
+    "bin/ts-postcss-build-script.js",
     "scss/*.scss"
   ],
+  "bin": {
+    "ts-postcss-builder": "./bin/ts-postcss-build-script.js"
+  },
   "scripts": {
+    "kali": "ts-postcss-builder",
     "lint_js": "eslint --ext .js,.jsx,.ts,.tsx src/",
     "lint_css": "stylelint --fix --color --config .stylelintrc.json scss/",
     "lint": "yarn run lint_js & yarn run lint_css",
