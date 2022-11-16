@@ -172,13 +172,5 @@ module.exports = {
     require("@tailwindcss/typography"),
     require("@tailwindcss/aspect-ratio"),
     require("@tailwindcss/line-clamp")
-  ],
-  future: {
-    purgeLayersByDefault: true,
-    removeDeprecatedGapUtilities: true
-  },
-  experimental: {
-    applyComplexClasses: true
-  },
-  darkMode: "class"
+  ]
 };
