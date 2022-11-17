@@ -1,5 +1,5 @@
 {
-  "*.scss": ["stylelint --fix --color --config .stylelintrc.json"],
+  "*.scss": ["stylelint --fix --color --config configs/stylelint.config.js"],
   "src/*.{js,jsx,ts,tsx}": ["eslint --fix"],
   "src/**/*.{js,jsx,ts,tsx}": ["eslint --fix"]
 }

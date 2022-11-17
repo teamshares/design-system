@@ -28,6 +28,8 @@ module.exports = {
         "nesting-rules": false // Will be handled by tailwindcss/nesting, instead
       },
       stage: 3
-    })
+    }),
+    require("cssnano")({ preset: "default" }),
+    require("postcss-reporter")({ clearReportedMessages: true })
   ]
 };
