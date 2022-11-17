@@ -5,7 +5,7 @@ const sharedConfig = {
   logLevel: "info",
   watch: process.argv.includes("--watch"),
   entryPoints: [
-    "application.js"
+    "application.js",
   ],
   bundle: true,
   sourcemap: true,
@@ -16,13 +16,13 @@ const sharedConfig = {
   publicPath: "/assets",
   assetNames: "[name]-[hash].digested",
   loader: {
-    ".svg": "file"
+    ".svg": "file",
   },
   define: {
     "process.env.HEROKU_APP_NAME": `"${process.env.HEROKU_APP_NAME || ""}"`,
     "process.env.RAILS_ENV": `"${process.env.RAILS_ENV || "development"}"`,
-    "process.env.HONEYBADGER_JS_API_KEY": `"${process.env.HONEYBADGER_JS_API_KEY}"`
-  }
+    "process.env.HONEYBADGER_JS_API_KEY": `"${process.env.HONEYBADGER_JS_API_KEY}"`,
+  },
 };
 
 const builder = (config) => require("esbuild")
@@ -34,5 +34,5 @@ const builder = (config) => require("esbuild")
   });
 
 module.exports = {
-  sharedConfig, builder
-}
+  sharedConfig, builder,
+};

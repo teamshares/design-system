@@ -1,5 +1,7 @@
-const Honeybadger = require("@honeybadger-io/js");
+import Honeybadger from "@honeybadger-io/js";
 
+// The next line tells eslint to accept the undef vars (these three are specifically injected into esbuild's build process)
+/* global process */
 const HEROKU_APP_NAME = process.env.HEROKU_APP_NAME;
 const RAILS_ENV = process.env.RAILS_ENV;
 const HONEYBADGER_JS_API_KEY = process.env.HONEYBADGER_JS_API_KEY;
@@ -27,7 +29,7 @@ export const initHoneybadger = (opts = {}) => {
 
   const config = Object.assign({
     apiKey: HONEYBADGER_JS_API_KEY,
-    environment: appContext
+    environment: appContext,
   }, opts);
 
   Honeybadger.configure(config);

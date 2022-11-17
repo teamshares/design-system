@@ -6,10 +6,10 @@ module.exports = {
     "selector-max-id": 1,
     "selector-class-pattern": null,
     "selector-no-qualifying-type": [true, {
-      ignore: ["class", "attribute"]
+      ignore: ["class", "attribute"],
     }],
     "scss/at-rule-no-unknown": [null, {
-      ignoreAtRules: ["responsive"]
-    }]
-  }
+      ignoreAtRules: ["responsive"],
+    }],
+  },
 };

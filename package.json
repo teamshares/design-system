@@ -16,7 +16,7 @@
   "scripts": {
     "kali": "ts-postcss-builder",
     "lint": "concurrently 'yarn lint:css' 'yarn lint:js'",
-    "lint:js": "eslint --ext .js,.jsx,.ts,.tsx src/",
+    "lint:js": "eslint .",
     "lint:css": "stylelint --fix --color --config configs/stylelint.config.js scss/",
     "precommit": "lint-staged --quiet"
   },
@@ -37,12 +37,13 @@
     "concurrently": "^7.5.0",
     "cssnano": "^5.1.14",
     "esbuild": "^0.15.13",
-    "eslint": "^8.20.0",
+    "eslint": "^8.27.0",
     "eslint-config-standard": "^17.0.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-n": "^15.2.4",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^6.0.0",
+    "globals": "^13.18.0",
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
     "postcss": "^8.4.18",

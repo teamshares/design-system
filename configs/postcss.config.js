@@ -8,8 +8,8 @@ tailwindConfig.purge = {
   content: [
     "app/**/*.{html,js,rb,erb,slim}",
     "app/assets/stylesheets/**/*.scss",
-    "public/*.html"
-  ]
+    "public/*.html",
+  ],
 };
 
 module.exports = {
@@ -22,14 +22,14 @@ module.exports = {
     require("postcss-flexbugs-fixes"),
     require("postcss-preset-env")({
       autoprefixer: {
-        flexbox: "no-2009"
+        flexbox: "no-2009",
       },
       features: {
-        "nesting-rules": false // Will be handled by tailwindcss/nesting, instead
+        "nesting-rules": false, // Will be handled by tailwindcss/nesting, instead
       },
-      stage: 3
+      stage: 3,
     }),
     require("cssnano")({ preset: "default" }),
-    require("postcss-reporter")({ clearReportedMessages: true })
-  ]
+    require("postcss-reporter")({ clearReportedMessages: true }),
+  ],
 };
