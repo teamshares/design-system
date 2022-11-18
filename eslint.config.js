@@ -7,7 +7,7 @@ module.exports = [
     ...nodeConfig,
   },
   {
-    files: ["src/**/*.js"],
+    files: ["js/**/*.js"],
     ...browserConfig,
   },
 ];

@@ -4,13 +4,7 @@ JavaScript package to share frontend UI components, styles, and configuration.
 
 ## Setup
 
-When you first check this repo out, run `yarn` to install dependencies, then make sure you're run once: `yarn husky install`.  This _was_ a `prepare` script to be run automatically, but [the presence of that script name in package.json causes weird broken-cache issues](https://github.com/yarnpkg/yarn/issues/7212#issuecomment-493720324) with downstream consumers who pull the library in via git (i.e. everyone).
-
-## Editing javascript
-
-Note that as currently configured, downstream consumers pull in JS code from `dist/`, not from `src/`, so you need to make sure you run `yarn compile` after making any edits under `src/`.
-
-To _help_ make sure that isn't forgotten, there's a pre-commit hook that detects JS changes under `src/` and runs compilation automatically... unfortunately (for now at least) **you still have to manually add the  `dist/` changes to your commit**.
+When you first check this repo out, run `yarn` to install dependencies, then make sure you've run once: `yarn husky install`.  This _was_ a `prepare` script to be run automatically, but [the presence of that script name in package.json causes weird broken-cache issues](https://github.com/yarnpkg/yarn/issues/7212#issuecomment-493720324) with downstream consumers who pull the library in via git (i.e. everyone).
 
 ## Local Development _Setup_
 
@@ -42,9 +36,9 @@ Once the steps from above have been completed, to actually make changes you'll w
 
 #### Details
 
-* **Changes to SCSS files** (loaded directly, no SCSS->CSS compilation needed within shared-ui) are picked up immediately by the Rails app as long as you have `yarn build:css --watch` running.
+* **Changes to SCSS files** are picked up immediately by the Rails app as long as you have `yarn build:css --watch` running.
 
-* **Changes to JS files** _are also_ picked up immediately, as long as you're running `yarn compile:watch` in this directory.
+* **Changes to JS files** are picked up immediately by the Rails app as long as you have `yarn build --watch` running.
 
 * **Changes to `tailwind.config.js`** _do not_ hotreload -- changes there require a restart of the Rails app's compiler.
 

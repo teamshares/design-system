@@ -2,9 +2,9 @@
   "name": "@teamshares/ui",
   "version": "0.0.1",
   "private": true,
-  "main": "src/index.js",
+  "main": "js/index.js",
   "files": [
-    "src/*.js",
+    "js/*.js",
     "configs/*.js",
     "images/*",
     "bin/ts-postcss-build-script.js",
