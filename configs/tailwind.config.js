@@ -173,6 +173,7 @@ const fileList = [
   "app/**/*.{html,js,rb,erb,slim}",
   "app/assets/stylesheets/**/*.scss",
   "public/*.html",
+  // Note we could add ./node_modules/... to handle external JS packages... how handle teamshares_rails?
 ];
 
 const v2 = {
