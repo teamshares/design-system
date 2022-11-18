@@ -1,14 +1,8 @@
 
 // Provides a shared base tailwind config for all Teamshares apps
-
 // Note: to load new changes in this file, the consuming app's asset pipeline may need to be restarted
 
-module.exports = {
-  content: [
-    "./app/**/*.{html,js,rb}",
-    "./app/assets/stylesheets/**/*.scss",
-    "./public/*.html",
-  ],
+const core = {
   theme: {
     extend: {
       colors: {
@@ -174,3 +168,28 @@ module.exports = {
     require("@tailwindcss/line-clamp"),
   ],
 };
+
+const fileList = [
+  "app/**/*.{html,js,rb,erb,slim}",
+  "app/assets/stylesheets/**/*.scss",
+  "public/*.html",
+];
+
+const v2 = {
+  ...core,
+  purge: {
+    enabled: true,
+    content: fileList,
+  },
+  // mode: 'jit',
+};
+
+const v3 = {
+  ...core,
+  content: fileList,
+};
+
+// Not needed under JIT
+delete v3.variants;
+
+module.exports = { v2, v3 };

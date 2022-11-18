@@ -33,7 +33,7 @@
     "inputmask": "^5.0.7"
   },
   "peerDependencies": {
-    "tailwindcss": "^2.2.19 || ^3"
+    "tailwindcss": "^2 || ^3"
   },
   "devDependencies": {
     "concurrently": "^7.5.0",

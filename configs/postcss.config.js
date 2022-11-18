@@ -1,24 +1,12 @@
-const tailwindConfig = require("./tailwind.config.js");
+const { v2, v3 } = require("./tailwind.config.js");
 
-// purge is for tailwind v2, content is for v3
-// teamsharesUiConfig.purge = teamsharesUiConfig.content;
-tailwindConfig.content = undefined;
-tailwindConfig.purge = {
-  enabled: true,
-  content: [
-    "app/**/*.{html,js,rb,erb,slim}",
-    "app/assets/stylesheets/**/*.scss",
-    "public/*.html",
-  ],
-};
-
-module.exports = {
+const buildConfig = (tailwindVersion = 2) => ({
   parser: "postcss-scss",
   plugins: [
     require("postcss-easy-import")({ prefix: "_", extensions: [".css", ".scss"] }),
     require("postcss-nested-vars"),
     require("tailwindcss/nesting"),
-    require("tailwindcss")(tailwindConfig),
+    require("tailwindcss")(tailwindVersion === 2 ? v2 : v3),
     require("postcss-flexbugs-fixes"),
     require("postcss-preset-env")({
       autoprefixer: {
@@ -32,4 +20,8 @@ module.exports = {
     require("cssnano")({ preset: "default" }),
     require("postcss-reporter")({ clearReportedMessages: true }),
   ],
+});
+
+module.exports = {
+  buildConfig,
 };
