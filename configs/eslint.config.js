@@ -1,5 +1,4 @@
 const globals = require("globals");
-
 const cypressPlugin = require("eslint-plugin-cypress");
 
 // These three are required by eslint-plugin-standard (which we're manually recreating until it supports the flat file config)
@@ -9,7 +8,7 @@ const promisePlugin = require("eslint-plugin-promise");
 // once this is resolved: https://github.com/import-js/eslint-plugin-import/issues/2556 (tried the fork, unsuccessful)
 // const importPlugin = require("eslint-plugin-import");
 
-const customRules = {
+const teamsharesGlobalCustomRules = {
   quotes: [2, "double"],
   semi: ["error", "always"],
   "comma-dangle": ["error", "always-multiline"],
@@ -249,79 +248,83 @@ const standardRules = {
 };
 /* eslint-enable quote-props, object-curly-spacing, comma-dangle */
 
-const sharedRules = {
-  ...standardRules,
-  ...customRules,
-};
+const buildConfigs = (customRules = {}) => {
+  const allRules = {
+    ...standardRules,
+    ...teamsharesGlobalCustomRules,
+    ...customRules,
+  };
 
-const sharedConfig = {
-  languageOptions: {
-    ecmaVersion: 2020,
-    parserOptions: {
-      // Note this is needed for esbuild to parse the "static targets" line of stimulus controllers...
-      // *pretty* sure it doesn't mess wit the languageOptions ecmaVersion defined above (:fingers-crossed:)
-      ecmaVersion: "latest",
+  const coreConfig = {
+    languageOptions: {
+      ecmaVersion: 2020,
+      parserOptions: {
+        // Note this is needed for esbuild to parse the "static targets" line of stimulus controllers...
+        // *pretty* sure it doesn't mess wit the languageOptions ecmaVersion defined above (:fingers-crossed:)
+        ecmaVersion: "latest",
+      },
     },
-  },
-  plugins: {
-    // import: importPlugin,
-    n: nPlugin,
-    promise: promisePlugin,
-  }, // These three were included by eslint-config-standard
-  rules: sharedRules,
-};
+    plugins: {
+      // import: importPlugin,
+      n: nPlugin,
+      promise: promisePlugin,
+    }, // These three were included by eslint-config-standard
+    rules: allRules,
+  };
 
-const browserConfig = { ...sharedConfig };
-browserConfig.languageOptions = {
-  ...browserConfig.languageOptions,
-  globals: { ...globals.browser },
-};
+  const browserConfig = { ...coreConfig };
+  browserConfig.languageOptions = {
+    ...browserConfig.languageOptions,
+    globals: { ...globals.browser },
+  };
 
-const nodeConfig = { ...sharedConfig };
-nodeConfig.languageOptions = {
-  ...nodeConfig.languageOptions,
-  globals: { ...globals.node },
-};
+  const nodeConfig = { ...coreConfig };
+  nodeConfig.languageOptions = {
+    ...nodeConfig.languageOptions,
+    globals: { ...globals.node },
+  };
 
-const cypressConfig = { ...nodeConfig };
-cypressConfig.plugins = { ...nodeConfig.plugins, cypress: cypressPlugin };
-cypressConfig.languageOptions = {
-  ...cypressConfig.languageOptions,
-  globals: {
-    ...globals.node,
+  const cypressConfig = { ...nodeConfig };
+  cypressConfig.plugins = { ...nodeConfig.plugins, cypress: cypressPlugin };
+  cypressConfig.languageOptions = {
+    ...cypressConfig.languageOptions,
+    globals: {
+      ...globals.node,
 
-    // Manually pulled from: https://github.com/cypress-io/eslint-plugin-cypress/blob/master/index.js
-    cy: false,
-    Cypress: false,
-    expect: false,
-    assert: false,
-    chai: false,
+      // Manually pulled from: https://github.com/cypress-io/eslint-plugin-cypress/blob/master/index.js
+      cy: false,
+      Cypress: false,
+      expect: false,
+      assert: false,
+      chai: false,
 
-    // Just... seems necessary?
-    it: false,
-    describe: false,
-    context: false,
-    beforeEach: false,
-  },
-};
-cypressConfig.rules = {
-  ...cypressConfig.rules,
+      // Just... seems necessary?
+      it: false,
+      describe: false,
+      context: false,
+      beforeEach: false,
+    },
+  };
+  cypressConfig.rules = {
+    ...cypressConfig.rules,
 
-  // Manually pulled from: https://github.com/cypress-io/eslint-plugin-cypress#usage
-  "cypress/no-assigning-return-values": "error",
-  "cypress/no-unnecessary-waiting": "error",
-  "cypress/assertion-before-screenshot": "warn",
-  "cypress/no-force": "warn",
-  "cypress/no-async-tests": "error",
-  "cypress/no-pause": "error",
+    // Manually pulled from: https://github.com/cypress-io/eslint-plugin-cypress#usage
+    "cypress/no-assigning-return-values": "error",
+    "cypress/no-unnecessary-waiting": "error",
+    "cypress/assertion-before-screenshot": "warn",
+    // "cypress/no-force": "warn",  // Very verbose, and doesn't appear to be included in their cypress:recommended preset
+    "cypress/no-async-tests": "error",
+    "cypress/no-pause": "error",
+  };
+
+  return {
+    coreConfig,
+    nodeConfig,
+    browserConfig,
+    cypressConfig,
+  };
 };
 
 module.exports = {
-  sharedConfig,
-  // standardRules,
-  // customRules,
-  sharedRules,
-  nodeConfig,
-  browserConfig,
-  cypressConfig,
+  buildConfigs,
 };

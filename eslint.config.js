@@ -1,4 +1,6 @@
-const { browserConfig, nodeConfig } = require("./configs/eslint.config.js");
+const { buildConfigs } = require("./configs/eslint.config.js");
+
+const { browserConfig, nodeConfig } = buildConfigs();
 
 module.exports = [
   "eslint:recommended",
