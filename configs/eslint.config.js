@@ -1,7 +1,13 @@
 const globals = require("globals");
-const importPlugin = require("eslint-plugin-import");
+
+const cypressPlugin = require("eslint-plugin-cypress");
+
+// These three are required by eslint-plugin-standard (which we're manually recreating until it supports the flat file config)
 const nPlugin = require("eslint-plugin-n");
 const promisePlugin = require("eslint-plugin-promise");
+// TODO: Kali -  this plugin doesn't yet support the flat config file... can uncomment the import/ rules in standardRules
+// once this is resolved: https://github.com/import-js/eslint-plugin-import/issues/2556 (tried the fork, unsuccessful)
+// const importPlugin = require("eslint-plugin-import");
 
 const customRules = {
   quotes: [2, "double"],
@@ -224,12 +230,12 @@ const standardRules = {
   "yield-star-spacing": ["error", "both"],
   "yoda": ["error", "never"],
 
-  "import/export": "error",
-  "import/first": "error",
-  "import/no-absolute-path": ["error", { "esmodule": true, "commonjs": true, "amd": false }],
-  "import/no-duplicates": "error",
-  "import/no-named-default": "error",
-  "import/no-webpack-loader-syntax": "error",
+  // "import/export": "error",
+  // "import/first": "error",
+  // "import/no-absolute-path": ["error", { "esmodule": true, "commonjs": true, "amd": false }],
+  // "import/no-duplicates": "error",
+  // "import/no-named-default": "error",
+  // "import/no-webpack-loader-syntax": "error",
 
   "n/handle-callback-err": ["error", "^(err|error)$"],
   "n/no-callback-literal": "error",
@@ -250,11 +256,15 @@ const sharedRules = {
 
 const sharedConfig = {
   languageOptions: {
-    // ecmaVersion: 6,
     ecmaVersion: 2020,
+    parserOptions: {
+      // Note this is needed for esbuild to parse the "static targets" line of stimulus controllers...
+      // *pretty* sure it doesn't mess wit the languageOptions ecmaVersion defined above (:fingers-crossed:)
+      ecmaVersion: "latest",
+    },
   },
   plugins: {
-    import: importPlugin,
+    // import: importPlugin,
     n: nPlugin,
     promise: promisePlugin,
   }, // These three were included by eslint-config-standard
@@ -273,11 +283,45 @@ nodeConfig.languageOptions = {
   globals: { ...globals.node },
 };
 
+const cypressConfig = { ...nodeConfig };
+cypressConfig.plugins = { ...nodeConfig.plugins, cypress: cypressPlugin };
+cypressConfig.languageOptions = {
+  ...cypressConfig.languageOptions,
+  globals: {
+    ...globals.node,
+
+    // Manually pulled from: https://github.com/cypress-io/eslint-plugin-cypress/blob/master/index.js
+    cy: false,
+    Cypress: false,
+    expect: false,
+    assert: false,
+    chai: false,
+
+    // Just... seems necessary?
+    it: false,
+    describe: false,
+    context: false,
+    beforeEach: false,
+  },
+};
+cypressConfig.rules = {
+  ...cypressConfig.rules,
+
+  // Manually pulled from: https://github.com/cypress-io/eslint-plugin-cypress#usage
+  "cypress/no-assigning-return-values": "error",
+  "cypress/no-unnecessary-waiting": "error",
+  "cypress/assertion-before-screenshot": "warn",
+  "cypress/no-force": "warn",
+  "cypress/no-async-tests": "error",
+  "cypress/no-pause": "error",
+};
+
 module.exports = {
   sharedConfig,
   // standardRules,
   // customRules,
   sharedRules,
-  browserConfig,
   nodeConfig,
+  browserConfig,
+  cypressConfig,
 };
