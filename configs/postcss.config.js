@@ -35,7 +35,7 @@ const buildConfig = (tailwindVersion = 2, tailwindSafelist) => {
 
   const safelist = [
     ...baseSafelist,
-    ...tailwindSafelist,
+    ...(tailwindSafelist || []),
   ];
 
   if (tailwindVersion === 2) {
