@@ -52,3 +52,11 @@ When you're done doing local development you _can_ undo this config:
 
 ## After merging your PR
 Your changes _won't go live_ in any consuming Rails apps until their `yarn.lock` is updated to point to the newest-released git SHA (i.e. you merge a PR in that app in which you've run `yarn upgrade @teamshares/ui`).
+
+## Dependency Versions
+### Tailwind
+
+    * `@tailwindcss/aspect-ratio` -
+    * `@tailwindcss/forms` - 0.3.7 (0.4 switches to tailwind v3 compatibility)
+    * `@tailwindcss/line-clamp` -
+    * `@tailwindcss/typography` -

@@ -26,7 +26,6 @@ const baseSafelist = [
   "bg-purple-100", "text-indigo-800",
   "bg-yellow-50", "text-yellow-800",
   "fuschia-label-background", "fuschia-label-text",
-
   "inline-flex", "items-center", "justify-start", "rounded", "mr-4", "space-x-2", "px-2", "text-sm", "font-medium",
 ];
 
