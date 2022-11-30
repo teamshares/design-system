@@ -44,3 +44,12 @@ sl-menu-item::part(label) {
   font-size: var(--sl-font-size-small);
   line-height: var(--ts-leading-5);
 }
+
+/** ********** **/
+/* Menu label styling */
+/** ********** **/
+sl-menu-label::part(base) {
+  color: var(--ts-color-text-subdued);
+  font-size: var(--sl-font-size-x-small);
+  font-weight: var(--sl-font-weight-normal);
+}
