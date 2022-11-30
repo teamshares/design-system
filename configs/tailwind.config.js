@@ -164,7 +164,6 @@ const core = {
   plugins: [
     require("@tailwindcss/forms"),
     require("@tailwindcss/typography"),
-    require("@tailwindcss/aspect-ratio"),
     require("@tailwindcss/line-clamp"),
   ],
 };
@@ -182,7 +181,7 @@ const v2 = {
     enabled: true,
     content: fileList,
   },
-  // mode: 'jit',
+  mode: "jit",
 };
 
 const v3 = {

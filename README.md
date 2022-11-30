@@ -56,7 +56,9 @@ Your changes _won't go live_ in any consuming Rails apps until their `yarn.lock`
 ## Dependency Versions
 ### Tailwind
 
-    * `@tailwindcss/aspect-ratio` -
-    * `@tailwindcss/forms` - 0.3.7 (0.4 switches to tailwind v3 compatibility)
-    * `@tailwindcss/line-clamp` -
-    * `@tailwindcss/typography` -
+    * `tailwindcss` - unclear if needs to be explicit dependency here or in consuming app
+
+    * `@tailwindcss/aspect-ratio` - REMOVED - wasn't actually used in stylesheets
+    * `@tailwindcss/forms` - 0.3.4 (0.4 switches to tailwind v3 compatibility)
+    * `@tailwindcss/line-clamp` - 0.3.1 (0.4 switches to tailwind v3 compatibility) - Only OS
+    * `@tailwindcss/typography` - 0.4.1 (0.5 switches to tailwind v3 compatibility) - Only OS
