@@ -6,6 +6,7 @@ const core = {
   theme: {
     extend: {
       colors: {
+        current: "currentColor",
         blue: {
           50: "#F6FAFD",
           100: "#e1eff9",
@@ -145,20 +146,6 @@ const core = {
           },
         ],
       },
-    },
-  },
-  variants: {
-    extend: {
-      backgroundColor: ["active", "odd"],
-      borderColor: ["active"],
-      borderStyle: ["group-hover", "hover", "focus", "active"],
-      borderWidth: ["first", "last"],
-      fill: ["hover", "focus"],
-      padding: ["first", "last"],
-      ringColor: ["focus-visible"],
-      ringWidth: ["focus-visible"],
-      textColor: ["active"],
-      visibility: ["group-hover", "hover"],
     },
   },
   plugins: [
