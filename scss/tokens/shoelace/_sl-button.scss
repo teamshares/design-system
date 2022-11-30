@@ -92,8 +92,83 @@ sl-button[variant='danger']::part(base):active {
   border-color: var(--sl-color-danger-700);
 }
 
+/* Custom colors for outline buttons */
 sl-button[outline]::part(base) {
   background-color: transparent;
+}
+
+sl-button[variant="default"][outline]::part(base) {
+  border-color: var(--sl-color-neutral-400);
+}
+
+sl-button[variant="default"][outline]::part(base):hover {
+  background-color: var(--sl-color-neutral-200);
+  border-color: var(--sl-color-neutral-400);
+}
+
+sl-button[variant="default"][outline]::part(base):active {
+  background-color: var(--sl-color-neutral-300);
+  border-color: var(--sl-color-neutral-400);
+}
+
+sl-button[variant="primary"][outline]::part(label), 
+sl-button[variant="primary"][outline]::part(prefix),
+sl-button[variant="primary"][outline]::part(suffix) {
+  color: var(--sl-color-primary-600);
+}  
+
+sl-button[variant="primary"][outline]::part(base) {
+  border-color: var(--sl-color-primary-200);
+}
+
+sl-button[variant="primary"][outline]::part(base):hover {
+  background-color: var(--sl-color-primary-50);
+  border-color: var(--sl-color-primary-200);
+}
+
+sl-button[variant="primary"][outline]::part(base):active {
+  background-color: var(--sl-color-primary-100);
+  border-color: var(--sl-color-primary-200);
+}
+
+sl-button[variant="warning"][outline]::part(label), 
+sl-button[variant="warning"][outline]::part(prefix),
+sl-button[variant="warning"][outline]::part(suffix) {
+  color: var(--sl-color-warning-800);
+}  
+
+sl-button[variant="warning"][outline]::part(base) {
+  border-color: var(--sl-color-warning-400);
+}
+
+sl-button[variant="warning"][outline]::part(base):hover {
+  background-color: var(--sl-color-warning-100);
+  border-color: var(--sl-color-warning-400);
+}
+
+sl-button[variant="warning"][outline]::part(base):active {
+  background-color: var(--sl-color-warning-200);
+  border-color: var(--sl-color-warning-400);
+}
+
+sl-button[variant="danger"][outline]::part(label), 
+sl-button[variant="danger"][outline]::part(prefix),
+sl-button[variant="danger"][outline]::part(suffix) {
+  color: var(--sl-color-danger-800);
+}  
+
+sl-button[variant="danger"][outline]::part(base) {
+  border-color: var(--sl-color-danger-200);
+}
+
+sl-button[variant="danger"][outline]::part(base):hover {
+  background-color: var(--sl-color-danger-100);
+  border-color: var(--sl-color-danger-200);
+}
+
+sl-button[variant="danger"][outline]::part(base):active {
+  background-color: var(--sl-color-danger-300);
+  border-color: var(--sl-color-danger-200);
 }
 
 /** ********** **/
