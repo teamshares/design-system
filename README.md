@@ -8,21 +8,16 @@ When you first check this repo out, run `yarn` to install dependencies, then mak
 
 ## Local Development _Setup_
 
-Instructions on testing changes to this shared package _within another full Rails app in development_ (e.g. to have OS read your _local_ shared-ui, without having to deploy all changes first). If you'd rather see it visually, I've walked through the steps [in this Loom video](https://www.loom.com/share/856ecb06ed1945eab4d19cf7a6ec12b8).
+Instructions on testing changes to this shared package _within another full Rails app in development_ (e.g. to have OS read your _local_ shared-ui, without having to deploy all changes first). [NOTE: [This Loom video](https://www.loom.com/share/856ecb06ed1945eab4d19cf7a6ec12b8) walks through setting up linking _using the old V1 version of yarn_).
 
 0. Check this repo out _as a sibling of the primary Rails apps_ (e.g. I use `~/code`): `git clone git@github.com:teamshares/shared-ui.git` (and then run `yarn` once to install dependencies)
 
-1. CD into **this new directory**, then tell yarn that we want to register it as a local override available for other apps on this computer: `yarn link`
+2. CD into **the Rails app** that you want to use the local version, then configure yarn: `yarn link --private --relative ../shared-ui`
 
-    You should see output including:
-    > success Registered "@teamshares/ui".
+    You should see output indicating success (warnings OK), e.g.:
+    > YN0000: Done with warnings in 0s 839ms
 
-2. CD into **the Rails app** that you want to use the local version, then configure yarn: `yarn link @teamshares/ui`
-
-    You should see output including:
-    > success Using linked package for "@teamshares/ui".
-
-3. Finally (not positive this is necessary) rerun `yarn install` _in both directories_ to make sure all necessary dependencies are installed and linked properly.
+3. Finally (not positive this is necessary) rerun `yarn install`
 
 That's it! You're all configured.
 
@@ -46,9 +41,7 @@ Once the steps from above have been completed, to actually make changes you'll w
 
 When you're done doing local development you _can_ undo this config:
 
-0. From _within this directory_: `yarn unlink`
-
-1. From _within the linked Rails app_: `yarn unlink @teamshares/ui` and then `yarn install --force` to re-installed the previously-linked package from remote instead.
+0. From _within the linked Rails app_: `yarn unlink ../shared-ui` and then (not certain still required in yarn 3) `yarn install --force` to re-installed the previously-linked package from remote instead.
 
 ## After merging your PR
 Your changes _won't go live_ in any consuming Rails apps until their `yarn.lock` is updated to point to the newest-released git SHA (i.e. you merge a PR in that app in which you've run `yarn upgrade @teamshares/ui`).
