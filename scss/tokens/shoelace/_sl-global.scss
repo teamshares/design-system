@@ -27,8 +27,13 @@
   --sl-spacing-2x-large: var(--ts-spacing-2x-large);
   --sl-spacing-4x-large: var(--ts-spacing-4x-large);
 
-  /* Input font color */
+  /* Input font colors */
   --sl-input-color: var(--ts-color-text-default);
+  --sl-input-color-hover: var(--ts-color-text-default);
+  --sl-input-color-focus: var(--ts-color-text-default);
+  --sl-input-color-disabled: var(--ts-color-text-default);
+  --sl-input-placeholder-color: var(--ts-color-text-subdued);
+  --sl-input-placeholder-color-disabled: var(--ts-color-text-subdued);
 
   /* Input sizes */
   --sl-input-height-small: var(--ts-input-height-small);
