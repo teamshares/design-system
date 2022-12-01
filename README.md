@@ -37,6 +37,10 @@ Once the steps from above have been completed, to actually make changes you'll w
 
 * **Changes to `tailwind.config.js`** _do not_ hotreload -- changes there require a restart of the Rails app's compiler.
 
+## Caveats
+
+Super annoyingly, as of Yarn v3 the `yarn link` command adds a `resolutions` key directly to `package.json`... which we obviously can't commit to production, since it's only a valid path on your local computer.  I WOULD LOVE A WORKAROUND HERE IF ANYONE HAS ONE! In the meantime, I've updated CI for all our consuming apps to include a linter step that will fail if you accidentally leave in the resolutions key.
+
 ### Cleanup
 
 When you're done doing local development you _can_ undo this config:
