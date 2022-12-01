@@ -4,7 +4,6 @@ const postcssConfig = {
   parser: "postcss-scss",
   plugins: [
     require("postcss-easy-import")({ prefix: "_", extensions: [".css", ".scss"] }),
-    require("postcss-nested-vars"),
     require("tailwindcss/nesting"),
     require("tailwindcss")(tailwindConfig),
     require("postcss-flexbugs-fixes"),

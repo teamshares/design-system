@@ -280,9 +280,9 @@ __metadata:
   linkType: hard
 
 "@hotwired/stimulus@npm:^3.1.0":
-  version: 3.1.0
-  resolution: "@hotwired/stimulus@npm:3.1.0"
-  checksum: 82d80b17aa8cd8b69e20da4cc86b768fd8c52d06b40c1606b92526fd405264a65c617d5c051445a5b91af05620ab4475b3c5adc2011ed8d787b4955f9e924845
+  version: 3.2.1
+  resolution: "@hotwired/stimulus@npm:3.2.1"
+  checksum: 2617b10fb3ca0fb05205526693cbc9ea17fca84f40d8d95d0ce8d58f903aa74e020da858adc72f056f777f4854bdd7f5ee6d69810ecb17412af43d6ffb78997e
   languageName: node
   linkType: hard
 
@@ -451,10 +451,8 @@ __metadata:
     cssnano: ^5.1.14
     esbuild: ^0.15.13
     eslint: ^8.27.0
-    eslint-config-standard: ^17.0.0
     eslint-plugin-cypress: ^2.12.1
     eslint-plugin-n: ^15.2.4
-    eslint-plugin-node: ^11.1.0
     eslint-plugin-promise: ^6.0.0
     globals: ^13.18.0
     husky: ^8.0.1
@@ -464,7 +462,6 @@ __metadata:
     postcss-cli: ^10.0.0
     postcss-easy-import: ^4.0.0
     postcss-flexbugs-fixes: ^5.0.2
-    postcss-nested-vars: ^1.0.0
     postcss-preset-env: ^7.8.2
     postcss-reporter: ^7.0.5
     postcss-scss: ^4.0.5
@@ -938,7 +935,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chalk@npm:^2.0.0, chalk@npm:^2.4.1":
+"chalk@npm:^2.0.0":
   version: 2.4.2
   resolution: "chalk@npm:2.4.2"
   dependencies:
@@ -1807,18 +1804,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-config-standard@npm:^17.0.0":
-  version: 17.0.0
-  resolution: "eslint-config-standard@npm:17.0.0"
-  peerDependencies:
-    eslint: ^8.0.1
-    eslint-plugin-import: ^2.25.2
-    eslint-plugin-n: ^15.0.0
-    eslint-plugin-promise: ^6.0.0
-  checksum: dc0ed51e186fd963ff2c0819d33ef580afce11b11036cbcf5e74427e26e514c2b1be96b8ffe74fd2fd00263554a0d49cc873fcf76f17c3dfdba614b45d7fd7da
-  languageName: node
-  linkType: hard
-
 "eslint-plugin-cypress@npm:^2.12.1":
   version: 2.12.1
   resolution: "eslint-plugin-cypress@npm:2.12.1"
@@ -1827,18 +1812,6 @@ __metadata:
   peerDependencies:
     eslint: ">= 3.2.1"
   checksum: 1f1c36e149304e9a6f58e2292a761abad58274da33b3a48b24ad55ad20cbce3ac7467321f2b6fcb052f9563c89f67004de4766eba2e2bdbcb010a6a0666989cf
-  languageName: node
-  linkType: hard
-
-"eslint-plugin-es@npm:^3.0.0":
-  version: 3.0.1
-  resolution: "eslint-plugin-es@npm:3.0.1"
-  dependencies:
-    eslint-utils: ^2.0.0
-    regexpp: ^3.0.0
-  peerDependencies:
-    eslint: ">=4.19.1"
-  checksum: e57592c52301ee8ddc296ae44216df007f3a870bcb3be8d1fbdb909a1d3a3efe3fa3785de02066f9eba1d6466b722d3eb3cc3f8b75b3cf6a1cbded31ac6298e4
   languageName: node
   linkType: hard
 
@@ -1869,22 +1842,6 @@ __metadata:
   peerDependencies:
     eslint: ">=7.0.0"
   checksum: dd651651ab76120e45707ee968d846e3ffffb42d1035792fdef6d3b0dcfddf3673bc6a09cb2fac8c5f1d081f14f2a67fc52295d5ed1d2edfb5beead93284eaac
-  languageName: node
-  linkType: hard
-
-"eslint-plugin-node@npm:^11.1.0":
-  version: 11.1.0
-  resolution: "eslint-plugin-node@npm:11.1.0"
-  dependencies:
-    eslint-plugin-es: ^3.0.0
-    eslint-utils: ^2.0.0
-    ignore: ^5.1.1
-    minimatch: ^3.0.4
-    resolve: ^1.10.1
-    semver: ^6.1.0
-  peerDependencies:
-    eslint: ">=5.16.0"
-  checksum: 5804c4f8a6e721f183ef31d46fbe3b4e1265832f352810060e0502aeac7de034df83352fc88643b19641bb2163f2587f1bd4119aff0fd21e8d98c57c450e013b
   languageName: node
   linkType: hard
 
@@ -3145,7 +3102,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"minimatch@npm:^3.0.4, minimatch@npm:^3.0.5, minimatch@npm:^3.1.1, minimatch@npm:^3.1.2":
+"minimatch@npm:^3.0.5, minimatch@npm:^3.1.1, minimatch@npm:^3.1.2":
   version: 3.1.2
   resolution: "minimatch@npm:3.1.2"
   dependencies:
@@ -4117,15 +4074,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss-nested-vars@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "postcss-nested-vars@npm:1.0.0"
-  dependencies:
-    postcss: ^6.0.14
-  checksum: bead9c20770669f23558e0441e18d60bbe0b9dd086e39bd3555acbde58f91a5831a2b3d3b1f3c3b696efd765bab6c739344d2a31e98ff34f9f5af4ae240ad412
-  languageName: node
-  linkType: hard
-
 "postcss-nested@npm:6.0.0":
   version: 6.0.0
   resolution: "postcss-nested@npm:6.0.0"
@@ -4516,17 +4464,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:^6.0.14":
-  version: 6.0.23
-  resolution: "postcss@npm:6.0.23"
-  dependencies:
-    chalk: ^2.4.1
-    source-map: ^0.6.1
-    supports-color: ^5.4.0
-  checksum: cc6cb2c1dbcdefa6f57a71d67fe535c9e96543298bbe28f9a6a64c4f1e21b6127113890dd4cda8873d3f4e6613a0566b7b4bbb230204f3a9a309190bda065d81
-  languageName: node
-  linkType: hard
-
 "postcss@npm:^8.3.11":
   version: 8.4.14
   resolution: "postcss@npm:8.4.14"
@@ -4853,15 +4790,6 @@ __metadata:
   bin:
     semver: ./bin/semver
   checksum: 57fd0acfd0bac382ee87cd52cd0aaa5af086a7dc8d60379dfe65fea491fb2489b6016400813930ecd61fd0952dae75c115287a1b16c234b1550887117744dfaf
-  languageName: node
-  linkType: hard
-
-"semver@npm:^6.1.0":
-  version: 6.3.0
-  resolution: "semver@npm:6.3.0"
-  bin:
-    semver: ./bin/semver.js
-  checksum: 1b26ecf6db9e8292dd90df4e781d91875c0dcc1b1909e70f5d12959a23c7eebb8f01ea581c00783bbee72ceeaad9505797c381756326073850dc36ed284b21b9
   languageName: node
   linkType: hard
 
@@ -5285,7 +5213,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"supports-color@npm:^5.3.0, supports-color@npm:^5.4.0":
+"supports-color@npm:^5.3.0":
   version: 5.5.0
   resolution: "supports-color@npm:5.5.0"
   dependencies:
