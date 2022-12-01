@@ -1,5 +1,4 @@
-import "./components";
-import { registerIconLibrary } from "@shoelace-style/shoelace";
+import * as Shoelace from "@teamshares/shoelace";
 import { initHoneybadger } from "./_honeybadger";
 
 export * from "./controllers";
@@ -14,7 +13,7 @@ export default class Teamshares {
     initHoneybadger({ debug: true });
 
     // Registers Heroicons as the default icon library in Shoelace
-    registerIconLibrary("default", {
+    Shoelace.registerIconLibrary("default", {
       resolver: name => `https://cdn.jsdelivr.net/npm/heroicons@2.0.1/24/outline/${name}.svg`,
     });
   }

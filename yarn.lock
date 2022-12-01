@@ -230,19 +230,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@floating-ui/core@npm:^1.0.1":
-  version: 1.0.1
-  resolution: "@floating-ui/core@npm:1.0.1"
-  checksum: c8a5f1a491788e5bebfe747e9372df2c7cbee0d8790ddf95e25149ac91ccf1a2cca8f768029826cfd3d687617c1d0f3241b97f1648bdf2a28d421f39e79c2eee
+"@floating-ui/core@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "@floating-ui/core@npm:1.0.2"
+  checksum: a6c93c15c4408dfa5acff31c275f36d85f4107a9d7562da2d6c014c810559843a71e38622046195856966929d20a37793e7ed0905e54ddc8edd91cd10500ce8d
   languageName: node
   linkType: hard
 
-"@floating-ui/dom@npm:^1.0.0":
-  version: 1.0.2
-  resolution: "@floating-ui/dom@npm:1.0.2"
+"@floating-ui/dom@npm:^1.0.7":
+  version: 1.0.7
+  resolution: "@floating-ui/dom@npm:1.0.7"
   dependencies:
-    "@floating-ui/core": ^1.0.1
-  checksum: 4494db572d953f1f0544b91e6c16c63eae890c96befc5a60528e01b8e93182458ac4aec08873d6544c18353fb90d46b1ff4e19407bc48ea8f27a1bce372e48e5
+    "@floating-ui/core": ^1.0.2
+  checksum: 4bcdeab82b7239fdf32289a297b1e8743656375daeffc4a7b685d934c9ad356b1b77683032fcff527249bc48d9e6a00bff65e5a6119f06f19c6bb9f026efcf30
   languageName: node
   linkType: hard
 
@@ -311,10 +311,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@lit-labs/react@npm:^1.0.7":
-  version: 1.0.9
-  resolution: "@lit-labs/react@npm:1.0.9"
-  checksum: b41d78a09fa235f23a72b8d2551902861291af3157273643f6ec687bc7ccaaec95d3ed767a2a1f3152c501faae741b72ac1264eef322c70ff0fb1f5a50dfe799
+"@lit-labs/react@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "@lit-labs/react@npm:1.1.0"
+  checksum: 86fd16982b5d96e1e7f7f3d19509c1df680c1b81eb76a2ec3e524c3f4c7715f9cc179460cb82a743cc3ac3c61e609ea5127e8f6c56080b7aea1c9ceff2ca60fe
   languageName: node
   linkType: hard
 
@@ -379,25 +379,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@shoelace-style/localize@npm:^3.0.1":
-  version: 3.0.1
-  resolution: "@shoelace-style/localize@npm:3.0.1"
-  checksum: 42d5dfab263ac898b64936b2793c9695a20bd30e89836438858bf436a76ca795f28f4a932e3de150dc35397667fc336adb659f3a3b96d51c912fd1422de0941f
-  languageName: node
-  linkType: hard
-
-"@shoelace-style/shoelace@npm:^2.0.0-beta.83":
-  version: 2.0.0-beta.83
-  resolution: "@shoelace-style/shoelace@npm:2.0.0-beta.83"
-  dependencies:
-    "@floating-ui/dom": ^1.0.0
-    "@lit-labs/react": ^1.0.7
-    "@shoelace-style/animations": ^1.1.0
-    "@shoelace-style/localize": ^3.0.1
-    color: 4.2
-    lit: ^2.2.8
-    qr-creator: ^1.0.0
-  checksum: 76596df82791ae90cdafdea6a6f3572e556dace441fa2db94ed168c692825e7dfda9d963f63b7695bf1c927e1d1631f0179cf86b000aca7a49ff5aa876c002e6
+"@shoelace-style/localize@npm:^3.0.3":
+  version: 3.0.3
+  resolution: "@shoelace-style/localize@npm:3.0.3"
+  checksum: e666f4d832ea9836abf93d160296b15de4cbc12afc34e6caafe4a1a5919482e1cb785e0a39b5742afdcc84ee288e8d25b4232b5d3a1dc001dfa6838e68e5d1ee
   languageName: node
   linkType: hard
 
@@ -435,6 +420,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@teamshares/shoelace@https://github.com/teamshares/shoelace":
+  version: 1.0.1-alpha.1
+  resolution: "@teamshares/shoelace@https://github.com/teamshares/shoelace.git#commit=9589e09bde3fe76b4ec48e1a5bac61c38568d5f3"
+  dependencies:
+    "@floating-ui/dom": ^1.0.7
+    "@lit-labs/react": ^1.1.0
+    "@shoelace-style/animations": ^1.1.0
+    "@shoelace-style/localize": ^3.0.3
+    color: 4.2
+    data-grid-component: "github:teamshares/data-grid"
+    lit: ^2.4.1
+    qr-creator: ^1.0.0
+  checksum: 4275978d4d30189df2f7140c05303af60ccbfb85ba55a7b36748812cb8ee4472164b49fee4f909f277a3328ba5761e8bb8719eb548b1998219a76c4a7e8e1e9d
+  languageName: node
+  linkType: hard
+
 "@teamshares/ui@workspace:.":
   version: 0.0.0-use.local
   resolution: "@teamshares/ui@workspace:."
@@ -442,10 +443,10 @@ __metadata:
     "@github/clipboard-copy-element": ^1.1.2
     "@honeybadger-io/js": ^4.3.0
     "@hotwired/stimulus": ^3.1.0
-    "@shoelace-style/shoelace": ^2.0.0-beta.83
     "@tailwindcss/forms": ^0.5.3
     "@tailwindcss/line-clamp": ^0.4.2
     "@tailwindcss/typography": ^0.5.8
+    "@teamshares/shoelace": "https://github.com/teamshares/shoelace"
     "@webcomponents/custom-elements": ^1.5.0
     concurrently: ^7.5.0
     cssnano: ^5.1.14
@@ -761,7 +762,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"autoprefixer@npm:^10.4.13":
+"autoprefixer@npm:^10.4.13, autoprefixer@npm:^10.4.8":
   version: 10.4.13
   resolution: "autoprefixer@npm:10.4.13"
   dependencies:
@@ -956,7 +957,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chokidar@npm:^3.3.0, chokidar@npm:^3.5.3":
+"chokidar@npm:>=3.0.0 <4.0.0, chokidar@npm:^3.3.0, chokidar@npm:^3.5.3":
   version: 3.5.3
   resolution: "chokidar@npm:3.5.3"
   dependencies:
@@ -1342,6 +1343,18 @@ __metadata:
   dependencies:
     css-tree: ^1.1.2
   checksum: 380ba9663da3bcea58dee358a0d8c4468bb6539be3c439dc266ac41c047217f52fd698fb7e4b6b6ccdfb8cf53ef4ceed8cc8ceccb8dfca2aa628319826b5b998
+  languageName: node
+  linkType: hard
+
+"data-grid-component@github:teamshares/data-grid":
+  version: 1.5.1
+  resolution: "data-grid-component@https://github.com/teamshares/data-grid.git#commit=08f47c3ab51fb08d77acf3f86f6f7a86013275a1"
+  dependencies:
+    autoprefixer: ^10.4.8
+    postcss: ^8.4.16
+    postcss-cli: ^10.0.0
+    sass: ^1.54.9
+  checksum: aebbb4d8f67925e45cb7189b24916df5f362913fe4e2113b80829ba38f97b965c758fa3bd6ee7352ad8ae76a7b374d7c89c1845d000927c6e6d182f86969d9b5
   languageName: node
   linkType: hard
 
@@ -2500,6 +2513,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"immutable@npm:^4.0.0":
+  version: 4.1.0
+  resolution: "immutable@npm:4.1.0"
+  checksum: b9bc1f14fb18eb382d48339c064b24a1f97ae4cf43102e0906c0a6e186a27afcd18b55ca4a0b63c98eefb58143e2b5ebc7755a5fb4da4a7ad84b7a6096ac5b13
+  languageName: node
+  linkType: hard
+
 "import-fresh@npm:^3.0.0, import-fresh@npm:^3.2.1":
   version: 3.3.0
   resolution: "import-fresh@npm:3.3.0"
@@ -2863,14 +2883,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lit@npm:^2.2.8":
-  version: 2.4.0
-  resolution: "lit@npm:2.4.0"
+"lit@npm:^2.4.1":
+  version: 2.4.1
+  resolution: "lit@npm:2.4.1"
   dependencies:
     "@lit/reactive-element": ^1.4.0
     lit-element: ^3.2.0
     lit-html: ^2.4.0
-  checksum: ac22b1cd31331dde47a784caceed35c17d075016467af2ad88a22b626ceb93f5069be14626f4cb0acf9c83b1cd2bcfe2e0810ecb8e94f1730abbb645cfc3e0f0
+  checksum: 0f0673bd8f7c31d3f00cef0be26683f46e34048466c54b8663e8f13a7dbb6038f06aafa9abf3f0a6635c2d702fde7319d4f88b2bd9e2bd512f81c95fb691ca87
   languageName: node
   linkType: hard
 
@@ -4468,7 +4488,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:^8.4.18, postcss@npm:^8.4.19":
+"postcss@npm:^8.4.16, postcss@npm:^8.4.18, postcss@npm:^8.4.19":
   version: 8.4.19
   resolution: "postcss@npm:8.4.19"
   dependencies:
@@ -4768,6 +4788,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"sass@npm:^1.54.9":
+  version: 1.56.1
+  resolution: "sass@npm:1.56.1"
+  dependencies:
+    chokidar: ">=3.0.0 <4.0.0"
+    immutable: ^4.0.0
+    source-map-js: ">=0.6.2 <2.0.0"
+  bin:
+    sass: sass.js
+  checksum: 78e693e5992b149574c95d5adfe39ca3e5b97d80befa11191a20d1daa41fe201a98ac099beab726cd3095e2d2e7991a2c408ba0fcc3fa9f525879de7eee18dad
+  languageName: node
+  linkType: hard
+
 "semver@npm:2 || 3 || 4 || 5":
   version: 5.7.1
   resolution: "semver@npm:5.7.1"
@@ -4930,7 +4963,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"source-map-js@npm:^1.0.2":
+"source-map-js@npm:>=0.6.2 <2.0.0, source-map-js@npm:^1.0.2":
   version: 1.0.2
   resolution: "source-map-js@npm:1.0.2"
   checksum: c049a7fc4deb9a7e9b481ae3d424cc793cb4845daa690bc5a05d428bf41bf231ced49b4cf0c9e77f9d42fdb3d20d6187619fc586605f5eabe995a316da8d377c
