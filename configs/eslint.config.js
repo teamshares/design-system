@@ -279,6 +279,10 @@ const buildConfigs = (customRules) => {
     globals: { ...globals.browser },
   };
 
+  // Somehow this generates a 'AudioWorkletGlobalScope ' (with a space...) that we need to manually fix...
+  delete browserConfig.languageOptions.globals["AudioWorkletGlobalScope "];
+  browserConfig.languageOptions.globals.AudioWorkletGlobalScope = false;
+
   const nodeConfig = { ...coreConfig };
   nodeConfig.languageOptions = {
     ...nodeConfig.languageOptions,
