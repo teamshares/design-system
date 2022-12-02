@@ -1,4 +1,4 @@
-import * as Shoelace from "@teamshares/shoelace";
+import * as Shoelace from "@shoelace-style/shoelace";
 import { initHoneybadger } from "./_honeybadger";
 
 export * from "./controllers";
