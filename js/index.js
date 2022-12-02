@@ -1,7 +1,7 @@
 import * as Shoelace from "@shoelace-style/shoelace";
 import { initHoneybadger } from "./_honeybadger";
 
-export * from "controllers";
+export * from "./controllers";
 export * from "./_honeybadger"; // Leaving this for legacy sake; should be removed once everyone is calling initialize below
 
 /** ********************************************************** */
