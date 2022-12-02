@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "controllers": ["js/controllers"],
+    }
+  }
+}
