@@ -342,6 +342,7 @@ const teamsharesDefaultRailsConfig = (customRules) => {
         "tmp/**",
         "app/assets/builds/**",
         "public/assets/**",
+        "vendor/**",
       ],
     },
     {
