@@ -7,7 +7,6 @@
     "js/*.js",
     "configs/*.js",
     "images/*",
-    "bin/ts-postcss-build-script.js",
     "scss/*.scss"
   ],
   "scripts": {
