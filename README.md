@@ -12,12 +12,26 @@ Instructions on testing changes to this shared package _within another full Rail
 
 0. Check this repo out _as a sibling of the primary Rails apps_ (e.g. I use `~/code`): `git clone git@github.com:teamshares/shared-ui.git` (and then run `yarn` once to install dependencies)
 
-2. CD into **the Rails app** that you want to use the local version, then configure yarn: `yarn link --private --relative ../shared-ui`
+### Yarn 1 - Classic
+
+1. CD into **this new directory**, then tell yarn that we want to register it as a local override available for other apps on this computer: `yarn link`
+
+    You should see output including:
+    > success Registered "@teamshares/ui".
+
+2. CD into **the Rails app** that you want to use the local version, then configure yarn: `yarn link @teamshares/ui`
+
+    You should see output including:
+    > success Using linked package for "@teamshares/ui".
+
+3. Finally (not positive this is necessary) rerun `yarn install` _in both directories_ to make sure all necessary dependencies are installed and linked properly.
+
+### Yarn 3
+
+1. CD into **the Rails app** that you want to use the local version, then configure yarn: `yarn link --private --relative ../shared-ui`
 
     You should see output indicating success (warnings OK), e.g.:
     > YN0000: Done with warnings in 0s 839ms
-
-3. Finally (not positive this is necessary) rerun `yarn install`
 
 That's it! You're all configured.
 
@@ -37,7 +51,7 @@ Once the steps from above have been completed, to actually make changes you'll w
 
 * **Changes to `tailwind.config.js`** _do not_ hotreload -- changes there require a restart of the Rails app's compiler.
 
-## Caveats
+## Caveats - Yarn 3
 
 Super annoyingly, as of Yarn v3 the `yarn link` command adds a `resolutions` key directly to `package.json`... which we obviously can't commit to production, since it's only a valid path on your local computer.  I WOULD LOVE A WORKAROUND HERE IF ANYONE HAS ONE! In the meantime, I've updated CI for all our consuming apps to include a linter step that will fail if you accidentally leave in the resolutions key.
 
