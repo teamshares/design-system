@@ -10,11 +10,7 @@
     "bin/ts-postcss-build-script.js",
     "scss/*.scss"
   ],
-  "bin": {
-    "ts-postcss-builder": "./bin/ts-postcss-build-script.js"
-  },
   "scripts": {
-    "kali": "ts-postcss-builder",
     "lint": "concurrently 'yarn lint:css' 'yarn lint:js'",
     "lint:js": "eslint .",
     "lint:css": "stylelint --fix --color --config configs/stylelint.config.js scss/",
@@ -27,7 +23,7 @@
     "@tailwindcss/forms": "^0.5.3",
     "@tailwindcss/line-clamp": "^0.4.2",
     "@tailwindcss/typography": "^0.5.8",
-    "@teamshares/shoelace": "https://github.com/teamshares/shoelace",
+    "@teamshares/shoelace": "https://github.com/teamshares/shoelace#yarn",
     "@webcomponents/custom-elements": "^1.5.0",
     "eslint-plugin-cypress": "^2.12.1",
     "eslint-plugin-n": "^15.2.4",

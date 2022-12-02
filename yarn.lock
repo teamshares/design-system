@@ -420,9 +420,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@teamshares/shoelace@https://github.com/teamshares/shoelace":
+"@teamshares/shoelace@https://github.com/teamshares/shoelace#yarn":
   version: 1.0.1-alpha.1
-  resolution: "@teamshares/shoelace@https://github.com/teamshares/shoelace.git#commit=9589e09bde3fe76b4ec48e1a5bac61c38568d5f3"
+  resolution: "@teamshares/shoelace@https://github.com/teamshares/shoelace.git#commit=abce21816717aeb43ee4448a0e28e8d7c18d10cb"
   dependencies:
     "@floating-ui/dom": ^1.0.7
     "@lit-labs/react": ^1.1.0
@@ -432,7 +432,7 @@ __metadata:
     data-grid-component: "github:teamshares/data-grid"
     lit: ^2.4.1
     qr-creator: ^1.0.0
-  checksum: 4275978d4d30189df2f7140c05303af60ccbfb85ba55a7b36748812cb8ee4472164b49fee4f909f277a3328ba5761e8bb8719eb548b1998219a76c4a7e8e1e9d
+  checksum: 8cca631d736d18798fbd3dc1674c62eca5df41563ed1313912049e734bc39820cb8ddd8893bf97ae9b6a157ade8e76a65eea1f1035542e2354f55afade2026ad
   languageName: node
   linkType: hard
 
@@ -446,7 +446,7 @@ __metadata:
     "@tailwindcss/forms": ^0.5.3
     "@tailwindcss/line-clamp": ^0.4.2
     "@tailwindcss/typography": ^0.5.8
-    "@teamshares/shoelace": "https://github.com/teamshares/shoelace"
+    "@teamshares/shoelace": "https://github.com/teamshares/shoelace#yarn"
     "@webcomponents/custom-elements": ^1.5.0
     concurrently: ^7.5.0
     cssnano: ^5.1.14
@@ -469,8 +469,6 @@ __metadata:
     stylelint: ^14.15.0
     stylelint-config-sass-guidelines: ^9.0.1
     tailwindcss: 3.2.4
-  bin:
-    ts-postcss-builder: ./bin/ts-postcss-build-script.js
   languageName: unknown
   linkType: soft
 
