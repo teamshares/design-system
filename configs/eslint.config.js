@@ -331,7 +331,7 @@ const buildConfigs = (customRules) => {
 };
 
 // Higher level helper -- returns the full eslint config
-const teamsharesDefaultRailsConfig = (customRules) => {
+const buildDefaultConfig = (customRules) => {
   const { browserConfig, nodeConfig, cypressConfig } = buildConfigs(customRules);
 
   return [
@@ -363,5 +363,5 @@ const teamsharesDefaultRailsConfig = (customRules) => {
 
 module.exports = {
   buildConfigs,
-  teamsharesDefaultRailsConfig,
+  buildDefaultConfig,
 };
