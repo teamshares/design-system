@@ -1,0 +1,10 @@
+@use '~inter-ui/default' as inter-ui with (
+  $inter-font-display: swap,
+  $inter-font-path: '~inter-ui/Inter (web)'
+);
+
+@include inter-ui.weight-300-normal;
+@include inter-ui.weight-400-normal;
+@include inter-ui.weight-500-normal;
+@include inter-ui.weight-600-normal;
+@include inter-ui.weight-700-normal;
