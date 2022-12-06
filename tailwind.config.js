@@ -74,6 +74,10 @@ module.exports = {
           800: "#956419",
           900: "#694712"
         },
+        teal: {
+          100: "#F0FAFA",
+          700: "#288286"
+        },
         subdued: "#6d7176",
         default: "#2e333c",
         white: "#ffffff",
