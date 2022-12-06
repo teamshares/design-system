@@ -6,7 +6,6 @@
   "files": [
     "js/*.js",
     "configs/*.js",
-    "images/*",
     "scss/*.scss"
   ],
   "scripts": {
