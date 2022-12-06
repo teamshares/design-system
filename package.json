@@ -23,6 +23,7 @@
     "@tailwindcss/typography": "^0.5.8",
     "cssnano": "^5.1.14",
     "esbuild": "^0.15.13",
+    "esbuild-plugin-stimulus": "^0.1.5",
     "eslint-plugin-cypress": "^2.12.1",
     "eslint-plugin-n": "^15.2.4",
     "eslint-plugin-promise": "^6.0.0",

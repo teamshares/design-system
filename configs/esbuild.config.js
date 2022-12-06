@@ -1,5 +1,6 @@
 // Note: more a build script than a config file, but keeping naming to match postcss.config.js
 const path = require("path");
+const { stimulusPlugin } = require("esbuild-plugin-stimulus");
 
 const sharedConfig = {
   logLevel: "info",
@@ -23,9 +24,12 @@ const sharedConfig = {
     "process.env.RAILS_ENV": `"${process.env.RAILS_ENV || "development"}"`,
     "process.env.HONEYBADGER_JS_API_KEY": `"${process.env.HONEYBADGER_JS_API_KEY}"`,
   },
+  plugins: [
+    stimulusPlugin(),
+  ],
 };
 
-const builder = (config) => require("esbuild")
+const builder = (config = sharedConfig) => require("esbuild")
   .build(config)
   .then(() => { console.log("Build succeeded."); })
   .catch((e) => {
