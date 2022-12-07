@@ -341,7 +341,7 @@ const buildDefaultConfig = (customRules) => {
         "coverage/**",
         "tmp/**",
         "app/assets/builds/**",
-        "public/assets/**",
+        "public/**",
         "vendor/**",
       ],
     },
