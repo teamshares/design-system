@@ -308,6 +308,10 @@ const buildConfigs = (customRules) => {
       describe: false,
       context: false,
       beforeEach: false,
+
+      // Apparently also needed...
+      xdescribe: false,
+      xit: false,
     },
   };
   cypressConfig.rules = {
