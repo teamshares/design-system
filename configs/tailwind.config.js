@@ -38,6 +38,7 @@ const tailwindConfig = {
     "bg-gray-100", "text-gray-800",
     "bg-purple-100", "text-indigo-800",
     "bg-yellow-50", "text-yellow-800",
+    "bg-teal-100", "text-teal-700",
     "fuschia-label-background", "fuschia-label-text",
     "inline-flex", "items-center", "justify-start", "rounded", "mr-4", "space-x-2", "px-2", "text-sm", "font-medium",
 
@@ -105,6 +106,10 @@ const tailwindConfig = {
           700: "#ca861e",
           800: "#956419",
           900: "#694712",
+        },
+        teal: {
+          100: "#F0FAFA",
+          700: "#288286",
         },
         subdued: "#6d7176",
         default: "#2e333c",
