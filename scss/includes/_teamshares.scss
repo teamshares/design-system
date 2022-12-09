@@ -404,7 +404,7 @@ ul a {
 
     &:focus,
     &:focus-within {
-      @apply bordder-gray-900;
+      @apply border-gray-900;
       box-shadow: none;
       outline: 0;
 
