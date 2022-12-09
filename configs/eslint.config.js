@@ -294,6 +294,7 @@ const buildConfigs = (customRules) => {
   cypressConfig.languageOptions = {
     ...cypressConfig.languageOptions,
     globals: {
+      ...browserConfig.languageOptions.globals, // In case any manual JS is done in tests (buyout has a direct File reference...)
       ...globals.node,
 
       // Manually pulled from: https://github.com/cypress-io/eslint-plugin-cypress/blob/master/index.js

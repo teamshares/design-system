@@ -5,6 +5,7 @@ export default class extends Controller {
   static classes = ["toggle"];
 
   connect () {
+    console.log("DEBUG: toggle controller connected", this.element);
     this.element[this.identifier] = this;
     this.classToToggle = this.hasToggleClass ? this.toggleClass : "hidden";
     this.externalTargets = document.getElementsByClassName(this.data.get("externalTargetClass"));
