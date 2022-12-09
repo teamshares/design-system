@@ -726,7 +726,7 @@ ul a {
   .ts-drawer.bg-blue-900 {
     .ts-drawer__links a {
       background-image: url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 12 12' fill='%23FFF' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6.39205 11.483L11.6932 6.18181L6.39205 0.880676L5.36932 1.89772L8.92045 5.44318H0L0 6.92045H8.92045L5.36932 10.4716L6.39205 11.483Z' fill='%23FFF'/%3E%3C/svg%3E%0A");
-      @apply border-white color-white;
+      @apply border-white text-white;
     }
   }
 
