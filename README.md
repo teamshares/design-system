@@ -1,6 +1,10 @@
 # @teamshares/ui
 
-JavaScript package to share frontend UI components, styles, and configuration.
+JavaScript package to share frontend UI components, styles, and configuration (e.g. linters, tailwind, shoelace web components).
+
+## Problems?
+
+Checkout the [Working with Shared Repos](https://www.notion.so/teamshares/Working-with-Shared-Repos-abca981d44e94e3587da090e50905cf0) doc, and/or ping `#engineering-deps`.
 
 ## Setup
 
@@ -51,15 +55,21 @@ Once the steps from above have been completed, to actually make changes you'll w
 
 * **Changes to `tailwind.config.js`** _do not_ hotreload -- changes there require a restart of the Rails app's compiler.
 
-## Caveats - Yarn 3
+### Caveats - Yarn 3
 
 Super annoyingly, as of Yarn v3 the `yarn link` command adds a `resolutions` key directly to `package.json`... which we obviously can't commit to production, since it's only a valid path on your local computer.  I WOULD LOVE A WORKAROUND HERE IF ANYONE HAS ONE! In the meantime, I've updated CI for all our consuming apps to include a linter step that will fail if you accidentally leave in the resolutions key.
 
 ### Cleanup
 
-When you're done doing local development you _can_ undo this config:
+When you're done doing local development you _can_ undo this config.
+
+__Yarn 1__:
 
 0. From _within the linked Rails app_: `yarn unlink ../shared-ui` and then (not certain still required in yarn 3) `yarn install --force` to re-installed the previously-linked package from remote instead.
+
+__Yarn 3__:
+
+0. From _within the linked Rails app_: `yarn unlink @teamshares/ui` (or `yarn unlink --all`).
 
 ## After merging your PR
 Your changes _won't go live_ in any consuming Rails apps until their `yarn.lock` is updated to point to the newest-released git SHA (i.e. you merge a PR in that app in which you've run `yarn upgrade @teamshares/ui`).
