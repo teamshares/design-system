@@ -8,8 +8,5 @@ module.exports = {
     "selector-no-qualifying-type": [true, {
       ignore: ["class", "attribute"],
     }],
-    "scss/at-rule-no-unknown": [null, {
-      ignoreAtRules: ["responsive"],
-    }],
   },
 };
