@@ -2,6 +2,8 @@
 const path = require("path");
 const { stimulusPlugin } = require("esbuild-plugin-stimulus");
 
+const isProd = process.env.RAILS_ENV === "production" || process.env.NODE_ENV === "production";
+
 const sharedConfig = {
   logLevel: "info",
   watch: process.argv.includes("--watch"),
@@ -9,8 +11,8 @@ const sharedConfig = {
     "application.js",
   ],
   bundle: true,
-  sourcemap: true,
-  minify: true,
+  sourcemap: isProd,
+  minify: isProd,
   target: "es2020", // NOTE: look into using browserlist here...
   outdir: path.join(process.cwd(), "app/assets/builds"),
   absWorkingDir: path.join(process.cwd(), "app/javascript"),
@@ -31,7 +33,7 @@ const sharedConfig = {
 
 const builder = (config = sharedConfig) => require("esbuild")
   .build(config)
-  .then(() => { console.log("Build succeeded."); })
+  .then(() => { console.log(`Build succeeded (${isProd ? "PRODUCTION" : "development mode"}).`); })
   .catch((e) => {
     console.log("Error building:", e.message);
     process.exit(1);

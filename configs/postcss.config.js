@@ -1,5 +1,8 @@
 const tailwindConfig = require("./tailwind.config.js");
 
+const isProd = process.env.RAILS_ENV === "production" || process.env.NODE_ENV === "production";
+console.log(`Preparing to bundle CSS in ${isProd ? "PRODUCTION" : "development mode"}`);
+
 const postcssConfig = {
   parser: "postcss-scss",
   plugins: [
@@ -16,9 +19,9 @@ const postcssConfig = {
       },
       stage: 3,
     }),
-    require("cssnano")({ preset: "default" }),
+    isProd ? require("cssnano")({ preset: "default" }) : null,
     require("postcss-reporter")({ clearReportedMessages: true }),
-  ],
+  ].filter(Boolean),
 };
 
 module.exports = postcssConfig;
