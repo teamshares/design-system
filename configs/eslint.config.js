@@ -327,6 +327,10 @@ const buildConfigs = (customRules) => {
     "cypress/no-pause": "error",
   };
 
+  // Turn off camelcase -- ended up causing more confusion/churn than its worth when --fix tries to send camel-case versions of params
+  // back to the rails server (from cypress factory calls)
+  delete cypressConfig.rules.camelcase;
+
   return {
     coreConfig,
     nodeConfig,
