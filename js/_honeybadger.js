@@ -5,6 +5,7 @@ import Honeybadger from "@honeybadger-io/js";
 const HEROKU_APP_NAME = process.env.HEROKU_APP_NAME;
 const RAILS_ENV = process.env.RAILS_ENV;
 const HONEYBADGER_JS_API_KEY = process.env.HONEYBADGER_JS_API_KEY;
+const HEROKU_RELEASE_VERSION = process.env.HEROKU_RELEASE_VERSION;
 
 const getAppContext = () => {
   const heroku = HEROKU_APP_NAME || "";
@@ -30,6 +31,7 @@ export const initHoneybadger = (opts = {}) => {
   const config = Object.assign({
     apiKey: HONEYBADGER_JS_API_KEY,
     environment: appContext,
+    revision: HEROKU_RELEASE_VERSION,
   }, opts);
 
   Honeybadger.configure(config);
