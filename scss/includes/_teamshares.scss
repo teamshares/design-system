@@ -33,6 +33,7 @@ body {
 }
 
 a {
+  @apply text-gray-900; // TODO: *why* are setting a default gray, no hover? Note buyout overrides this, but other codebases use it as default...
   text-decoration: none;
 }
 
