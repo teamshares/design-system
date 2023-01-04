@@ -1,6 +1,6 @@
 const globals = require("globals");
 const cypressPlugin = require("eslint-plugin-cypress");
-const jestPlugin = require("eslint-plugin-jest");
+// const jestPlugin = require("eslint-plugin-jest");
 
 // These three are required by eslint-plugin-standard (which we're manually recreating until it supports the flat file config)
 const nPlugin = require("eslint-plugin-n");
@@ -302,8 +302,8 @@ const buildConfigs = (customRules) => {
       expect: false,
     },
   };
-  // NOTE: not sure plugin has been updated to work in new config syntax -- this might not be having any effect yet...
-  jestConfig.plugins.jest = jestPlugin;
+  // TODO: enable jest linting (CAUTION: requires node "^14.15.0 || ^16.10.0 || >=18.0.0", but e.g. succession is on 16.4 as of Jan 2023)
+  // jestConfig.plugins.jest = jestPlugin;
 
   const cypressConfig = { ...nodeConfig };
   cypressConfig.plugins = { ...nodeConfig.plugins, cypress: cypressPlugin };
