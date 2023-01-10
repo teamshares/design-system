@@ -300,6 +300,9 @@ const buildConfigs = (customRules) => {
       // Partial list from manually debugging... will likely need to add additional globals here
       test: false,
       expect: false,
+      describe: false,
+      jest: false,
+      global: false,
     },
   };
   // TODO: enable jest linting (CAUTION: requires node "^14.15.0 || ^16.10.0 || >=18.0.0", but e.g. succession is on 16.4 as of Jan 2023)
