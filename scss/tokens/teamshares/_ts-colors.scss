@@ -17,7 +17,7 @@ sp-theme {
   --ts-color-blue-800: #29427b;
   --ts-color-blue-900: #353d5f;
   --ts-color-blue-950: #2f3654;
-  
+
   --ts-color-gray-50: #fcfcfc;
   --ts-color-gray-75: #f9fafb;
   --ts-color-gray-100: #f6f8fa;
@@ -30,7 +30,7 @@ sp-theme {
   --ts-color-gray-800: #444c59;
   --ts-color-gray-900: #2e333c;
   --ts-color-gray-950: #111;
-  
+
   --ts-color-red-100: #fcf1ef;
   --ts-color-red-200: #f7d7d2;
   --ts-color-red-300: #eec9c1;
@@ -40,7 +40,7 @@ sp-theme {
   --ts-color-red-700: #d7351c;
   --ts-color-red-800: #b92e18;
   --ts-color-red-900: #9b2614;
-  
+
   --ts-color-green-100: #eef6e8;
   --ts-color-green-200: #d4e8c3;
   --ts-color-green-300: #72d0a3;
@@ -50,7 +50,7 @@ sp-theme {
   --ts-color-green-700: #068466;
   --ts-color-green-800: #164e3e;
   --ts-color-green-900: #004d49;
-  
+
   --ts-color-yellow-50: #fffbf0;
   --ts-color-yellow-100: #faf4ea;
   --ts-color-yellow-200: #f2eade;
@@ -61,70 +61,69 @@ sp-theme {
   --ts-color-yellow-700: #ca861e;
   --ts-color-yellow-800: #956419;
   --ts-color-yellow-900: #694712;
-  
+
   --ts-color-white: #fff;
   --ts-color-black: #000;
 
   /* RGB versjons */
+  --ts-color-blue-50-rgb: 246, 250, 253;
+  --ts-color-blue-100-rgb: 225, 239, 249;
+  --ts-color-blue-200-rgb: 183, 216, 240;
+  --ts-color-blue-300-rgb: 132, 186, 250;
+  --ts-color-blue-400-rgb: 83, 158, 248;
+  --ts-color-blue-500-rgb: 59, 116, 252;
+  --ts-color-blue-600-rgb: 44, 94, 214;
+  --ts-color-blue-700-rgb: 58, 93, 174;
+  --ts-color-blue-800-rgb: 41, 66, 123;
+  --ts-color-blue-900-rgb: 53, 61, 95;
+  --ts-color-blue-950-rgb: 47, 54, 84;
 
-  --ts-color-blue-50-rgb: rgb(246, 250, 253);
-  --ts-color-blue-100-rgb: rgb(225, 239, 249);
-  --ts-color-blue-200-rgb: rgb(183, 216, 240);
-  --ts-color-blue-300-rgb: rgb(132, 186, 250);
-  --ts-color-blue-400-rgb: rgb(83, 158, 248);
-  --ts-color-blue-500-rgb: rgb(59, 116, 252);
-  --ts-color-blue-600-rgb: rgb(44, 94, 214);
-  --ts-color-blue-700-rgb: rgb(58, 93, 174);
-  --ts-color-blue-800-rgb: rgb(41, 66, 123);
-  --ts-color-blue-900-rgb: rgb(53, 61, 95);
-  --ts-color-blue-950-rgb: rgb(47, 54, 84);
+  --ts-color-gray-50-rgb: 252, 252, 252;
+  --ts-color-gray-75-rgb: 249, 250, 251;
+  --ts-color-gray-100-rgb: 246, 248, 250;
+  --ts-color-gray-200-rgb: 240, 240, 240;
+  --ts-color-gray-300-rgb: 232, 232, 232;
+  --ts-color-gray-400-rgb: 205, 207, 209;
+  --ts-color-gray-500-rgb: 179, 181, 184;
+  --ts-color-gray-600-rgb: 147, 153, 158;
+  --ts-color-gray-700-rgb: 109, 113, 118;
+  --ts-color-gray-800-rgb: 68, 76, 89;
+  --ts-color-gray-900-rgb: 46, 51, 60;
+  --ts-color-gray-950-rgb: 17, 17, 17;
 
-  --ts-color-gray-50-rgb: rgb(252, 252, 252);
-  --ts-color-gray-75-rgb: rgb(249, 250, 251);
-  --ts-color-gray-100-rgb: rgb(246, 248, 250);
-  --ts-color-gray-200-rgb: rgb(240, 240, 240);
-  --ts-color-gray-300-rgb: rgb(232, 232, 232);
-  --ts-color-gray-400-rgb: rgb(205, 207, 209);
-  --ts-color-gray-500-rgb: rgb(179, 181, 184);
-  --ts-color-gray-600-rgb: rgb(147, 153, 158);
-  --ts-color-gray-700-rgb: rgb(109, 113, 118);
-  --ts-color-gray-800-rgb: rgb(68, 76, 89);
-  --ts-color-gray-900-rgb: rgb(46, 51, 60);
-  --ts-color-gray-950-rgb: rgb(17, 17, 17);
+  --ts-color-red-100-rgb: 252, 241, 239;
+  --ts-color-red-200-rgb: 247, 215, 210;
+  --ts-color-red-300-rgb: 238, 201, 193;
+  --ts-color-red-400-rgb: 240, 148, 139;
+  --ts-color-red-500-rgb: 246, 87, 71;
+  --ts-color-red-600-rgb: 214, 78, 65;
+  --ts-color-red-700-rgb: 215, 53, 28;
+  --ts-color-red-800-rgb: 185, 46, 24;
+  --ts-color-red-900-rgb: 155, 38, 20;
 
-  --ts-color-red-100-rgb: rgb(252, 241, 239);
-  --ts-color-red-200-rgb: rgb(247, 215, 210);
-  --ts-color-red-300-rgb: rgb(238, 201, 193);
-  --ts-color-red-400-rgb: rgb(240, 148, 139);
-  --ts-color-red-500-rgb: rgb(246, 87, 71);
-  --ts-color-red-600-rgb: rgb(214, 78, 65);
-  --ts-color-red-700-rgb: rgb(215, 53, 28);
-  --ts-color-red-800-rgb: rgb(185, 46, 24);
-  --ts-color-red-900-rgb: rgb(155, 38, 20);
+  --ts-color-green-100-rgb: 238, 246, 232;
+  --ts-color-green-200-rgb: 212, 232, 195;
+  --ts-color-green-300-rgb: 114, 208, 163;
+  --ts-color-green-400-rgb: 33, 188, 156;
+  --ts-color-green-500-rgb: 23, 166, 136;
+  --ts-color-green-600-rgb: 16, 152, 95;
+  --ts-color-green-700-rgb: 6, 132, 102;
+  --ts-color-green-800-rgb: 22, 78, 62;
+  --ts-color-green-900-rgb: 0, 77, 73;
 
-  --ts-color-green-100-rgb: rgb(238, 246, 232);
-  --ts-color-green-200-rgb: rgb(212, 232, 195);
-  --ts-color-green-300-rgb: rgb(114, 208, 163);
-  --ts-color-green-400-rgb: rgb(33, 188, 156);
-  --ts-color-green-500-rgb: rgb(23, 166, 136);
-  --ts-color-green-600-rgb: rgb(16, 152, 95);
-  --ts-color-green-700-rgb: rgb(6, 132, 102);
-  --ts-color-green-800-rgb: rgb(22, 78, 62);
-  --ts-color-green-900-rgb: rgb(0, 77, 73);
+  --ts-color-yellow-50-rgb: 255, 251, 240;
+  --ts-color-yellow-100-rgb: 250, 244, 234;
+  --ts-color-yellow-200-rgb: 242, 234, 222;
+  --ts-color-yellow-300-rgb: 252, 228, 145;
+  --ts-color-yellow-400-rgb: 250, 216, 96;
+  --ts-color-yellow-500-rgb: 255, 195, 40;
+  --ts-color-yellow-600-rgb: 246, 175, 71;
+  --ts-color-yellow-700-rgb: 202, 134, 30;
+  --ts-color-yellow-800-rgb: 149, 100, 25;
+  --ts-color-yellow-900-rgb: 105, 71, 18;
 
-  --ts-color-yellow-50-rgb: rgb(255, 251, 240);
-  --ts-color-yellow-100-rgb: rgb(250, 244, 234);
-  --ts-color-yellow-200-rgb: rgb(242, 234, 222);
-  --ts-color-yellow-300-rgb: rgb(252, 228, 145);
-  --ts-color-yellow-400-rgb: rgb(250, 216, 96);
-  --ts-color-yellow-500-rgb: rgb(255, 195, 40);
-  --ts-color-yellow-600-rgb: rgb(246, 175, 71);
-  --ts-color-yellow-700-rgb: rgb(202, 134, 30);
-  --ts-color-yellow-800-rgb: rgb(149, 100, 25);
-  --ts-color-yellow-900-rgb: rgb(105, 71, 18);
-
-  --ts-color-white-rgb: rgb(255, 255, 255);
-  --ts-color-black-rgb: rgb(0, 0, 0);
+  --ts-color-white-rgb: 255, 255, 255;
+  --ts-color-black-rgb: 0, 0, 0;
 
   /* Semantic colors */
 
