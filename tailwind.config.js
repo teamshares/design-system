@@ -7,17 +7,17 @@
 
 module.exports = {
   content: [
-    './app/views/**/*',
-    './app/helpers/**/*.rb',
-    './app/javascript/**/*.js',
-    './app/components/**/*',
-    './public/*.html'
+    "./app/views/**/*",
+    "./app/helpers/**/*.rb",
+    "./app/javascript/**/*.js",
+    "./app/components/**/*",
+    "./public/*.html"
   ],
   theme: {
     extend: {
       colors: {
         blue: {
-          50: '#F6FAFD',
+          50: "#F6FAFD",
           100: "#e1eff9",
           200: "#b7d8f0",
           300: "#84bafa",
@@ -63,7 +63,7 @@ module.exports = {
           900: "#004d49"
         },
         yellow: {
-          50: '#FFFBF0',
+          50: "#FFFBF0",
           100: "#faf4ea",
           200: "#f2eade",
           300: "#fce491",
@@ -76,7 +76,14 @@ module.exports = {
         },
         teal: {
           100: "#F0FAFA",
-          700: "#288286"
+          200: "#CAEBEC",
+          300: "#A4DBDD",
+          400: "#80CBCE",
+          500: "#5CBABD",
+          600: "#39A8AC",
+          700: "#288286",
+          800: "#1A5B5D",
+          900: "#0D3233"
         },
         subdued: "#6d7176",
         default: "#2e333c",
@@ -105,7 +112,7 @@ module.exports = {
       // TODO: delete height and width configs after updating Tailwind > 2.1
       height: {
         "680px": "680px",
-        "38": "38rem"
+        38: "38rem"
       },
       width: {
         "300px": "300px",
@@ -122,8 +129,8 @@ module.exports = {
         "850px": "850px",
         "900px": "900px",
         "950px": "950px",
-        "1000px": "1000px",
-       },
+        "1000px": "1000px"
+      },
       margin: {
         "54px": "54px"
       },
@@ -132,33 +139,33 @@ module.exports = {
       },
       // Not in Buyout
       transitionProperty: {
-        height: "height",
+        height: "height"
       },
       gridTemplateRows: {
-        "7": "repeat(8, minmax(0, 1fr))",
-        "12": "repeat(12, minmax(0, 1fr))",
+        7: "repeat(8, minmax(0, 1fr))",
+        12: "repeat(12, minmax(0, 1fr))"
       },
       inset: {
-        '-16': '-4rem'
+        "-16": "-4rem"
       },
       opacity: {
-        '95': '0.95'
+        95: "0.95"
       },
       screens: {
-        'container-md': [
+        "container-md": [
           // Sidebar appears at 768px, so revert to `sm:` styles
           // between 768px and 868px, after which the main
           // content area is wide enough again to apply the
           // `md:` styles.
           {
-            'min': '641px',
-            'max': '767px'
+            min: "641px",
+            max: "767px"
           },
           {
-            'min': '868px'
+            min: "868px"
           }
-        ],
-      },
+        ]
+      }
     }
   },
   variants: {
