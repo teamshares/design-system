@@ -55,7 +55,11 @@ Once the steps from above have been completed, to actually make changes you'll w
 
 * **Changes to `tailwind.config.js`** _do not_ hotreload -- changes there require a restart of the Rails app's compiler.
 
-### Caveats - Yarn 3
+### Caveats
+
+Having local linking set up _does_ expose you to a few additional edge cases -- we've noted those we know about on this [Working with Shared Repos](https://www.notion.so/teamshares/Working-with-Shared-Repos-abca981d44e94e3587da090e50905cf0) doc; if you run into any issues I'd start there and then reach out to `#engineering-deps`.
+
+#### Yarn 3
 
 Super annoyingly, as of Yarn v3 the `yarn link` command adds a `resolutions` key directly to `package.json`... which we obviously can't commit to production, since it's only a valid path on your local computer.  I WOULD LOVE A WORKAROUND HERE IF ANYONE HAS ONE! In the meantime, I've updated CI for all our consuming apps to include a linter step that will fail if you accidentally leave in the resolutions key.
 
