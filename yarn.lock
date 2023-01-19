@@ -287,7 +287,7 @@
     "@types/aws-lambda" "^8.10.89"
     "@types/express" "^4.17.13"
 
-"@hotwired/stimulus@^3.1.0":
+"@hotwired/stimulus@3.2.1":
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/@hotwired/stimulus/-/stimulus-3.2.1.tgz#e3de23623b0c52c247aba4cd5d530d257008676b"
   integrity sha512-HGlzDcf9vv/EQrMJ5ZG6VWNs8Z/xMN+1o2OhV1gKiSG6CqZt5MCBB1gRg5ILiN3U0jEAxuDTNPRfBcnZBDmupQ==
@@ -347,24 +347,24 @@
   resolved "https://registry.yarnpkg.com/@shoelace-style/animations/-/animations-1.1.0.tgz#17539abafd6dcbf2a79e089e1593175e9f7835b5"
   integrity sha512-Be+cahtZyI2dPKRm8EZSx3YJQ+jLvEcn3xzRP7tM4tqBnvd/eW/64Xh0iOf0t2w5P8iJKfdBbpVNE9naCaOf2g==
 
-"@shoelace-style/localize@^3.0.3":
-  version "3.0.3"
-  resolved "https://registry.yarnpkg.com/@shoelace-style/localize/-/localize-3.0.3.tgz#d69e1f0e547799ecd5deb5e6ed9c8c78b4d01eb6"
-  integrity sha512-BVYDsMTpSCjvC8akhTkcnl4WIgAv7AnRq8fSuNhdGDLjkpmN1ARdAXic5luAozoMVjft85ocOmEdT8z7MbXdmQ==
+"@shoelace-style/localize@^3.0.4":
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/@shoelace-style/localize/-/localize-3.0.4.tgz#e2b71e077f34deff01eca08ef63c49e70e2a2852"
+  integrity sha512-HFY90KD+b1Td2otSBryCOpQjBEArIwlV6Tv4J4rC/E/D5wof2eLF6JUVrbiRNn8GRmwATe4YDAEK7NUD08xO1w==
 
-"@tailwindcss/forms@^0.5.3":
+"@tailwindcss/forms@0.5.3":
   version "0.5.3"
   resolved "https://registry.yarnpkg.com/@tailwindcss/forms/-/forms-0.5.3.tgz#e4d7989686cbcaf416c53f1523df5225332a86e7"
   integrity sha512-y5mb86JUoiUgBjY/o6FJSFZSEttfb3Q5gllE4xoKjAAD+vBrnIhE4dViwUuow3va8mpH4s9jyUbUbrRGoRdc2Q==
   dependencies:
     mini-svg-data-uri "^1.2.3"
 
-"@tailwindcss/line-clamp@^0.4.2":
+"@tailwindcss/line-clamp@0.4.2":
   version "0.4.2"
   resolved "https://registry.yarnpkg.com/@tailwindcss/line-clamp/-/line-clamp-0.4.2.tgz#f353c5a8ab2c939c6267ac5b907f012e5ee130f9"
   integrity sha512-HFzAQuqYCjyy/SX9sLGB1lroPzmcnWv1FHkIpmypte10hptf4oPUfucryMKovZh2u0uiS9U5Ty3GghWfEJGwVw==
 
-"@tailwindcss/typography@^0.5.8":
+"@tailwindcss/typography@0.5.8":
   version "0.5.8"
   resolved "https://registry.yarnpkg.com/@tailwindcss/typography/-/typography-0.5.8.tgz#8fb31db5ab0590be6dfa062b1535ac86ad9d12bf"
   integrity sha512-xGQEp8KXN8Sd8m6R4xYmwxghmswrd0cPnNI2Lc6fmrC3OojysTBJJGSIVwPV56q4t6THFUK3HJ0EaWwpglSxWw==
@@ -374,16 +374,16 @@
     lodash.merge "^4.6.2"
     postcss-selector-parser "6.0.10"
 
-"@teamshares/shoelace@1.0.1-alpha.3":
-  version "1.0.1-alpha.3"
-  resolved "https://registry.yarnpkg.com/@teamshares/shoelace/-/shoelace-1.0.1-alpha.3.tgz#68b52fa8a6563c3499aa99a120df70fa721bde06"
-  integrity sha512-caA9w+4apGZWLcFBNL1oPpWK7leB0+41oH8NXgHvWRrbuPXCuz2IGT10MsItvIxbHYJoHmOkyKiSvibKOPg+sg==
+"@teamshares/shoelace@1.0.1-alpha.4":
+  version "1.0.1-alpha.4"
+  resolved "https://registry.yarnpkg.com/@teamshares/shoelace/-/shoelace-1.0.1-alpha.4.tgz#56f8bac3ac1feabe71512191e7fbe27f24f870cf"
+  integrity sha512-89udkQsLCvm41rvDgMfHVsSV5uxipGBo3jw6OSYZkgPQjiLvszXW6Xidf/YV/ozA9tCHrAO/EkLoOrKt+cOq/g==
   dependencies:
     "@ctrl/tinycolor" "^3.5.0"
     "@floating-ui/dom" "^1.0.7"
     "@lit-labs/react" "^1.1.0"
     "@shoelace-style/animations" "^1.1.0"
-    "@shoelace-style/localize" "^3.0.3"
+    "@shoelace-style/localize" "^3.0.4"
     data-grid-component "github:teamshares/data-grid"
     lit "^2.4.1"
     qr-creator "^1.0.0"
