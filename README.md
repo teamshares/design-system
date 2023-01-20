@@ -53,7 +53,7 @@ Once the steps from above have been completed, to actually make changes you'll w
 
 * **Changes to JS files** are picked up immediately by the Rails app as long as you have `yarn build --watch` running.
 
-* **Changes to `tailwind.config.js`** _do not_ hotreload -- changes there require a restart of the Rails app's compiler.
+* **Changes to `tailwind.config.js`** _do not_ hotreload -- changes there require a restart of the `yarn build:css --watch` script.
 
 ### Caveats
 
