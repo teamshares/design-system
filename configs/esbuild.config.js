@@ -6,7 +6,7 @@ const isProd = process.env.RAILS_ENV === "production" || process.env.NODE_ENV ==
 
 const sharedConfig = {
   logLevel: "info",
-  watch: process.argv.includes("--watch"),
+  // watch: process.argv.includes("--watch"), // TODO: Kali -- fix esbuild for v0.17 (or revert to 0.16 line for now)
   entryPoints: [
     "application.js",
   ],
