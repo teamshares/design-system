@@ -6,6 +6,11 @@ sl-select::part(listbox) {
   margin-top: var(--sl-spacing-x-small);
 }
 
+/* Set color of text displayed in select */
+sl-select::part(display-input) {
+  color: var(--ts-color-text-default);
+}
+
 /** ********** **/
 /* Option styling */
 /** ********** **/
