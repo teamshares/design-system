@@ -1,12 +1,13 @@
 // Note: more a build script than a config file, but keeping naming to match postcss.config.js
 const path = require("path");
+const esbuild = require("esbuild");
 const { stimulusPlugin } = require("esbuild-plugin-stimulus");
 
 const isProd = process.env.RAILS_ENV === "production" || process.env.NODE_ENV === "production";
+const isWatch = process.argv.includes("--watch");
 
 const sharedConfig = {
   logLevel: "info",
-  // watch: process.argv.includes("--watch"), // TODO: Kali -- fix esbuild for v0.17 (or revert to 0.16 line for now)
   entryPoints: [
     "application.js",
   ],
@@ -32,14 +33,21 @@ const sharedConfig = {
   ],
 };
 
-const builder = (config = sharedConfig) => require("esbuild")
-  .build(config)
-  .then(() => { console.log(`Build succeeded (${isProd ? "PRODUCTION" : "development mode"}).`); })
-  .catch((e) => {
-    console.log("Error building:", e.message);
-    process.exit(1);
-  });
+const defaultConfigTransformer = (config) => config;
+
+const builder = async (configTransformer = defaultConfigTransformer) => {
+  console.log(`Preparing to ${isWatch ? "watch" : "build"} (${isProd ? "PRODUCTION" : "development mode"})...`);
+  const config = configTransformer(sharedConfig);
+  const ctx = await esbuild.context(config);
+
+  if (isWatch) {
+    await ctx.watch();
+  } else {
+    await ctx.rebuild();
+    await ctx.dispose();
+  }
+};
 
 module.exports = {
-  sharedConfig, builder,
+  builder,
 };

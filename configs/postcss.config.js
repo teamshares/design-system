@@ -1,12 +1,12 @@
 const tailwindDefaultConfig = require("./tailwind.config.js");
 
-const defaultUpdater = (config) => config;
+const defaultConfigTransformer = (config) => config;
 
-const builder = (tailwindConfigUpdaterFn = defaultUpdater) => {
+const configBuilder = (tailwindConfigTransformer = defaultConfigTransformer) => {
   const isProd = process.env.RAILS_ENV === "production" || process.env.NODE_ENV === "production";
   console.log(`Preparing to bundle CSS in ${isProd ? "PRODUCTION" : "development mode"}`);
 
-  const tailwindConfig = tailwindConfigUpdaterFn(Object.assign({}, tailwindDefaultConfig));
+  const tailwindConfig = tailwindConfigTransformer(Object.assign({}, tailwindDefaultConfig));
 
   const postcssConfig = {
     parser: "postcss-scss",
@@ -32,4 +32,4 @@ const builder = (tailwindConfigUpdaterFn = defaultUpdater) => {
   return postcssConfig;
 };
 
-module.exports = builder;
+module.exports = { configBuilder };
