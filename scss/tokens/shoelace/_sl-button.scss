@@ -172,18 +172,35 @@ sl-button[size='large']::part(label) {
   padding: 0 var(--sl-spacing-small); /* 12px */
 }
 
+sl-button[size='x-large']::part(base) {
+  padding: 0 var(--sl-spacing-2x-large); /* 32px */
+}
+
+sl-button[size='x-large']::part(label) {
+  font-size: var(--ts-font-base); /* 16px */
+  line-height: calc(var(--sl-spacing-4x-large) - var(--sl-input-border-width) * 2);
+  padding: 0 var(--sl-spacing-x-small); /* 8px */
+}
+
 sl-button[size='medium']::part(caret),
 sl-button[size='medium']::part(prefix),
-sl-button[size='medium']::part(suffix) {
+sl-button[size='medium']::part(suffix),
+sl-button[size='medium'][circle]::part(label) {
   font-size: var(--ts-font-base); /* 16px */
 }
 
 sl-button[size='large']::part(caret),
 sl-button[size='large']::part(prefix),
-sl-button[size='large']::part(suffix),
-sl-button[size='medium'][circle]::part(base),
-sl-button[size='large'][circle]::part(base) {
+sl-button[size='large']::part(suffix)
+sl-button[size='large'][circle]::part(label) {
   font-size: var(--ts-font-xl); /* 20px */
+}
+
+sl-button[size='x-large']::part(caret),
+sl-button[size='x-large']::part(prefix),
+sl-button[size='x-large']::part(suffix),
+sl-button[size='x-large'][circle]::part(label) {
+  font-size: var(--ts-font-2xl); /* 24px */
 }
 
 /* To remove default padding from split buttons */
@@ -201,21 +218,21 @@ sl-button.no-gap {
 }
 
 
-/** ********** **/
-/* Button custom size, x-large */
-/** ********** **/
-sl-button.x-large::part(base) {
-  height: var(--sl-spacing-4x-large); /* 64px */
-  padding: 0 var(--sl-spacing-2x-large); /* 32px */
-}
+// /** ********** **/
+// /* Button custom size, x-large */
+// /** ********** **/
+// sl-button.x-large::part(base) {
+//   height: var(--sl-spacing-4x-large); /* 64px */
+//   padding: 0 var(--sl-spacing-2x-large); /* 32px */
+// }
 
-sl-button.x-large::part(label) {
-  font-size: var(--ts-font-base); /* 16px */
-  line-height: calc(var(--sl-spacing-4x-large) - var(--sl-input-border-width) * 2);
-}
+// sl-button.x-large::part(label) {
+//   font-size: var(--ts-font-base); /* 16px */
+//   line-height: calc(var(--sl-spacing-4x-large) - var(--sl-input-border-width) * 2);
+// }
 
-sl-button.x-large::part(caret),
-sl-button.x-large::part(prefix),
-sl-button.x-large::part(suffix) {
-  font-size: var(--ts-font-2xl); /* 24px */
-}
+// sl-button.x-large::part(caret),
+// sl-button.x-large::part(prefix),
+// sl-button.x-large::part(suffix) {
+//   font-size: var(--ts-font-2xl); /* 24px */
+// }

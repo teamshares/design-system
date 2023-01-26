@@ -22,10 +22,11 @@ sl-theme {
   font-weight: var(--ts-font-normal); /* 400 */
   letter-spacing: var(--ts-tracking-normal); /* normal */
   line-height: var(--ts-leading-5); /* 1.25rem * 20px */
+  margin-top: var(--sl-spacing-x-small); /* .5rem * 8px */
 }
 
 ::part(form-control-input) {
-  margin: var(--sl-spacing-2x-small) 0 var(--sl-spacing-x-small);
+  margin: var(--sl-spacing-2x-small) 0 0;
 }
 
 ::part(input),
@@ -38,6 +39,13 @@ sl-select::part(control):not(:focus),
 sl-input::part(input):not(:focus),
 sl-textarea::part(textarea):not(:focus) {
   box-shadow: var(--sl-shadow-small);
+}
+
+/* Set prefix icon color to subdued text color */
+sl-select::part(prefix),
+sl-input::part(prefix),
+sl-input::part(suffix) {
+  color: var(--ts-color-text-subdued);
 }
 
 /** ********** **/
@@ -67,12 +75,30 @@ sl-radio::part(base) {
 /** ********** **/
 /* Switch & range */
 /** ********** **/
-sl-switch {
-  --height: calc(var(--sl-toggle-size) + 6px);
-  --thumb-size: calc(var(--sl-toggle-size) + 4px);
+sl-switch[size='small'] {
+  --height: calc(var(--sl-toggle-size-small) + 6px);
+  --thumb-size: calc(var(--sl-toggle-size-small) + 4px);
+  --width: calc(var(--height) * 1.8);
+}
+
+sl-switch[size='medium'] {
+  --height: calc(var(--sl-toggle-size-medium) + 6px);
+  --thumb-size: calc(var(--sl-toggle-size-medium) + 4px);
+  --width: calc(var(--height) * 1.8);
+}
+
+sl-switch[size='large'] {
+  --height: calc(var(--sl-toggle-size-large) + 6px);
+  --thumb-size: calc(var(--sl-toggle-size-large) + 4px);
   --width: calc(var(--height) * 1.8);
 }
 
 sl-range::part(input) {
   padding: 0;
+}
+
+sl-range {
+  --track-height: var(--sl-spacing-x-small); /* 8px */
+  --track-color-active: var(--sl-color-neutral-300);
+  --track-color-inactive:  var(--sl-color-neutral-300);
 }
