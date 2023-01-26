@@ -14,7 +14,7 @@ export default class Teamshares {
 
     // Registers Heroicons as the default icon library in Shoelace
     Shoelace.registerIconLibrary("default", {
-      resolver: name => `https://cdn.jsdelivr.net/npm/heroicons@2.0.13/24/outline/${name}.svg`,
+      resolver: name => `https://cdn.jsdelivr.net/npm/heroicons@2.0.14/24/outline/${name}.svg`,
     });
   }
 }
