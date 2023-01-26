@@ -41,6 +41,13 @@ sl-textarea::part(textarea):not(:focus) {
   box-shadow: var(--sl-shadow-small);
 }
 
+/* Set prefix icon color to subdued text color */
+sl-select::part(prefix),
+sl-input::part(prefix),
+sl-input::part(suffix) {
+  color: var(--ts-color-text-subdued);
+}
+
 /** ********** **/
 /* Checkbox & radio */
 /** ********** **/
