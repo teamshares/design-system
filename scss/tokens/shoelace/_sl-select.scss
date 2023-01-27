@@ -19,7 +19,7 @@ sl-option::part(base) {
   padding: var(--sl-spacing-x-small) var(--sl-spacing-2x-small);
 }
 
-sl-option[tabindex="0"]::part(base) {
+sl-option[tabindex='0']::part(base) {
   background-color: var(--sl-color-neutral-100);
   color: var(--ts-color-text-default);
 }
