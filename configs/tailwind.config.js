@@ -13,39 +13,6 @@ const tailwindConfig = {
     require("@tailwindcss/typography"),
     require("@tailwindcss/line-clamp"),
   ],
-  // TODO: Kali -- leaving this here until I can confirm my dynamic teamshares_rails injection into content section is working ()
-  // These are used in shared-rails-engine... long term we should remove this manual effort in favor of somehow scanning that repo dynamically
-  // safelist: [
-  //   // From shared_icons_helper.rb
-  //   "mr-3", "mb-1", "ml-1",
-  //   "h-4", "w-4",
-  //   "h-5", "w-5",
-  //   "h-6", "w-6",
-  //   "h-10", "w-10",
-  //   "text-green-500", "text-yellow-600", "text-blue-400", "text-gray-600",
-  //   "inline", "inline-block", "fill-current", "flex-shrink-0",
-  //   "hover:fill-current", "hover:text-gray-800",
-
-  //   // From view_component_preview layout
-  //   // "min-h-screen", "p-16", "bg-white", "text-gray-800",
-
-  //   // From SharedUI::ButtonComponent
-  //   "whitespace-nowrap",
-
-  //   // From SharedUI::LabelComponent
-  //   "bg-green-50", "text-green-900",
-  //   "bg-blue-100", "text-blue-800",
-  //   "bg-red-50", "text-red-700",
-  //   "bg-gray-100", "text-gray-800",
-  //   "bg-purple-100", "text-indigo-800",
-  //   "bg-yellow-50", "text-yellow-800",
-  //   "bg-teal-100", "text-teal-700",
-  //   "fuschia-label-background", "fuschia-label-text",
-  //   "inline-flex", "items-center", "justify-start", "rounded", "mr-4", "space-x-2", "px-2", "text-sm", "font-medium",
-
-  //   // From the kitchen sink: /teamshares/components/web
-  //   "ts-heading-4",
-  // ],
   theme: {
     extend: {
       colors: {
