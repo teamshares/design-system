@@ -2,17 +2,3 @@
 . "$(dirname "$0")/_/husky.sh"
 
 npx lint-staged
-
-cd src
-if [[ `git status . --porcelain` ]]; then
-  echo $'\n'$'\e[1;33m'Detected changes in JS src files. Running JS compilation automatically...$'\e[0m'$'\n'
-  yarn rollup --config rollup.config.js
-fi
-
-cd ../dist
-if [[ `git status . | grep "not staged"` ]]; then
-  echo $'\n'$'\e[1;31m'COMMIT ABORTED! Unstaged changes in JS dist files detected -- please \"git add dist/\" and try again.$'\e[0m'$'\n'
-  exit 1
-else
-  echo $'\n'$'\e[1;32m'Compiled Javascript files up to date$'\e[0m'$'\n'
-fi

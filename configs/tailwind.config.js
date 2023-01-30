@@ -1,21 +1,22 @@
-/*
- * To load new changes in this file,
- * the Webpack server needs to be restarted.
- * TODO: Support webpack-dev-server livereload (or the equivalent in Rails 7+)
- *
- */
+// Provides a shared base tailwind config for all Teamshares apps
+// Note: to load new changes in this file, the consuming app's asset pipeline may need to be restarted
 
-module.exports = {
-  content: [
-    "./app/views/**/*",
-    "./app/helpers/**/*.rb",
-    "./app/javascript/**/*.js",
-    "./app/components/**/*",
-    "./public/*.html"
+const tailwindConfig = {
+  content: [ // NOTE: When used within Rails apps, shared-ui and shared-rails-engine paths are dynamically injected as well
+    "app/**/*.{html,js,rb,erb,slim}",
+    "app/assets/stylesheets/**/*.scss",
+    "config/initializers/simple_form.rb",
+    "public/*.html",
+  ],
+  plugins: [
+    require("@tailwindcss/forms"),
+    require("@tailwindcss/typography"),
+    require("@tailwindcss/line-clamp"),
   ],
   theme: {
     extend: {
       colors: {
+        current: "currentColor",
         blue: {
           50: "#F6FAFD",
           100: "#e1eff9",
@@ -27,7 +28,7 @@ module.exports = {
           700: "#3a5dae",
           800: "#29427b",
           900: "#353d5f",
-          1000: "#2f3654"
+          1000: "#2f3654",
         },
         gray: {
           100: "#f6f8fa",
@@ -38,7 +39,7 @@ module.exports = {
           600: "#93999e",
           700: "#6d7176",
           800: "#444c59",
-          900: "#2e333c"
+          900: "#2e333c",
         },
         red: {
           100: "#fcf1ef",
@@ -49,7 +50,7 @@ module.exports = {
           600: "#d64e41",
           700: "#d7351c",
           800: "#b92e18",
-          900: "#9b2614"
+          900: "#9b2614",
         },
         green: {
           100: "#eef6e8",
@@ -60,7 +61,7 @@ module.exports = {
           600: "#10985f",
           700: "#068466",
           800: "#164e3e",
-          900: "#004d49"
+          900: "#004d49",
         },
         yellow: {
           50: "#FFFBF0",
@@ -72,7 +73,7 @@ module.exports = {
           600: "#f6af47",
           700: "#ca861e",
           800: "#956419",
-          900: "#694712"
+          900: "#694712",
         },
         teal: {
           100: "#F0FAFA",
@@ -83,36 +84,36 @@ module.exports = {
           600: "#39A8AC",
           700: "#288286",
           800: "#1A5B5D",
-          900: "#0D3233"
+          900: "#0D3233",
         },
         subdued: "#6d7176",
         default: "#2e333c",
         white: "#ffffff",
         success: "#068466",
-        error: "#d7351c"
+        error: "#d7351c",
       },
       fontFamily: {
         sans: "Inter, Helvetica, Arial, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
         serif: "DM Serif Display, Georgia, Times, serif",
         mono: "SFMono-Regular, Menlo, mono",
         display: "DM Serif Display, Georgia, Times, serif",
-        body: "Inter, Helvetica, Arial, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+        body: "Inter, Helvetica, Arial, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
       },
       fontSize: {
         "10px": ["0.625rem", "1.5em"],
-        "13px": ["0.8125rem", "1.5em"]
+        "13px": ["0.8125rem", "1.5em"],
       },
       fontWeight: {
         light: 300,
         normal: 400,
         medium: 500,
         semibold: 600,
-        bold: 700
+        bold: 700,
       },
       // TODO: delete height and width configs after updating Tailwind > 2.1
       height: {
         "680px": "680px",
-        38: "38rem"
+        38: "38rem",
       },
       width: {
         "300px": "300px",
@@ -129,71 +130,30 @@ module.exports = {
         "850px": "850px",
         "900px": "900px",
         "950px": "950px",
-        "1000px": "1000px"
+        "1000px": "1000px",
       },
       margin: {
-        "54px": "54px"
+        "54px": "54px",
       },
       spacing: {
-        15: "3.75rem"
+        15: "3.75rem",
       },
       // Not in Buyout
       transitionProperty: {
-        height: "height"
+        height: "height",
       },
       gridTemplateRows: {
         7: "repeat(8, minmax(0, 1fr))",
-        12: "repeat(12, minmax(0, 1fr))"
+        12: "repeat(12, minmax(0, 1fr))",
       },
       inset: {
-        "-16": "-4rem"
+        "-16": "-4rem",
       },
       opacity: {
-        95: "0.95"
+        95: "0.95",
       },
-      screens: {
-        "container-md": [
-          // Sidebar appears at 768px, so revert to `sm:` styles
-          // between 768px and 868px, after which the main
-          // content area is wide enough again to apply the
-          // `md:` styles.
-          {
-            min: "641px",
-            max: "767px"
-          },
-          {
-            min: "868px"
-          }
-        ]
-      }
-    }
+    },
   },
-  variants: {
-    extend: {
-      backgroundColor: ["active", "odd"],
-      borderColor: ["active"],
-      borderStyle: ["group-hover", "hover", "focus", "active"],
-      borderWidth: ["first", "last"],
-      fill: ["hover", "focus"],
-      padding: ["first", "last"],
-      ringColor: ["focus-visible"],
-      ringWidth: ["focus-visible"],
-      textColor: ["active"],
-      visibility: ["group-hover", "hover"]
-    }
-  },
-  plugins: [
-    require("@tailwindcss/forms"),
-    require("@tailwindcss/typography"),
-    require("@tailwindcss/aspect-ratio"),
-    require("@tailwindcss/line-clamp")
-  ],
-  future: {
-    purgeLayersByDefault: true,
-    removeDeprecatedGapUtilities: true
-  },
-  experimental: {
-    applyComplexClasses: true
-  },
-  darkMode: "class"
 };
+
+module.exports = tailwindConfig;

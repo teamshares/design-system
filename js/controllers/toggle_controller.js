@@ -37,7 +37,7 @@ export default class extends Controller {
     for (let i = 0; i < this.externalTargets.length; ++i) {
       this.toggleElementClassList(this.externalTargets[i]);
     }
-  };
+  }
 
   toggleElementClassList (targetElement) {
     targetElement.classList.toggle(this.classToToggle);

@@ -1,8 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap');
+
 @import 'teamshares/ts-colors';
 @import 'teamshares/ts-typography';
 @import 'teamshares/ts-global';
 
-@import '@shoelace-style/shoelace/dist/themes/light';
+@import '@teamshares/shoelace/dist/themes/light';
 @import 'shoelace/sl-colors';
 @import 'shoelace/sl-global';
 
@@ -16,4 +18,5 @@
 @import 'shoelace/sl-forms';
 @import 'shoelace/sl-icon';
 @import 'shoelace/sl-menu';
+@import 'shoelace/sl-select';
 @import 'shoelace/sl-tooltip';
