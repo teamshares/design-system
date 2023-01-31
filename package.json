@@ -24,6 +24,7 @@
     "@teamshares/shoelace": "1.0.1-alpha.4",
     "cssnano": "5.1.14",
     "esbuild": "0.17.5",
+    "esbuild-plugin-copy": "^2.0.2",
     "esbuild-plugin-stimulus": "^0.1.5",
     "eslint-plugin-cypress": "^2.12.1",
     "eslint-plugin-n": "15.6.1",

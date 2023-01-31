@@ -2,12 +2,13 @@
 const path = require("path");
 const esbuild = require("esbuild");
 const { stimulusPlugin } = require("esbuild-plugin-stimulus");
+const { copy } = require("esbuild-plugin-copy");
 
 const isProd = process.env.RAILS_ENV === "production" || process.env.NODE_ENV === "production";
 const isWatch = process.argv.includes("--watch");
 
 const sharedConfig = {
-  logLevel: "info",
+  logLevel: "warning",
   entryPoints: [
     "application.js",
   ],
@@ -30,6 +31,16 @@ const sharedConfig = {
   },
   plugins: [
     stimulusPlugin(),
+    copy({
+      // this is equal to process.cwd(), which means we use cwd path as base path to resolve `to` path
+      // if not specified, this plugin uses ESBuild.build outdir/outfile options as base path.
+      resolveFrom: "cwd",
+      assets: {
+        from: ["./node_modules/@teamshares/shoelace/dist/assets/icons/*"],
+        to: ["./public/assets/icons"],
+      },
+    },
+    ),
   ],
 };
 
