@@ -1,4 +1,4 @@
-import * as Shoelace from "@teamshares/shoelace";
+import * as Shoelace from "@teamshares/shoelace"; // eslint-disable-line no-unused-vars
 import { initHoneybadger } from "./_honeybadger";
 
 export * from "./controllers";
@@ -11,10 +11,5 @@ export default class Teamshares {
   static init () {
     console.log("Initializing Teamshares JS");
     initHoneybadger({ debug: true });
-
-    // Registers Heroicons as the default icon library in Shoelace
-    Shoelace.registerIconLibrary("default", {
-      resolver: name => `https://cdn.jsdelivr.net/npm/heroicons@2.0.14/24/outline/${name}.svg`,
-    });
   }
 }
