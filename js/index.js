@@ -1,3 +1,4 @@
+import * as Shoelace from "@teamshares/shoelace"; // eslint-disable-line no-unused-vars
 import { initHoneybadger } from "./_honeybadger";
 
 export * from "./controllers";
