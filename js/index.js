@@ -11,5 +11,7 @@ export default class Teamshares {
   static init () {
     console.log("Initializing Teamshares JS");
     initHoneybadger({ debug: true });
+
+    Shoelace.getBasePath(); // Trigger library initialization
   }
 }
