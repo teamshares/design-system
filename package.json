@@ -15,7 +15,7 @@
     "precommit": "lint-staged --quiet"
   },
   "dependencies": {
-    "@honeybadger-io/js": "4.9.3",
+    "@honeybadger-io/js": "5.0.0",
     "@hotwired/stimulus": "3.2.1",
     "@hotwired/turbo-rails": "7.2.4",
     "@tailwindcss/forms": "0.5.3",
