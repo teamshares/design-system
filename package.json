@@ -21,8 +21,8 @@
     "@tailwindcss/forms": "0.5.3",
     "@tailwindcss/line-clamp": "0.4.2",
     "@tailwindcss/typography": "0.5.9",
-    "@teamshares/shoelace": "1.0.3",
-    "cssnano": "5.1.14",
+    "@teamshares/shoelace": "1.0.4",
+    "cssnano": "5.1.15",
     "esbuild": "0.17.10",
     "esbuild-plugin-copy": "^2.0.2",
     "esbuild-plugin-stimulus": "^0.1.5",
@@ -36,7 +36,7 @@
     "postcss-preset-env": "^8.0.0",
     "postcss-reporter": "^7.0.5",
     "postcss-scss": "^4.0.5",
-    "tailwindcss": "3.2.6"
+    "tailwindcss": "3.2.7"
   },
   "devDependencies": {
     "concurrently": "^7.5.0",
