@@ -7,4 +7,6 @@
 @import 'includes';
 
 @import '@teamshares/shoelace/dist/themes/light';
-@import '@teamshares/shoelace/dist/styles/index';
+@import '@teamshares/shoelace/dist/styles/tokens';
+@import '@teamshares/shoelace/dist/styles/overrides';
+@import '@teamshares/shoelace/dist/styles/vendor';
