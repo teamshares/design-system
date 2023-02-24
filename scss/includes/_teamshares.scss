@@ -748,6 +748,7 @@ ul a {
   }
 
   // Notifications
+  // (note these are *currently* only used in buyout; we may want to extract them eventually?)
 
   .ts-alert {
     @apply border border-yellow-300 bg-yellow-50 flex px-5 py-3 relative rounded-lg text-yellow-800 z-50 ts-body-2;
