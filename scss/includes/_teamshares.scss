@@ -750,14 +750,14 @@ ul a {
   // Notifications
 
   .ts-alert {
-    @apply border border-yellow-400 bg-yellow-100 flex px-5 py-3 relative rounded text-yellow-800 z-50;
+    @apply border border-yellow-300 bg-yellow-50 flex px-5 py-3 relative rounded-lg text-yellow-800 z-50 ts-body-2;
 
     div {
       @apply flex-auto;
     }
 
     svg {
-      @apply fill-current h-5 w-5;
+      @apply fill-current h-5 w-5 text-gray-700;
     }
 
     .close-notification {

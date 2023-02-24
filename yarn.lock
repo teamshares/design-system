@@ -459,10 +459,10 @@
     lodash.merge "^4.6.2"
     postcss-selector-parser "6.0.10"
 
-"@teamshares/shoelace@1.0.5":
-  version "1.0.5"
-  resolved "https://registry.npmjs.org/@teamshares/shoelace/-/shoelace-1.0.5.tgz#51cc8bbb73801c8aadef497254c9069706917227"
-  integrity sha512-0dwY8nAu1xAQBgBK0e9So0gdIFy2ih8wpJKUd0o+4Y+0AlW3kcSAdL6hGGFNuK4wixBNCh+vUOJ3PsrM6BBCiw==
+"@teamshares/shoelace@1.0.6":
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/@teamshares/shoelace/-/shoelace-1.0.6.tgz#0bf214f63d1dee862352dcccb0c4b03dace798b7"
+  integrity sha512-tIQR+wcZplM439ESRPhnRDM5by5eYaD7N55sO11S1nqdtuzIUlYtBAjekMx73FnAHdP4T2GTlsj5YyLoFDa1lw==
   dependencies:
     "@ctrl/tinycolor" "^3.5.0"
     "@floating-ui/dom" "^1.1.0"
