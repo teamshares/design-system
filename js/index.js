@@ -26,7 +26,5 @@ export default class Teamshares {
     Rails.fileInputSelector += ", sl-input[name][type=file]:not([disabled])";
     Rails.linkDisableSelector += ", sl-button[href][data-disable-with], sl-button[href][data-disable]";
     Rails.buttonDisableSelector += ", sl-button[data-remote][data-disable-with], sl-button[data-remote][data-disable]";
-
-    Rails.start();
   }
 }
