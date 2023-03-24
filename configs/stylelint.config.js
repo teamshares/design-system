@@ -1,6 +1,9 @@
 module.exports = {
   extends: "stylelint-config-sass-guidelines",
   rules: {
+    "length-zero-no-unit": [true, {
+      ignore: ["custom-properties"],
+    }],
     "max-nesting-depth": 4,
     "selector-max-compound-selectors": 4,
     "selector-max-id": 1,
