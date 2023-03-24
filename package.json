@@ -22,7 +22,7 @@
     "@tailwindcss/forms": "0.5.3",
     "@tailwindcss/line-clamp": "0.4.2",
     "@tailwindcss/typography": "0.5.9",
-    "@teamshares/shoelace": "1.0.7",
+    "@teamshares/shoelace": "1.1.0",
     "cssnano": "5.1.15",
     "esbuild": "0.17.12",
     "esbuild-plugin-copy": "^2.0.2",
