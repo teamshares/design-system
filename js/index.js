@@ -1,6 +1,5 @@
-import * as Shoelace from "@teamshares/shoelace"; // eslint-disable-line no-unused-vars
+import * as Shoelace from "@teamshares/shoelace";
 import { initHoneybadger } from "./_honeybadger";
-import { registerIconLibrary } from '@teamshares/shoelace';
 import Rails from "@rails/ujs";
 
 export * from "./controllers";
@@ -29,7 +28,7 @@ export default class Teamshares {
     Rails.buttonDisableSelector += ", sl-button[data-remote][data-disable-with], sl-button[data-remote][data-disable]";
 
     // Register free font-awesome icons
-    registerIconLibrary('fa-free', {
+    Shoelace.registerIconLibrary('fa-free', {
       resolver: name => {
         const filename = name.replace(/^fa[rbs]-/, '');
         let folder = 'regular';
