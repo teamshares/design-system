@@ -1,6 +1,7 @@
 module.exports = {
   extends: "stylelint-config-sass-guidelines",
   rules: {
+    // Without this exception, stylelint will incorrectly append "px" to any "0" value, which can break calc() functions
     "length-zero-no-unit": [true, {
       ignore: ["custom-properties"],
     }],
