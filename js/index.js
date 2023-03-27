@@ -1,4 +1,4 @@
-import * as Shoelace from "@teamshares/shoelace"; // eslint-disable-line no-unused-vars
+import * as Shoelace from "@teamshares/shoelace";
 import { initHoneybadger } from "./_honeybadger";
 import Rails from "@rails/ujs";
 
@@ -26,5 +26,17 @@ export default class Teamshares {
     Rails.fileInputSelector += ", sl-input[name][type=file]:not([disabled])";
     Rails.linkDisableSelector += ", sl-button[href][data-disable-with], sl-button[href][data-disable]";
     Rails.buttonDisableSelector += ", sl-button[data-remote][data-disable-with], sl-button[data-remote][data-disable]";
+
+    // Register free font-awesome icons
+    Shoelace.registerIconLibrary('fa-free', {
+      resolver: name => {
+        const filename = name.replace(/^fa[rbs]-/, '');
+        let folder = 'regular';
+        if (name.substring(0, 4) === 'fas-') folder = 'solid';
+        if (name.substring(0, 4) === 'fab-') folder = 'brands';
+        return `https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.3.0/svgs/${folder}/${filename}.svg`;
+      },
+      mutator: svg => svg.setAttribute('fill', 'currentColor')
+    });
   }
 }
