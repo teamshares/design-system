@@ -27,7 +27,7 @@ const sharedConfig = {
     "process.env.HEROKU_APP_NAME": `"${process.env.HEROKU_APP_NAME || ""}"`,
     "process.env.RAILS_ENV": `"${process.env.RAILS_ENV || "development"}"`,
     "process.env.HONEYBADGER_JS_API_KEY": `"${process.env.HONEYBADGER_JS_API_KEY}"`,
-    "process.env.HEROKU_RELEASE_VERSION": `"${process.env.HEROKU_RELEASE_VERSION}"`,
+    "process.env.HEROKU_SLUG_COMMIT": `"${process.env.HEROKU_SLUG_COMMIT}"`,
   },
   plugins: [
     stimulusPlugin(),
