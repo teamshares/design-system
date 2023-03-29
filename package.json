@@ -28,7 +28,7 @@
     "esbuild-plugin-copy": "^2.0.2",
     "esbuild-plugin-stimulus": "^0.1.5",
     "eslint-plugin-cypress": "^2.12.1",
-    "eslint-plugin-n": "15.6.1",
+    "eslint-plugin-n": "15.7.0",
     "eslint-plugin-promise": "^6.0.0",
     "globals": "13.20.0",
     "inputmask": "^5.0.7",
