@@ -28,15 +28,15 @@ export default class Teamshares {
     Rails.buttonDisableSelector += ", sl-button[data-remote][data-disable-with], sl-button[data-remote][data-disable]";
 
     // Register free font-awesome icons
-    Shoelace.registerIconLibrary('fa-free', {
+    Shoelace.registerIconLibrary("fa-free", {
       resolver: name => {
-        const filename = name.replace(/^fa[rbs]-/, '');
-        let folder = 'regular';
-        if (name.substring(0, 4) === 'fas-') folder = 'solid';
-        if (name.substring(0, 4) === 'fab-') folder = 'brands';
+        const filename = name.replace(/^fa[rbs]-/, "");
+        let folder = "regular";
+        if (name.substring(0, 4) === "fas-") folder = "solid";
+        if (name.substring(0, 4) === "fab-") folder = "brands";
         return `https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.3.0/svgs/${folder}/${filename}.svg`;
       },
-      mutator: svg => svg.setAttribute('fill', 'currentColor')
+      mutator: svg => svg.setAttribute("fill", "currentColor"),
     });
   }
 }
