@@ -11,7 +11,6 @@ const tailwindConfig = {
   plugins: [
     require("@tailwindcss/forms"),
     require("@tailwindcss/typography"),
-    require("@tailwindcss/line-clamp"),
   ],
   theme: {
     extend: {
