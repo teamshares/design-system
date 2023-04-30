@@ -22,7 +22,7 @@
     "@tailwindcss/forms": "0.5.3",
     "@tailwindcss/typography": "0.5.9",
     "@teamshares/shoelace": "1.1.1",
-    "cssnano": "6.0.0",
+    "cssnano": "6.0.1",
     "esbuild": "0.17.18",
     "esbuild-plugin-copy": "^2.0.2",
     "esbuild-plugin-stimulus": "^0.1.5",
