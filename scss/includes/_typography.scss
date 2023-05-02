@@ -74,4 +74,20 @@
   .ts-text-error {
     @apply text-red-700;
   }
+
+  .ts-text-link {
+    @apply text-blue-700 border-b border-blue-700;
+  }
+
+  .ts-text-link:hover {
+    @apply border-b-2;
+  }
+
+  .ts-text-link-light {
+    @apply text-blue-300 border-b border-blue-300;
+  }
+
+  .ts-text-link-light:hover {
+    @apply border-b-2;
+  }
 }
