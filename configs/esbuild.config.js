@@ -27,7 +27,9 @@ const sharedConfig = {
     "process.env.HEROKU_APP_NAME": `"${process.env.HEROKU_APP_NAME || ""}"`,
     "process.env.RAILS_ENV": `"${process.env.RAILS_ENV || "development"}"`,
     "process.env.HONEYBADGER_JS_API_KEY": `"${process.env.HONEYBADGER_JS_API_KEY}"`,
-    "process.env.HEROKU_SLUG_COMMIT": `"${process.env.HEROKU_SLUG_COMMIT}"`,
+
+    // HEROKU_SLUG_COMMIT isn't set until AFTER we finish building: https://stackoverflow.com/questions/43641049
+    "process.env.HEROKU_SLUG_COMMIT": `"${process.env.SOURCE_VERSION || process.env.HEROKU_SLUG_COMMIT}"`,
   },
   plugins: [
     stimulusPlugin(),
