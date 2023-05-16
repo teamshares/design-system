@@ -329,17 +329,17 @@
     minimatch "^3.1.2"
     strip-json-comments "^3.1.1"
 
-"@floating-ui/core@^1.2.0":
-  version "1.2.0"
-  resolved "https://registry.npmjs.org/@floating-ui/core/-/core-1.2.0.tgz#ae7ae7923d41f3d84cb2fd88740a89436610bbec"
-  integrity sha512-GHUXPEhMEmTpnpIfesFA2KAoMJPb1SPQw964tToQwt+BbGXdhqTCWT1rOb0VURGylsxsYxiGMnseJ3IlclVpVA==
+"@floating-ui/core@^1.2.6":
+  version "1.2.6"
+  resolved "https://registry.npmjs.org/@floating-ui/core/-/core-1.2.6.tgz#d21ace437cc919cdd8f1640302fa8851e65e75c0"
+  integrity sha512-EvYTiXet5XqweYGClEmpu3BoxmsQ4hkj3QaYA6qEnigCWffTP3vNRwBReTdrwDwo7OoJ3wM8Uoe9Uk4n+d4hfg==
 
-"@floating-ui/dom@^1.1.0":
-  version "1.2.0"
-  resolved "https://registry.npmjs.org/@floating-ui/dom/-/dom-1.2.0.tgz#a60212069cc58961c478037c30eba4b191c75316"
-  integrity sha512-QXzg57o1cjLz3cGETzKXjI3kx1xyS49DW9l7kV2jw2c8Yftd434t2hllX0sVGn2Q8MtcW/4pNm8bfE1/4n6mng==
+"@floating-ui/dom@^1.2.1":
+  version "1.2.8"
+  resolved "https://registry.npmjs.org/@floating-ui/dom/-/dom-1.2.8.tgz#aee0f6ccc0787ab8fe741487a6e5e95b7b125375"
+  integrity sha512-XLwhYV90MxiHDq6S0rzFZj00fnDM+A1R9jhSioZoMsa7G0Q0i+Q4x40ajR8FHSdYDE1bgjG45mIWe6jtv9UPmg==
   dependencies:
-    "@floating-ui/core" "^1.2.0"
+    "@floating-ui/core" "^1.2.6"
 
 "@honeybadger-io/core@^5.2.0":
   version "5.2.0"
@@ -506,16 +506,17 @@
     lodash.merge "^4.6.2"
     postcss-selector-parser "6.0.10"
 
-"@teamshares/shoelace@1.1.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@teamshares/shoelace/-/shoelace-1.1.1.tgz#8b9b0871c881bd6dd0375f73fb98f348aaf49537"
-  integrity sha512-lJOIdiSMJJ8Z7lyTn3hwHo+jB2TJnS9vCwXOXIYZP/0PydJ5HmNAI63LRUS/y2nlnvUI7lDpiH0fu62bLA1VAg==
+"@teamshares/shoelace@1.2.0":
+  version "1.2.0"
+  resolved "https://registry.npmjs.org/@teamshares/shoelace/-/shoelace-1.2.0.tgz#3957e709a23c8650e2e083a44869e0fd35614385"
+  integrity sha512-6lxkDMI9e/9XItrBBYPHVwKr/mjm3SYCug10s8oAe+lVv2gSGjNA71lUzTaxJUY258HyXt2YXw3dehJdxYYa/Q==
   dependencies:
     "@ctrl/tinycolor" "^3.5.0"
-    "@floating-ui/dom" "^1.1.0"
+    "@floating-ui/dom" "^1.2.1"
     "@lit-labs/react" "^1.1.1"
     "@shoelace-style/animations" "^1.1.0"
     "@shoelace-style/localize" "^3.0.4"
+    composed-offset-position "^0.0.4"
     data-grid-component "github:teamshares/data-grid"
     lit "^2.6.1"
     qr-creator "^1.0.0"
@@ -971,6 +972,11 @@ commander@^7.2.0:
   version "7.2.0"
   resolved "https://registry.yarnpkg.com/commander/-/commander-7.2.0.tgz#a36cb57d0b501ce108e4d20559a150a391d97ab7"
   integrity sha512-QrWXB+ZQSVPmIWIhtEO9H+gwHaMGYiF5ChvoJ+K9ZGHG/sVsa6yiesAD1GC/x46sET00Xlwo1u49RVVVzvcSkw==
+
+composed-offset-position@^0.0.4:
+  version "0.0.4"
+  resolved "https://registry.npmjs.org/composed-offset-position/-/composed-offset-position-0.0.4.tgz#ca8854abf15e3c235ecf4df125a27fe88af76ea4"
+  integrity sha512-vMlvu1RuNegVE0YsCDSV/X4X10j56mq7PCIyOKK74FxkXzGLwhOUmdkJLSdOBOMwWycobGUMgft2lp+YgTe8hw==
 
 concat-map@0.0.1:
   version "0.0.1"
