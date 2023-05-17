@@ -813,18 +813,9 @@ ul a {
     padding: 1.5rem;
   }
 
-  .open .ts-header .ts-drawer__toggle {
-    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M6 18L18 6M6 6l12 12' /%3E%3C/svg%3E");
-    padding-right: 0.25rem;
-  }
-
   @media (min-width: 1024px) {
     .ts-header__links {
       display: block;
-    }
-
-    .ts-header .ts-drawer__toggle {
-      display: none;
     }
 
     .ts-header__nav {
