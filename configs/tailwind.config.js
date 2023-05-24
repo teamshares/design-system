@@ -116,16 +116,6 @@ const tailwindConfig = {
       transitionProperty: {
         height: "height",
       },
-      gridTemplateRows: {
-        7: "repeat(8, minmax(0, 1fr))",
-        12: "repeat(12, minmax(0, 1fr))",
-      },
-      inset: {
-        "-16": "-4rem",
-      },
-      opacity: {
-        95: "0.95",
-      },
     },
   },
 };
