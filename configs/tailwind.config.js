@@ -109,47 +109,12 @@ const tailwindConfig = {
         semibold: 600,
         bold: 700,
       },
-      // TODO: delete height and width configs after updating Tailwind > 2.1
-      height: {
-        "680px": "680px",
-        38: "38rem",
-      },
-      width: {
-        "300px": "300px",
-        "350px": "350px",
-        "400px": "400px",
-        "450px": "450px",
-        "500px": "500px",
-        "550px": "550px",
-        "600px": "600px",
-        "650px": "650px",
-        "700px": "700px",
-        "750px": "750px",
-        "800px": "800px",
-        "850px": "850px",
-        "900px": "900px",
-        "950px": "950px",
-        "1000px": "1000px",
-      },
-      margin: {
-        "54px": "54px",
-      },
       spacing: {
         15: "3.75rem",
       },
       // Not in Buyout
       transitionProperty: {
         height: "height",
-      },
-      gridTemplateRows: {
-        7: "repeat(8, minmax(0, 1fr))",
-        12: "repeat(12, minmax(0, 1fr))",
-      },
-      inset: {
-        "-16": "-4rem",
-      },
-      opacity: {
-        95: "0.95",
       },
     },
   },
