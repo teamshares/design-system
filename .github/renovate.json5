@@ -1,5 +1,7 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   extends: [ "github>teamshares/renovate-config:lib.json5" ],
-  ignoreDeps: [],
+  ignoreDeps: [
+    "@rails/ujs",    // The 7.0.4 -> 7.0.5 update starting cypress failing on OS
+  ],
 }
