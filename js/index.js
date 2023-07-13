@@ -1,6 +1,8 @@
 import * as Shoelace from "@teamshares/shoelace";
 import { initHoneybadger } from "./_honeybadger";
-import Rails from "@rails/ujs"; // Still importing this as a default param so the init doesn't break, but should now be passed in
+// Importing this as a default param so the init doesn't break if apps don't pass it in
+// Alternatively, the apps should stop importing it at all and this should be the single source of truth (via returning the instance)
+import Rails from "@rails/ujs";
 
 export * from "./controllers";
 export * from "./_honeybadger"; // Leaving this for legacy sake; should be removed once everyone is calling initialize below
