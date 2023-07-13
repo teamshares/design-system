@@ -58,5 +58,8 @@ export default class Teamshares {
       },
       mutator: svg => svg.setAttribute("fill", "currentColor"),
     });
+
+    // This allows us to transition gracefully to letting apps not import Rails at all, and get it from here instead.
+    return railsObj;
   }
 }
