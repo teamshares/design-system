@@ -1,7 +1,6 @@
 import * as Shoelace from "@teamshares/shoelace";
 import { initHoneybadger } from "./_honeybadger";
 // Importing this as a default param so the init doesn't break if apps don't pass it in
-// Alternatively, the apps should stop importing it at all and this should be the single source of truth (via returning the instance)
 import Rails from "@rails/ujs";
 
 export * from "./controllers";
@@ -60,8 +59,5 @@ export default class Teamshares {
       },
       mutator: svg => svg.setAttribute("fill", "currentColor"),
     });
-
-    // This allows us to transition gracefully to letting apps not import Rails at all, and get it from here instead.
-    return railsObj;
   }
 }
