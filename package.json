@@ -23,7 +23,7 @@
     "@tailwindcss/typography": "0.5.9",
     "@teamshares/shoelace": "1.2.1",
     "cssnano": "6.0.1",
-    "esbuild": "0.18.14",
+    "esbuild": "0.18.15",
     "esbuild-plugin-copy": "^2.0.2",
     "esbuild-plugin-stimulus": "^0.1.5",
     "eslint-plugin-cypress": "^2.12.1",
