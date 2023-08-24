@@ -456,10 +456,10 @@
   dependencies:
     stacktrace-parser "^0.1.10"
 
-"@honeybadger-io/js@6.4.0":
-  version "6.4.0"
-  resolved "https://registry.yarnpkg.com/@honeybadger-io/js/-/js-6.4.0.tgz#75809ddeb8fb801585c8a58bef95cd46fd84218b"
-  integrity sha512-WrMBAlW3FzqMeFE3dO0HMJ5BvWi0rVcjnvXfxxEgAJq3dpCFD6XXx0yvI9rQv37Nt7GiPBVVPUF0UhfUFONyKA==
+"@honeybadger-io/js@6.4.1":
+  version "6.4.1"
+  resolved "https://registry.yarnpkg.com/@honeybadger-io/js/-/js-6.4.1.tgz#8dabda9cf5657319317a0580d5e013f37fd979e6"
+  integrity sha512-8yr1Zq5DxABJaUJk+Vr/YZlYGDwCp7KekjMBCCOMC2oGSWeAnBqgZODI/Ig2FxzmM7hOLSHc+bWzZ8FvjphY8w==
   dependencies:
     "@honeybadger-io/core" "^6.2.0"
     "@types/aws-lambda" "^8.10.89"
@@ -1444,10 +1444,10 @@ eslint-plugin-es-x@^7.1.0:
     "@eslint-community/eslint-utils" "^4.1.2"
     "@eslint-community/regexpp" "^4.5.0"
 
-eslint-plugin-n@16.0.1:
-  version "16.0.1"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-n/-/eslint-plugin-n-16.0.1.tgz#baa62bb3af52940a53ba15386348ad9b0b425ada"
-  integrity sha512-CDmHegJN0OF3L5cz5tATH84RPQm9kG+Yx39wIqIwPR2C0uhBGMWfbbOtetR83PQjjidA5aXMu+LEFw1jaSwvTA==
+eslint-plugin-n@16.0.2:
+  version "16.0.2"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-n/-/eslint-plugin-n-16.0.2.tgz#5b2c0ad8dd9b724244d30fad2cc49ff4308a2152"
+  integrity sha512-Y66uDfUNbBzypsr0kELWrIz+5skicECrLUqlWuXawNSLUq3ltGlCwu6phboYYOTSnoTdHgTLrc+5Ydo6KjzZog==
   dependencies:
     "@eslint-community/eslint-utils" "^4.4.0"
     builtins "^5.0.1"
