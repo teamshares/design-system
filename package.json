@@ -19,7 +19,7 @@
     "@hotwired/stimulus": "3.2.2",
     "@hotwired/turbo-rails": ">= 7.2.5",
     "@rails/ujs": "7.0.7",
-    "@tailwindcss/forms": "0.5.5",
+    "@tailwindcss/forms": "0.5.6",
     "@tailwindcss/typography": "0.5.9",
     "@teamshares/shoelace": "^1.3.0",
     "cssnano": "6.0.1",
