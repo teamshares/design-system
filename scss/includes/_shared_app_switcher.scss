@@ -3,9 +3,8 @@ sl-dropdown.app-switcher-dropdown {
 
   &::part(panel) {
     @apply bg-white;
-    @apply border border-gray-300;
-    @apply p-4;
-    @apply w-[400px];
+    @apply mr-6;
+    @apply w-auto;
   }
 }
 
@@ -25,13 +24,13 @@ sl-button.app-switcher-dropdown-trigger {
     @apply items-center;
     @apply text-blue-700;
     @apply flex;
-    width: 100%;
-    @apply text-sm; /* 14px */
+    @apply text-base; /* 16px */
     @apply font-semibold; /* 600 */
     @apply justify-start;
     @apply tracking-tight; /* -0.025em */
     @apply leading-5;
     @apply whitespace-normal;
+    width: 100%;
   }
 
   &::part(caret) {
@@ -43,6 +42,16 @@ sl-button.app-switcher-dropdown-trigger {
     @apply bg-blue-50;
     outline: var(--sl-focus-ring);
     outline-offset: var(--sl-focus-ring-offset);
+  }
+}
+
+@media (min-width: 768px) {
+  sl-button.app-switcher-dropdown::part(panel) {
+    @apply w-[400px];
+  }
+
+  sl-button.app-switcher-dropdown-trigger::part(label) {
+    @apply text-sm;
   }
 }
 
@@ -61,6 +70,10 @@ sl-button[outline].app-switcher-dropdown-trigger:hover::part(base) {
 }
 
 .app-switcher-nav-items {
+  @apply border border-gray-300;
+  @apply p-4;
+  @apply rounded-lg;
+
   a {
     @apply items-center;
     @apply text-blue-700;
@@ -97,16 +110,6 @@ sl-button[outline].app-switcher-dropdown-trigger:hover::part(base) {
     @apply mb-1;
   }
 
-}
-
-sl-button.app-switcher-dropdown-trigger::part(label) .mobile {
-  font-size: var(--ts-font-base); /* @apply text-base */
-  font-weight: var(--ts-font-semibold); /* @apply font-semibold */
-}
-
-sl-dropdown.app-switcher-dropdown::part(panel) .mobile {
-  margin-right: 24px; /* @apply mr-6 */
-  width: auto; /* @apply w-auto */
 }
 
 .app-switcher-nav-items a.selected {
