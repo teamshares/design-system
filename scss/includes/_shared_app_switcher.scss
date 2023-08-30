@@ -21,15 +21,8 @@ sl-button.app-switcher-dropdown-trigger {
   }
 
   &::part(label) {
-    @apply items-center;
-    @apply text-blue-700;
-    @apply flex;
-    @apply text-base; /* 16px */
-    @apply font-semibold; /* 600 */
-    @apply justify-start;
-    @apply tracking-tight; /* -0.025em */
-    @apply leading-5;
-    @apply whitespace-normal;
+    @apply flex items-center justify-start;
+    @apply text-blue-700 text-base font-semibold tracking-tight leading-5 whitespace-normal; /* 16px */
     width: 100%;
   }
 
@@ -61,8 +54,7 @@ sl-button[outline].app-switcher-dropdown-trigger:hover::part(base) {
 
 #app-icon {
   @apply text-blue-700;
-  @apply pl-2;
-  @apply pr-1;
+  @apply pl-2 pr-1;
 }
 
 #selected-app {
@@ -75,13 +67,10 @@ sl-button[outline].app-switcher-dropdown-trigger:hover::part(base) {
   @apply rounded-lg;
 
   a {
-    @apply items-center;
-    @apply text-blue-700;
-    @apply flex;
-    @apply justify-between;
+    @apply text-blue-700 no-underline;
+    @apply flex justify-between items-center;
     @apply mb-1;
     @apply py-4 px-3;
-    @apply no-underline;
     @apply transition-all duration-300;
 
     &:hover {
@@ -114,8 +103,7 @@ sl-button[outline].app-switcher-dropdown-trigger:hover::part(base) {
 
 .app-switcher-nav-items a.selected {
   @apply bg-blue-50;
-  @apply border border-blue-200;
-  @apply rounded;
+  @apply border border-blue-200 rounded;
 
   .app-icon {
     @apply opacity-100;
