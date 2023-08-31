@@ -22,7 +22,7 @@ sl-button.app-switcher-dropdown-trigger {
 
   &::part(label) {
     @apply flex items-center justify-start;
-    @apply text-blue-700 text-base font-semibold tracking-tight leading-5 whitespace-normal; /* 16px */
+    @apply text-blue-700 text-base font-semibold tracking-tight leading-5 whitespace-normal;
     width: 100%;
   }
 
