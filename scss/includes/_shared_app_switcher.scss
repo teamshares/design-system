@@ -1,0 +1,120 @@
+sl-dropdown.app-switcher-dropdown {
+  @apply block;
+
+  &::part(panel) {
+    @apply bg-white;
+    @apply mr-6;
+    @apply w-auto;
+  }
+}
+
+sl-button.app-switcher-dropdown-trigger {
+  @apply block;
+
+  &::part(base) {
+    @apply border border-gray-400;
+    @apply rounded-md;
+    @apply h-16;
+    @apply justify-between;
+    @apply p-3;
+    box-shadow: var(--ts-shadow-small);
+  }
+
+  &::part(label) {
+    @apply flex items-center justify-start;
+    @apply text-blue-700 text-base font-semibold tracking-tight leading-5 whitespace-normal;
+    width: 100%;
+  }
+
+  &::part(caret) {
+    @apply flex-[0_0_auto];
+    @apply text-xl;
+  }
+
+  .dropdown-open::part(base) {
+    @apply bg-blue-50;
+    outline: var(--sl-focus-ring);
+    outline-offset: var(--sl-focus-ring-offset);
+  }
+}
+
+@media (min-width: 768px) {
+  sl-button.app-switcher-dropdown::part(panel) {
+    @apply w-[400px];
+  }
+
+  sl-button.app-switcher-dropdown-trigger::part(label) {
+    @apply text-sm;
+  }
+}
+
+sl-button[outline].app-switcher-dropdown-trigger:hover::part(base) {
+  @apply bg-blue-50;
+}
+
+#app-icon {
+  @apply text-blue-700;
+  @apply pl-2 pr-1;
+}
+
+#selected-app {
+  @apply text-left
+}
+
+.app-switcher-nav-items {
+  @apply border border-gray-300;
+  @apply p-4;
+  @apply rounded-lg;
+
+  a {
+    @apply text-blue-700 no-underline;
+    @apply flex justify-between items-center;
+    @apply mb-1;
+    @apply py-4 px-3;
+    @apply transition-all duration-300;
+
+    &:hover {
+      @apply bg-blue-50;
+      @apply rounded;
+
+      .app-icon {
+        @apply opacity-100;
+        @apply transition-opacity duration-[600ms];
+      }
+    }
+
+    .app-icon {
+      @apply text-blue-700;
+      @apply opacity-[.65];
+    }
+  }
+
+  .app-switcher-nav-item-main-column {
+    @apply flex-1;
+    @apply mt-0 mr-4 mb-0 ml-5;
+  }
+
+  .app-switcher-app-name {
+    @apply ts-text-default ;
+    @apply mb-1;
+  }
+
+}
+
+.app-switcher-nav-items a.selected {
+  @apply bg-blue-50;
+  @apply border border-blue-200 rounded;
+
+  .app-icon {
+    @apply opacity-100;
+  }
+}
+
+.app-switcher-nav-items .app-switcher-nav-item-main-column {
+  @apply flex-1;
+  @apply mt-0 mr-4 mb-0 ml-5;
+}
+
+.app-switcher-nav-items a:not(.selected) .app-selected-check {
+  @apply opacity-0;
+}
