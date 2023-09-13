@@ -1,5 +1,5 @@
 * @kdonovan @teamshares/design-system-admins
 
-# Only ping Kali for dependabots
+# Only ping Kali for renovate updates
 package.json @kdonovan
 yarn.lock @kdonovan
