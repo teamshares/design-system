@@ -12,13 +12,13 @@ const getBasePath = () => {
   }
 };
 
-const getSharedConfigPath = (callerFile) => `${getBasePath()}/shared-tool-configs/${path.basename(callerFile)}`;
+const getTeamsharesBaseConfigPath = (callerFile) => `${getBasePath()}/shared-tool-configs/${path.basename(callerFile)}`;
 
-const requireSharedConfig = (callerFile) => {
-  const sharedConfigPath = getSharedConfigPath(callerFile);
+const requireTeamsharesBaseConfig = (callerFile) => {
+  const sharedConfigPath = getTeamsharesBaseConfigPath(callerFile);
   return require(sharedConfigPath);
 };
 
 module.exports = {
-  requireSharedConfig,
+  requireTeamsharesBaseConfig,
 };
