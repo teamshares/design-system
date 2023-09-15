@@ -5,8 +5,5 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
-@import 'scss-includes/typography';
-@import 'scss-includes/teamshares';
-
-@import '@teamshares/shoelace/dist/themes/light';
-@import '@teamshares/shoelace/dist/styles/index';
+@import '../includes/typography';
+@import '../includes/teamshares';
