@@ -375,7 +375,7 @@ const buildDefaultConfig = (customRules) => {
       ],
     },
     {
-      files: ["*.config.js", "bin/require-shared-config.js"],
+      files: ["*.config.js"],
       ...nodeConfig,
     },
     {

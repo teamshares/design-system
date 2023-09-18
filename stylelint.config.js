@@ -1,3 +1,3 @@
-const config = require("./configs/stylelint.config.js")
+const config = require("./configs/stylelint.config.js");
 
 module.exports = config;

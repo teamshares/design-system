@@ -1,3 +1,4 @@
 {
-  "*.scss": ["stylelint --fix --color --config stylelint.config.js"]
+  "*.scss": ["stylelint --fix --color --config stylelint.config.js"],
+  "*.js": ["eslint --fix"]
 }

@@ -8,7 +8,9 @@
   ],
   "main": "scss/index.scss",
   "scripts": {
-    "lint": "stylelint --fix --color --config stylelint.config.js scss/",
+    "lint": "concurrently 'yarn lint:css' 'yarn lint:js'",
+    "lint:js": "eslint .",
+    "lint:css": "stylelint --fix --color --config stylelint.config.js scss/",
     "precommit": "lint-staged --quiet"
   },
   "dependencies": {
