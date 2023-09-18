@@ -39,7 +39,7 @@ tokens.typography = ({ theme }) => ({
 });
 
 const tailwindConfig = {
-  content: [ // NOTE: When used within Rails apps, shared-ui and shared-rails-engine paths are dynamically injected as well
+  content: [ // NOTE: our own scss and paths from TeamsharesRails are injected in postcss.config.js
     "app/**/*.{html,js,rb,erb,slim}",
     "app/assets/stylesheets/**/*.scss",
     "config/initializers/simple_form.rb",

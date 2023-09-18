@@ -3,9 +3,45 @@ const path = require("path");
 const esbuild = require("esbuild");
 const { stimulusPlugin } = require("esbuild-plugin-stimulus");
 const { copy } = require("esbuild-plugin-copy");
+const { getTeamsharesRailsPath } = require("../lib/teamshares-rails-path");
 
 const isProd = process.env.RAILS_ENV === "production" || process.env.NODE_ENV === "production";
 const isWatch = process.argv.includes("--watch");
+
+const tsRailsPath = getTeamsharesRailsPath();
+
+// --- Start inlining esbuild-plugin-resolve ---
+//
+// Code from https://github.com/markwylde/esbuild-plugin-resolve/blob/master/index.js
+// (working around module type mismatches preventing importing directly)
+function intercept (build, moduleName, moduleTarget) {
+  const filter = new RegExp("^" + moduleName.replace(/[\^$\\.*+?()[\]{}|]/g, "\\$&") + "(?:\\/.*)?$");
+
+  build.onResolve({ filter, namespace: "file" }, async (args) => {
+    const external = Boolean(build.initialOptions.external?.includes(args.path));
+
+    if (external) {
+      return { path: args.path, external };
+    }
+
+    if (args.resolveDir === "") {
+      return;
+    }
+
+    return build.resolve(args.path.replace(moduleName, moduleTarget), { kind: args.kind, resolveDir: args.resolveDir });
+  });
+}
+
+const EsbuildPluginResolve = (options) => ({
+  name: "esbuild-resolve",
+  setup: (build) => {
+    for (const moduleName of Object.keys(options)) {
+      intercept(build, moduleName, options[moduleName]);
+    }
+  },
+});
+
+// --- Finish inlining esbuild-plugin-resolve ---
 
 const sharedConfig = {
   logLevel: "warning",
@@ -32,6 +68,9 @@ const sharedConfig = {
     "process.env.HEROKU_SLUG_COMMIT": `"${process.env.SOURCE_VERSION || process.env.HEROKU_SLUG_COMMIT}"`,
   },
   plugins: [
+    EsbuildPluginResolve({
+      "@teamshares-rails": path.join(tsRailsPath, "app/javascript/teamshares-rails"),
+    }),
     stimulusPlugin(),
     copy({
       // this is equal to process.cwd(), which means we use cwd path as base path to resolve `to` path
@@ -41,8 +80,7 @@ const sharedConfig = {
         from: ["./node_modules/@teamshares/shoelace/dist/assets/icons/*"],
         to: ["./public/assets/icons"],
       },
-    },
-    ),
+    }),
   ],
 };
 

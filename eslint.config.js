@@ -1,15 +1,10 @@
 const { buildConfigs } = require("./configs/eslint.config.js");
 
-const { browserConfig, nodeConfig } = buildConfigs();
+const { nodeConfig } = buildConfigs();
 
 module.exports = [
-  "eslint:recommended",
   {
-    files: ["eslint.config.js", "configs/*.config.js", "bin/*.js"],
+    files: ["*.config.js", "lib/teamshares-rails-path.js"],
     ...nodeConfig,
-  },
-  {
-    files: ["js/**/*.js"],
-    ...browserConfig,
   },
 ];

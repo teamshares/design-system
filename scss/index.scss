@@ -1,10 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap');
-
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
-
-@import 'includes';
+// @teamshares/design-system
+@import 'without_shoelace'; // NOTE: broken up so public-website can avoid importing shoelace in its entirety
 
 @import '@teamshares/shoelace/dist/themes/light';
 @import '@teamshares/shoelace/dist/styles/index';
