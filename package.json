@@ -1,5 +1,9 @@
 {
   "name": "@teamshares/design-system",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/teamshares/design-system.git"
+  },
   "version": "0.0.1",
   "private": true,
   "files": [
