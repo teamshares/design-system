@@ -68,9 +68,9 @@ const sharedConfig = {
     "process.env.HEROKU_SLUG_COMMIT": `"${process.env.SOURCE_VERSION || process.env.HEROKU_SLUG_COMMIT}"`,
   },
   plugins: [
-    EsbuildPluginResolve({
-      "@teamshares-rails": path.join(tsRailsPath, "app/javascript/teamshares-rails"),
-    }),
+    // EsbuildPluginResolve({
+    //   "@teamshares-rails": path.join(tsRailsPath, "app/javascript/teamshares-rails"),
+    // }),
     stimulusPlugin(),
     copy({
       // this is equal to process.cwd(), which means we use cwd path as base path to resolve `to` path
