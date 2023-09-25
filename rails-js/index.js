@@ -1,9 +1,8 @@
 import * as Shoelace from "@teamshares/shoelace";
 import { initHoneybadger } from "./_honeybadger";
+
 // Importing this as a default param so the init doesn't break if apps don't pass it in
 import Rails from "@rails/ujs";
-
-export * from "./controllers";
 
 /** ********************************************************** */
 /**  Apps should import Teamshares and call init() on startup  */
