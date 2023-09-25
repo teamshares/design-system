@@ -3,12 +3,12 @@ const path = require("path");
 const esbuild = require("esbuild");
 const { stimulusPlugin } = require("esbuild-plugin-stimulus");
 const { copy } = require("esbuild-plugin-copy");
-const { getTeamsharesRailsPath } = require("../lib/teamshares-rails-path");
+
+// const { getTeamsharesRailsPath } = require("../lib/teamshares-rails-path");
+// const tsRailsPath = getTeamsharesRailsPath();
 
 const isProd = process.env.RAILS_ENV === "production" || process.env.NODE_ENV === "production";
 const isWatch = process.argv.includes("--watch");
-
-const tsRailsPath = getTeamsharesRailsPath();
 
 // --- Start inlining esbuild-plugin-resolve ---
 //
