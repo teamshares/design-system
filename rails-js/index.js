@@ -1,5 +1,5 @@
 import * as Shoelace from "@teamshares/shoelace";
-import { initHoneybadger } from "./_honeybadger";
+import Honeybadger from "@honeybadger-io/js";
 
 // Importing this as a default param so the init doesn't break if apps don't pass it in
 import Rails from "@rails/ujs";
@@ -7,10 +7,49 @@ import Rails from "@rails/ujs";
 /** ********************************************************** */
 /**  Apps should import Teamshares and call init() on startup  */
 /** ********************************************************** */
+
+// The next line tells eslint to accept the undef vars (these are specifically injected into esbuild's build process)
+/* global process */
+const HEROKU_APP_NAME = process.env.HEROKU_APP_NAME;
+const RAILS_ENV = process.env.RAILS_ENV;
+const HONEYBADGER_JS_API_KEY = process.env.HONEYBADGER_JS_API_KEY;
+const HEROKU_SLUG_COMMIT = process.env.HEROKU_SLUG_COMMIT;
+
+const _getEnvContext = () => (RAILS_ENV || "development");
+
+const _getDeployContext = () => {
+  const env = _getEnvContext();
+  if (env !== "production") return env;
+
+  const heroku = HEROKU_APP_NAME || "";
+  if (heroku.length === 0) {
+    console.warn("WARN: production-ish environment is missing HEROKU_APP_NAME -- defaulting to review");
+    return "review";
+  }
+
+  return heroku.includes("-production") ? "production" : (heroku.includes("-staging") ? "staging" : "review");
+};
+
 export default class Teamshares {
+  static env = _getEnvContext();
+  static deploy_context = _getDeployContext();
+
   static init (railsObj = Rails) {
     console.log("Initializing Teamshares JS");
-    initHoneybadger({ debug: true });
+
+    if (Teamshares.env === "production") {
+      if (!HONEYBADGER_JS_API_KEY) {
+        console.log(`Honeybadger not configured -- set HONEYBADGER_JS_API_KEY to enable (for ${HEROKU_APP_NAME})`);
+      } else {
+        Honeybadger.configure({
+          apiKey: HONEYBADGER_JS_API_KEY,
+          environment: Teamshares.deploy_context,
+          revision: HEROKU_SLUG_COMMIT,
+          debug: true,
+        });
+        window.Honeybadger = Honeybadger;
+      }
+    }
 
     // Overwrite Rails UJS's selectors to include Shoelace elements
     railsObj.buttonClickSelector = {
