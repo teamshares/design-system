@@ -1,12 +1,37 @@
 # @teamshares/design-system
 
-Design-related assets used across the Teamshares family of apps.
-
-> NOTE: renamed from shared-ui (contained SCSS, JS, and configs) to design-system (only org-wide styles) in September 2023.
+Design-related assets and shared configs used across the Teamshares family of apps.
 
 ## Problems?
 
 Checkout the [Working with Shared Repos](https://www.notion.so/teamshares/Working-with-Shared-Repos-abca981d44e94e3587da090e50905cf0) doc, then ping `#engineering-deps`.
+
+## Setup
+
+Instructions for installing in a new Rails app (note there are [many other steps to take](https://www.notion.so/teamshares/Spinning-Up-a-New-Application-Repository-b5fe388a56e44ba4aa547158b508014d#729587b1055d471db2fb4c86ab006201) to fully align a new app with Teamshares conventions).
+
+1. Add entry to "dependencies" in `package.json`
+    ```
+    "@teamshares/design-system": "https://github.com/teamshares/design-system.git#main",
+    ```
+
+2. Include Teamshares styles on the first line of your `application.scss`
+    ```
+    @import '@teamshares/design-system';
+    ```
+
+3. Include Teamshares JS near the top of your `application.js`
+    ```
+    import Teamshares from "@teamshares/design-system/rails-js";
+    Teamshares.init();
+    ```
+
+    * _Optional_: if you use any shared stimulus controllers, require and register them in your `controllers/application.js` - e.g. [see OS](https://github.com/teamshares/os-app/blob/main/app/javascript/controllers/application.js#L2).
+
+
+4. Configure build pipeline + linters
+
+    Every file under `configs/` should have a file of the same name in the root of your Rails app that references these shared configs; exact syntax differs for each file, see the existing files in OS or another app (or reach out to `#engineering-deps` for guidance).
 
 ## Local Development _Setup_
 
