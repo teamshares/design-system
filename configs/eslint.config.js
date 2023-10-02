@@ -1,3 +1,4 @@
+const eslintJS = require("@eslint/js");
 const globals = require("globals");
 const cypressPlugin = require("eslint-plugin-cypress");
 // const jestPlugin = require("eslint-plugin-jest");
@@ -364,7 +365,7 @@ const buildDefaultConfig = (customRules) => {
   const { browserConfig, nodeConfig, cypressConfig, jestConfig } = buildConfigs(customRules);
 
   return [
-    "eslint:recommended",
+    eslintJS.configs.recommended,
     {
       ignores: [
         "coverage/**",
