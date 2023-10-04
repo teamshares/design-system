@@ -2,7 +2,7 @@ const { defineConfig } = require("cypress");
 const cypressSplit = require("cypress-split");
 const path = require("path");
 
-const pluginPath = path.join(process.cwd(), "cypress/plugins/index.js")
+const pluginPath = path.join(process.cwd(), "cypress/plugins/index.js");
 
 const defaultConfig = {
   screenshotsFolder: "tmp/cypress_screenshots",
@@ -25,7 +25,7 @@ const defaultConfig = {
       return config;
     },
   },
-}
+};
 
 const defineConfigWithTeamsharesDefaults = (overrides) => {
   if (!overrides || !overrides.projectId) {
@@ -33,9 +33,8 @@ const defineConfigWithTeamsharesDefaults = (overrides) => {
   }
 
   return defineConfig(Object.assign({}, defaultConfig, overrides));
-}
-
-module.exports = {
-  defineConfigWithTeamsharesDefaults
 };
 
+module.exports = {
+  defineConfigWithTeamsharesDefaults,
+};
