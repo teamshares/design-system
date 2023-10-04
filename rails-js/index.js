@@ -36,7 +36,7 @@ export default class Teamshares {
   static deployed_app_sha = HEROKU_SLUG_COMMIT;
   static Rails = Rails;
 
-  static init (config = {}) {
+  static start (config = {}) {
     console.log("Initializing Teamshares JS");
 
     if (config.disableTurboSessionDrive) {
