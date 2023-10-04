@@ -51,7 +51,10 @@ const buildConfigs = (customRules) => {
   const browserConfig = { ...coreConfig };
   browserConfig.languageOptions = {
     ...browserConfig.languageOptions,
-    globals: { ...globals.browser },
+    globals: {
+      Teamshares: "readonly",
+      ...globals.browser
+    },
   };
 
   const nodeConfig = { ...coreConfig };
@@ -65,7 +68,7 @@ const buildConfigs = (customRules) => {
   jestConfig.languageOptions = {
     ...jestConfig.languageOptions,
     globals: {
-      ...globals.browser,
+      ...browserConfig.languageOptions.globals,
 
       // Partial list from manually debugging... will likely need to add additional globals here
       test: false,
