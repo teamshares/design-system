@@ -25,3 +25,11 @@ Cypress.Commands.add("flipper_enable", (feature) => {
 Cypress.Commands.add("flipper_disable", (feature) => {
   cy.request("DELETE", "teamshares/cypress/flippers", { feature });
 });
+
+Cypress.Commands.add("flipper_enable_group", (feature, group) => {
+  cy.request("POST", "teamshares/cypress/flippers", { feature, group });
+});
+
+Cypress.Commands.add("flipper_disable_group", (feature, group) => {
+  cy.request("DELETE", "teamshares/cypress/flippers", { feature, group });
+});
