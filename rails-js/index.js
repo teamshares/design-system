@@ -33,6 +33,7 @@ const _getDeployContext = () => {
 export default class Teamshares {
   static env = _getEnvContext();
   static deploy_context = _getDeployContext();
+  static deployed_app_sha = HEROKU_SLUG_COMMIT;
 
   static init (railsObj = Rails) {
     console.log("Initializing Teamshares JS");
