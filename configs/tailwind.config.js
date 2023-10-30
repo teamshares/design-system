@@ -48,6 +48,7 @@ const tailwindConfig = {
   plugins: [
     require("@tailwindcss/forms"),
     require("@tailwindcss/typography"),
+    require("@tailwindcss/container-queries"),
   ],
   theme: {
     extend: tokens,
