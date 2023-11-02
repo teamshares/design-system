@@ -1,8 +1,8 @@
 import * as Shoelace from "@teamshares/shoelace";
 import Honeybadger from "@honeybadger-io/js";
 
-// Importing this as a default param so the init doesn't break if apps don't pass it in
 import Rails from "@rails/ujs";
+import { Turbo } from "@hotwired/turbo-rails";
 
 /** ********************************************************** */
 /**  Apps should import Teamshares and call init() on startup  */
@@ -34,9 +34,20 @@ export default class Teamshares {
   static env = _getEnvContext();
   static deploy_context = _getDeployContext();
   static deployed_app_sha = HEROKU_SLUG_COMMIT;
+  static Rails = Rails;
 
-  static init (railsObj = Rails) {
+  static start (config = {}) {
     console.log("Initializing Teamshares JS");
+
+    if (config.disableTurboSessionDrive) {
+      // This line disables Turbo Drive globally, which some apps have done
+      // due to Cypress test brittleness and/or just not devoting time to
+      // fully implement.
+      //
+      // In those apps, Turbo Drive can be enabled on individual links
+      // and form submissions by adding data-turbo="true" to the element.
+      Turbo.session.drive = false;
+    }
 
     if (Teamshares.env === "production") {
       if (!HONEYBADGER_JS_API_KEY) {
@@ -53,18 +64,20 @@ export default class Teamshares {
     }
 
     // Overwrite Rails UJS's selectors to include Shoelace elements
-    railsObj.buttonClickSelector = {
-      selector: railsObj.buttonClickSelector.selector + ", sl-button[data-remote]:not([form]), sl-button[data-confirm]:not([form])",
+    Rails.buttonClickSelector = {
+      selector: Rails.buttonClickSelector.selector + ", sl-button[data-remote]:not([form]), sl-button[data-confirm]:not([form])",
       exclude: "form button, form sl-button",
     };
-    railsObj.linkClickSelector += ", sl-button[href][data-confirm], sl-button[href][data-method], sl-button[href][data-remote]:not([disabled]), sl-button[href][data-disable-with], sl-button[href][data-disable]";
-    railsObj.inputChangeSelector += ", sl-select[data-remote], sl-input[data-remote], sl-textarea[data-remote]";
-    railsObj.formInputClickSelector += ", form:not([data-turbo=true]) sl-input[type=submit], form:not([data-turbo=true]) sl-input[type=image], form:not([data-turbo=true]) sl-button[type=submit], form:not([data-turbo=true]) sl-button:not([type]), sl-input[type=submit][form], sl-input[type=image][form], sl-button[type=submit][form], sl-button[form]:not([type])";
-    railsObj.formDisableSelector += ", sl-input[data-disable-with]:enabled, sl-button[data-disable-with]:enabled, sl-textarea[data-disable-with]:enabled, sl-input[data-disable]:enabled, sl-button[data-disable]:enabled, sl-textarea[data-disable]:enabled";
-    railsObj.formEnableSelector += ", sl-input[data-disable-with]:disabled, sl-button[data-disable-with]:disabled, sl-textarea[data-disable-with]:disabled, sl-input[data-disable]:disabled, sl-button[data-disable]:disabled, sl-textarea[data-disable]:disabled";
-    railsObj.fileInputSelector += ", sl-input[name][type=file]:not([disabled])";
-    railsObj.linkDisableSelector += ", sl-button[href][data-disable-with], sl-button[href][data-disable]";
-    railsObj.buttonDisableSelector += ", sl-button[data-remote][data-disable-with], sl-button[data-remote][data-disable]";
+    Rails.linkClickSelector += ", sl-button[href][data-confirm], sl-button[href][data-method], sl-button[href][data-remote]:not([disabled]), sl-button[href][data-disable-with], sl-button[href][data-disable]";
+    Rails.inputChangeSelector += ", sl-select[data-remote], sl-input[data-remote], sl-textarea[data-remote]";
+    Rails.formInputClickSelector += ", form:not([data-turbo=true]) sl-input[type=submit], form:not([data-turbo=true]) sl-input[type=image], form:not([data-turbo=true]) sl-button[type=submit], form:not([data-turbo=true]) sl-button:not([type]), sl-input[type=submit][form], sl-input[type=image][form], sl-button[type=submit][form], sl-button[form]:not([type])";
+    Rails.formDisableSelector += ", sl-input[data-disable-with]:enabled, sl-button[data-disable-with]:enabled, sl-textarea[data-disable-with]:enabled, sl-input[data-disable]:enabled, sl-button[data-disable]:enabled, sl-textarea[data-disable]:enabled";
+    Rails.formEnableSelector += ", sl-input[data-disable-with]:disabled, sl-button[data-disable-with]:disabled, sl-textarea[data-disable-with]:disabled, sl-input[data-disable]:disabled, sl-button[data-disable]:disabled, sl-textarea[data-disable]:disabled";
+    Rails.fileInputSelector += ", sl-input[name][type=file]:not([disabled])";
+    Rails.linkDisableSelector += ", sl-button[href][data-disable-with], sl-button[href][data-disable]";
+    Rails.buttonDisableSelector += ", sl-button[data-remote][data-disable-with], sl-button[data-remote][data-disable]";
+
+    Rails.start();
 
     // Register free font-awesome icons
     Shoelace.registerIconLibrary("fa-free", {
@@ -99,3 +112,5 @@ export default class Teamshares {
     });
   }
 }
+
+window.Teamshares = Teamshares;
