@@ -29,9 +29,11 @@ Instructions for installing in a new Rails app (note there are [many other steps
     * _Optional_: if you use any shared stimulus controllers, require and register them in your `controllers/application.js` - e.g. [see OS](https://github.com/teamshares/os-app/blob/main/app/javascript/controllers/application.js#L2).
 
 
-4. Configure build pipeline + linters
+4. Configure build pipeline + linters + cypress
 
     Every file under `configs/` should have a file of the same name in the root of your Rails app that references these shared configs; exact syntax differs for each file, see the existing files in OS or another app (or reach out to `#engineering-deps` for guidance).
+
+    If you use cypress, both `cypress.config.js` and `cypress/support/commands.js` should reference the shared configs from this repo.
 
 ## Local Development _Setup_
 

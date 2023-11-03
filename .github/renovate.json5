@@ -1,4 +1,7 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  extends: [ "github>teamshares/renovate-config:lib.json5" ]
+  extends: [ "github>teamshares/renovate-config:lib.json5" ],
+  "ignoreDeps": [
+    "@rails/ujs",  // We don't want to update past 7.0.8 until this bug has been resolved: https://github.com/rails/rails/pull/49668
+  ]
 }
