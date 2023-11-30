@@ -26,7 +26,7 @@ Instructions for installing in a new Rails app (note there are [many other steps
     Teamshares.init();
     ```
 
-    * _Optional_: if you use any shared stimulus controllers, require and register them in your `controllers/application.js` - e.g. [see OS](https://github.com/teamshares/os-app/blob/main/app/javascript/controllers/application.js#L2).
+    * _Optional_: if you use any shared stimulus controllers, require and register them in your `controllers/application.js` - e.g. [see OS](https://github.com/teamshares/os-app/blob/main/app/frontend/javascript/controllers/application.js#L2).
 
 
 4. Configure build pipeline + linters + cypress

@@ -54,7 +54,7 @@ const sharedConfig = {
   minify: isProd,
   target: "es2020", // NOTE: look into using browserlist here...
   outdir: path.join(process.cwd(), "app/assets/builds"),
-  absWorkingDir: path.join(process.cwd(), "app/javascript"),
+  absWorkingDir: path.join(process.cwd(), "app/frontend/javascript"),
   publicPath: "/assets",
   assetNames: "[name]-[hash].digested",
   loader: {
