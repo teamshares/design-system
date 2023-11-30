@@ -3,6 +3,7 @@ const path = require("path");
 const esbuild = require("esbuild");
 const { stimulusPlugin } = require("esbuild-plugin-stimulus");
 const { copy } = require("esbuild-plugin-copy");
+const importGlobPlugin = require("esbuild-plugin-import-glob");
 
 // const { getTeamsharesRailsPath } = require("../lib/teamshares-rails-path");
 // const tsRailsPath = getTeamsharesRailsPath();
@@ -72,6 +73,7 @@ const sharedConfig = {
     //   "@teamshares-rails": path.join(tsRailsPath, "app/javascript/teamshares-rails"),
     // }),
     stimulusPlugin(),
+    importGlobPlugin.default(),
     copy({
       // this is equal to process.cwd(), which means we use cwd path as base path to resolve `to` path
       // if not specified, this plugin uses ESBuild.build outdir/outfile options as base path.
@@ -81,7 +83,7 @@ const sharedConfig = {
         to: ["./public/assets/icons"],
       },
     }),
-  ],
+  ]
 };
 
 const defaultConfigTransformer = (config) => config;
