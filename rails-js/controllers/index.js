@@ -10,24 +10,28 @@ const pathToComponentControllerIdentifier = (path) => path.match(/\/(components\
   .replaceAll("/", "--")
   .replaceAll("_", "-");
 
-const registerStimulusControllers = (appDefinitions, componentControllers) => {
+// Parse the output of the glob (from esbuild-plugin-import-glob) and register the controllers
+const registerComponentStimulusControllersFromGlob = (application, glob) => {
+  if (!glob) return;
+
+  glob.default.forEach(({ default: controller }, idx) => {
+    const path = glob.filenames[idx];
+    const name = pathToComponentControllerIdentifier(path);
+    application.register(name, controller);
+  });
+};
+
+const registerStimulusControllers = (appControllers, componentControllersGlob) => {
   const application = Application.start();
 
   // Register the shared controllers
   application.register("toggle", ToggleController);
 
   // Auto-load all app controllers
-  application.load(appDefinitions);
+  application.load(appControllers);
 
-  // Auto-load all component controllers
-  if (componentControllers) {
-    componentControllers.default.forEach(({ default: controller }, idx) => {
-      const path = componentControllers.filenames[idx];
-      const name = pathToComponentControllerIdentifier(path);
-      console.log({ path, name, controller });
-      application.register(name, controller);
-    });
-  }
+  // Auto-load all app component controllers
+  registerComponentStimulusControllersFromGlob(application, componentControllersGlob);
 
   // Configure Stimulus development experience
   application.warnings = true;
