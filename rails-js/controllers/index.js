@@ -5,8 +5,8 @@ import ToggleController from "./toggle_controller";
 
 const sharedComponentControllersGlob = require("@teamshares-rails/components/**/controller.js");
 const appComponentControllersGlob = require("@app/components/**/controller.js");
-
 const appControllersGlob = require("@app/javascript/controllers/**.js");
+
 // NOTE: we could move the shared stimulus controllers in design-system back into teamshares_rails too,
 // but we haven't figured out how to manage any JS dependencies that might be needed by those controllers.
 // const sharedControllersGlob = require("@app/javascript/controllers/**.js");
