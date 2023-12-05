@@ -5,3 +5,9 @@
 @import '@teamshares/shoelace/dist/styles/index';
 
 @import 'ts-includes';
+
+// Include SharedUI component styles (enabled by tsRailsPath in postcss-easy-import's path)
+@import 'app/components/**/*.scss'; // stylelint-disable-line scss/at-import-partial-extension-blacklist
+
+// Include application component styles (enabled by APP_ROOT in postcss-easy-import's path)
+@import 'app/frontend/components/**/*.scss';  // stylelint-disable-line scss/at-import-partial-extension-blacklist

@@ -2,6 +2,7 @@ const tailwindDefaultConfig = require("./tailwind.config.js");
 
 const isProd = process.env.RAILS_ENV === "production" || process.env.NODE_ENV === "production";
 console.log(`Preparing to bundle CSS in ${isProd ? "PRODUCTION" : "development mode"}`);
+APP_ROOT = process.cwd();
 
 const path = require("path");
 const { getTeamsharesRailsPath } = require("../lib/teamshares-rails-path");
@@ -23,7 +24,7 @@ const configBuilder = (tailwindConfigTransformer = defaultConfigTransformer) => 
   const postcssConfig = {
     parser: "postcss-scss",
     plugins: [
-      require("postcss-easy-import")({ prefix: "_", extensions: [".css", ".scss"], plugins: [
+      require("postcss-easy-import")({ path: [tsRailsPath, APP_ROOT], prefix: "_", extensions: [".css", ".scss"], plugins: [
         // This plugin enables CSS modules for ViewComponent companion CSS files
         require("postcss-modules")({
           generateScopedName: (name, filename, _css) => {
