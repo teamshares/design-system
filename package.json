@@ -32,7 +32,6 @@
     "esbuild-plugin-copy": "^2.1.1",
     "esbuild-plugin-import-glob": "^0.1.1",
     "esbuild-plugin-resolve": "^2.0.0",
-    "esbuild-plugin-stimulus": "^0.1.5",
     "eslint": "^8.49.0",
     "eslint-config-standard": "^17.1.0",
     "eslint-plugin-cypress": "^2.14.0",

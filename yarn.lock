@@ -2190,11 +2190,6 @@ esbuild-plugin-resolve@^2.0.0:
   resolved "https://registry.yarnpkg.com/esbuild-plugin-resolve/-/esbuild-plugin-resolve-2.0.0.tgz#d2acf6587603da7a4937b238702f18acbe8d9b07"
   integrity sha512-eJy9B8yDW5X/J48eWtR1uVmv+DKfHvYYnrrcqQoe/nUkVHVOTZlJnSevkYyGOz6hI90t036Y5QIPDrGzmppxfg==
 
-esbuild-plugin-stimulus@^0.1.5:
-  version "0.1.5"
-  resolved "https://registry.yarnpkg.com/esbuild-plugin-stimulus/-/esbuild-plugin-stimulus-0.1.5.tgz#6e4ba834ed8fcf9d662f1df8f709e05328b6b92c"
-  integrity sha512-ANav+mJxDJCIMuKfj4h7F2BemA1BcIaE5VmmGd6qDVQEaFEH3YeVRAHOWjgiUhGJBFi6wI8Q7RtZIZkNvbckZg==
-
 esbuild@^0.19.2:
   version "0.19.3"
   resolved "https://registry.yarnpkg.com/esbuild/-/esbuild-0.19.3.tgz#d9268cd23358eef9d76146f184e0c55ff8da7bb6"

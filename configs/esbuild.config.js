@@ -1,7 +1,6 @@
 // Note: more a build script than a config file, but keeping naming to match postcss.config.js
 const path = require("path");
 const esbuild = require("esbuild");
-const { stimulusPlugin } = require("esbuild-plugin-stimulus");
 const { copy } = require("esbuild-plugin-copy");
 const importGlobPlugin = require("esbuild-plugin-import-glob");
 
@@ -75,7 +74,6 @@ const sharedConfig = {
       "@teamshares-rails": path.join(tsRailsPath, "app"),
       "@app": path.join(APP_ROOT, "app/frontend"),
     }),
-    stimulusPlugin(),
     importGlobPlugin.default(),
     copy({
       // this is equal to process.cwd(), which means we use cwd path as base path to resolve `to` path
