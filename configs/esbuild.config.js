@@ -5,8 +5,8 @@ const { stimulusPlugin } = require("esbuild-plugin-stimulus");
 const { copy } = require("esbuild-plugin-copy");
 const importGlobPlugin = require("esbuild-plugin-import-glob");
 
-// const { getTeamsharesRailsPath } = require("../lib/teamshares-rails-path");
-// const tsRailsPath = getTeamsharesRailsPath();
+const { getTeamsharesRailsPath } = require("../lib/teamshares-rails-path");
+const tsRailsPath = getTeamsharesRailsPath();
 
 const isProd = process.env.RAILS_ENV === "production" || process.env.NODE_ENV === "production";
 const isWatch = process.argv.includes("--watch");
@@ -44,6 +44,8 @@ const EsbuildPluginResolve = (options) => ({
 
 // --- Finish inlining esbuild-plugin-resolve ---
 
+APP_ROOT = process.cwd();
+
 const sharedConfig = {
   logLevel: "warning",
   entryPoints: [
@@ -53,8 +55,8 @@ const sharedConfig = {
   sourcemap: isProd,
   minify: isProd,
   target: "es2020", // NOTE: look into using browserlist here...
-  outdir: path.join(process.cwd(), "app/assets/builds"),
-  absWorkingDir: path.join(process.cwd(), "app/frontend/javascript"),
+  outdir: path.join(APP_ROOT, "app/assets/builds"),
+  absWorkingDir: path.join(APP_ROOT, "app/frontend/javascript"),
   publicPath: "/assets",
   assetNames: "[name]-[hash].digested",
   loader: {
@@ -69,9 +71,10 @@ const sharedConfig = {
     "process.env.HEROKU_SLUG_COMMIT": `"${process.env.SOURCE_VERSION || process.env.HEROKU_SLUG_COMMIT}"`,
   },
   plugins: [
-    // EsbuildPluginResolve({
-    //   "@teamshares-rails": path.join(tsRailsPath, "app/javascript/teamshares-rails"),
-    // }),
+    EsbuildPluginResolve({
+      "@teamshares-rails": path.join(tsRailsPath, "app"),
+      "@app": path.join(APP_ROOT, "app/frontend"),
+    }),
     stimulusPlugin(),
     importGlobPlugin.default(),
     copy({
