@@ -28,7 +28,9 @@ const configBuilder = (tailwindConfigTransformer = defaultConfigTransformer) => 
         // This plugin enables CSS modules for ViewComponent companion CSS files
         require("postcss-modules")({
           generateScopedName: (name, filename, _css) => {
-            const matches = filename.match(/[app|frontend]\/components\/?(.*)\/[^/]+?.s?css$/);
+            // TODO: can we only modularize single  *parent* style?
+
+            const matches = filename.match(/frontend\/components\/?(.*)\/[^/]+?.s?css$/);
 
             // Do not transform CSS files from outside of the components folder
             if (!matches) return name;
