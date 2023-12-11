@@ -71,7 +71,7 @@ const sharedConfig = {
   },
   plugins: [
     EsbuildPluginResolve({
-      "@teamshares-rails": path.join(tsRailsPath, "app"),
+      "@teamshares-rails": path.join(tsRailsPath, "app/frontend"),
       "@app": path.join(APP_ROOT, "app/frontend"),
     }),
     importGlobPlugin.default(),
