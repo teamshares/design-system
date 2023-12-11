@@ -4,6 +4,8 @@ import Honeybadger from "@honeybadger-io/js";
 import Rails from "@rails/ujs";
 import { Turbo } from "@hotwired/turbo-rails";
 
+import { registerStimulusControllers } from "./controllers";
+
 /** ********************************************************** */
 /**  Apps should import Teamshares and call init() on startup  */
 /** ********************************************************** */
@@ -30,11 +32,15 @@ const _getDeployContext = () => {
   return heroku.includes("-production") ? "production" : (heroku.includes("-staging") ? "staging" : "review");
 };
 
+// Configure Stimulus
+const application = registerStimulusControllers();
+
 export default class Teamshares {
   static env = _getEnvContext();
   static deploy_context = _getDeployContext();
   static deployed_app_sha = HEROKU_SLUG_COMMIT;
   static Rails = Rails;
+  static stimulusApplication = application;
 
   static start (config = {}) {
     console.log("Initializing Teamshares JS");

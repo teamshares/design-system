@@ -41,7 +41,7 @@ tokens.typography = ({ theme }) => ({
 const tailwindConfig = {
   content: [ // NOTE: our own scss and paths from TeamsharesRails are injected in postcss.config.js
     "app/**/*.{html,js,rb,erb,slim}",
-    "app/assets/stylesheets/**/*.scss",
+    "app/frontend/stylesheets/**/*.scss",
     "config/initializers/simple_form.rb",
     "public/*.html",
   ],
