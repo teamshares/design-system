@@ -44,7 +44,7 @@ export default class Teamshares {
   static stimulusApplication = application;
 
   static start (config = {}) {
-    console.log("Initializing Teamshares JS");
+    console.debug("Initializing Teamshares JS");
 
     if (config.disableTurboSessionDrive) {
       // This line disables Turbo Drive globally, which some apps have done
