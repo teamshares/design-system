@@ -4,6 +4,7 @@ import Honeybadger from "@honeybadger-io/js";
 import Rails from "@rails/ujs";
 import { Turbo } from "@hotwired/turbo-rails";
 
+import "./includes/ts_wrapper";
 import { registerStimulusControllers } from "./controllers";
 
 /** ********************************************************** */
