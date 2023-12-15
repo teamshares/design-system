@@ -28,6 +28,7 @@ const configBuilder = (tailwindConfigTransformer = defaultConfigTransformer) => 
         require("tailwindcss/nesting"),
         prefixComponentClasses,
       ] }),
+      require("tailwindcss/nesting"),
       require("tailwindcss")(tailwindConfig),
       require("postcss-flexbugs-fixes"),
       require("postcss-preset-env")({
