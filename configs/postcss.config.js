@@ -10,8 +10,7 @@ const { getTeamsharesRailsPath } = require("../lib/teamshares-rails-path");
 const tsRailsPath = getTeamsharesRailsPath();
 
 const injectSharedCodePaths = (config) => {
-  config.content.push(path.join(process.cwd(), "**/*.scss").toString());
-  config.content.push(`${tsRailsPath}/**/*.{html,js,rb,erb,slim}`);
+  config.content.push(`${tsRailsPath}/{app,lib}/**/*.{html,js,rb,erb,slim,scss}`);
 
   return config;
 };

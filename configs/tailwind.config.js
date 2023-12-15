@@ -42,6 +42,7 @@ const tailwindConfig = {
   content: [ // NOTE: our own scss and paths from TeamsharesRails are injected in postcss.config.js
     "app/**/*.{html,js,rb,erb,slim}",
     "app/frontend/stylesheets/**/*.scss",
+    "app/frontend/components/**/*.{scss,rb}",
     "config/initializers/simple_form.rb",
     "public/*.html",
   ],
