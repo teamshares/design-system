@@ -6,6 +6,8 @@ const importGlobPlugin = require("esbuild-plugin-import-glob");
 
 const { getTeamsharesRailsPath } = require("../lib/teamshares-rails-path");
 const tsRailsPath = getTeamsharesRailsPath();
+console.log("Using Teamshares Rails path:", tsRailsPath);
+console.log("\n\n");
 
 const isProd = process.env.RAILS_ENV === "production" || process.env.NODE_ENV === "production";
 const isWatch = process.argv.includes("--watch");
