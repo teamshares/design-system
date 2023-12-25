@@ -61,6 +61,11 @@ const sharedConfig = {
   loader: {
     ".svg": "file",
   },
+
+  // Explicitly use working directory's node_modules, so we look *here* for teamshares-rails js imports
+  // (rather than looking in teamshares-rails + parents for a node_modules that doesn't exist if yarn was never run there)
+  nodePaths: [path.join(APP_ROOT, "node_modules")],
+
   define: {
     "process.env.HEROKU_APP_NAME": `"${process.env.HEROKU_APP_NAME || ""}"`,
     "process.env.RAILS_ENV": `"${process.env.RAILS_ENV || "development"}"`,
