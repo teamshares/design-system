@@ -13,3 +13,8 @@
 ts-wrapper:not(:defined) {
   visibility: visible;
 }
+
+// Make the wrapper's children to appear as if they were direct children of the wrapper's parent, ignoring the wrapper itself.
+ts-wrapper {
+  display: contents;
+}
