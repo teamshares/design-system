@@ -18,3 +18,15 @@ ts-wrapper:not(:defined) {
 ts-wrapper {
   display: contents;
 }
+
+// EXPERIMENTAL: Rules that have to do with the order of the elements need to be passed along via a :has selector, and that rule needs to be removed from the child
+// Note this this only one of such exceptions. The others will need to be added as we find them.
+// TODO: Need to look at just pulling all or some classes off the top-level div in wrapped components and applying those classes to the wrapper
+// or not using the wrapper element at all, and applying the classes to the top level div of the VC directly
+ts-wrapper:has(.last\:border-b-0:last-child) {
+  @apply last:border-b-0;
+}
+
+ts-wrapper .last\:border-b-0:last-child {
+  border-bottom-width: initial;
+}
