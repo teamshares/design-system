@@ -10,7 +10,12 @@ const prefixComponentClasses = postcss.plugin('prefix-component-classes', () => 
 
       root.walkRules(rule => {
         // console.log(`[${identifier}] ${rule.selector}`);
-        rule.selector = `.c-${identifier} ${rule.selector}`;
+        // If the selector is our special `._base` rule, apply those styles directly to the generated class itself
+        if (rule.selector == "._base") {
+          rule.selector = `.c-${identifier}`;
+        } else {
+          rule.selector = `.c-${identifier} ${rule.selector}`;
+        }
       });
     };
 });
