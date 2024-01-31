@@ -1,0 +1,99 @@
+.table {
+  --ts-color-row-bg-odd: #3331;
+  --ts-color-row-bg-even: #ccc1;
+  --ts-color-header-row-bg: #ccc;
+  --ts-table-row-gap: 0.25rem;
+  --ts-table-column-gap: 1rem;
+  --ts-table-cell-padding: 0.25rem;
+  --ts-table-column-max-width: 0.25rem;
+  
+  display: table;
+  .tr       { display: table-row; }
+  .thead    { display: table-header-group; }
+  .tbody    { display: table-row-group; }
+  .tfoot    { display: table-footer-group; }
+  .col      { display: table-column; }
+  .colgroup { display: table-column-group; }
+  .td, .th  { display: table-cell; }
+  .caption  { display: table-caption; }
+
+  &.alternating-rows {
+    .tr:nth-child(odd) {
+      background-color: var(--ts-color-row-bg-odd);
+    }
+
+    .tr:nth-child(even) {
+      background-color: var(--ts-color-row-bg-even);
+    }
+  }
+
+  .responsive-row-group, .responsive-column-group {
+    display: contents;
+  }
+
+  &, .thead, .tbody, .tfoot, .tr { 
+    width: auto;
+  }
+
+  .thead .tr {
+    position: sticky;
+  }
+
+  .th, .td {
+    padding: var(--ts-table-cell-padding);
+    white-space: nowrap;
+    max-width: var(--ts-table-column-max-width);
+    overflow: hidden;
+  }
+
+  .th {
+    font-weight: bold;
+    background-color: var(--ts-color-header-row-bg);
+  }
+}
+
+*:has(> .table.responsive) {
+  container-type: size;
+}
+
+.table.responsive {
+  @container (max-width: 430px) {
+    &, .tr, .td {
+      display: block;
+      max-width: 100%;
+
+      &.inline {
+        display: inline-block;
+      }
+    }
+
+    .responsive-row-group, .responsive-column-group {
+      display: flex;
+      column-gap: var(--ts-table-column-gap);
+      row-gap: var(--ts-table-row-gap);
+    }
+
+    .responsive-row-group {
+      flex-flow: column wrap;
+    }
+
+    .responsive-column-group {
+      flex-flow: row wrap;
+    }
+
+    .tr {
+      display: flex;
+      flex-flow: row wrap;
+      column-gap: 1rem;
+      row-gap: 0.25rem;
+    }
+
+    .td {
+      padding: var(--ts-table-cell-padding);
+    }
+
+    .th {
+      display: none;
+    }
+  }
+}
