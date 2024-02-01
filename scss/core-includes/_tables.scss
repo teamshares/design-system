@@ -31,6 +31,10 @@
     display: contents;
   }
 
+  .responsive-label {
+    display: none;
+  }
+
   &, .thead, .tbody, .tfoot, .tr { 
     width: auto;
   }
@@ -79,6 +83,10 @@
 
     .responsive-column-group {
       flex-flow: row wrap;
+    }
+
+    .responsive-label {
+      display: inline;
     }
 
     .tr {
