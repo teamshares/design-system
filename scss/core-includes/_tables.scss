@@ -1,3 +1,13 @@
+.table    { display: table; }
+.tr       { display: table-row; }
+.thead    { display: table-header-group; }
+.tbody    { display: table-row-group; }
+.tfoot    { display: table-footer-group; }
+.col      { display: table-column; }
+.colgroup { display: table-column-group; }
+.td, .th  { display: table-cell; }
+.caption  { display: table-caption; }
+
 .table {
   --ts-color-row-bg-odd: #3331;
   --ts-color-row-bg-even: #ccc1;
@@ -5,17 +15,6 @@
   --ts-table-row-gap: 0.25rem;
   --ts-table-column-gap: 1rem;
   --ts-table-cell-padding: 0.25rem;
-  --ts-table-column-max-width: 0.25rem;
-  
-  display: table;
-  .tr       { display: table-row; }
-  .thead    { display: table-header-group; }
-  .tbody    { display: table-row-group; }
-  .tfoot    { display: table-footer-group; }
-  .col      { display: table-column; }
-  .colgroup { display: table-column-group; }
-  .td, .th  { display: table-cell; }
-  .caption  { display: table-caption; }
 
   &.alternating-rows {
     .tr:nth-child(odd) {
@@ -35,7 +34,7 @@
     display: none;
   }
 
-  &, .thead, .tbody, .tfoot, .tr { 
+  .thead, .tbody, .tfoot, .tr { 
     width: auto;
   }
 
@@ -46,7 +45,6 @@
   .th, .td {
     padding: var(--ts-table-cell-padding);
     white-space: nowrap;
-    max-width: var(--ts-table-column-max-width);
     overflow: hidden;
   }
 
