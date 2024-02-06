@@ -86,37 +86,8 @@ export default class Teamshares {
 
     Rails.start();
 
-    // Register free font-awesome icons
-    Shoelace.registerIconLibrary("fa-free", {
-      resolver: name => {
-        const filename = name.replace(/^fa[rbs]-/, "");
-        let folder = "regular";
-        if (name.substring(0, 4) === "fas-") folder = "solid";
-        if (name.substring(0, 4) === "fab-") folder = "brands";
-        return `https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.3.0/svgs/${folder}/${filename}.svg`;
-      },
-      mutator: svg => svg.setAttribute("fill", "currentColor"),
-    });
-
-    // Register FontAwesome Pro and point at our bespoke "kit" URL, including the token in the querystring
-    // See https://fontawesome.com/kits/44da2a9d09/setup
-    // Note that the kit allows us to whitelist / deny specific URL patterns
-    Shoelace.registerIconLibrary("fa", {
-      resolver: name => {
-        const filename = name.replace(/^fa([rsltdb]|(ss))-/, "");
-        const sub = name.substring(0, 4);
-        const folderHash = {
-          "fas-": "solid",
-          "fal-": "light",
-          "fat-": "thin",
-          "fad-": "duotone",
-          "fab-": "brands",
-        };
-        const folder = folderHash[sub] || "regular";
-        return `https://ka-p.fontawesome.com/releases/v6.4.0/svgs/${folder}/${filename}.svg?token=44da2a9d09`;
-      },
-      mutator: svg => svg.setAttribute("fill", "currentColor"),
-    });
+    // Register all FontAwesome icons
+    Shoelace.registerExternalLibraries();
   }
 }
 
