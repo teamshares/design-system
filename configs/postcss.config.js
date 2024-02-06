@@ -25,9 +25,9 @@ const configBuilder = (tailwindConfigTransformer = defaultConfigTransformer) => 
     parser: "postcss-scss",
     plugins: [
       require("postcss-easy-import")({ path: [tsRailsPath, APP_ROOT], prefix: "_", extensions: [".css", ".scss"], plugins: [
+        require("tailwindcss/nesting"),
         prefixComponentClasses,
       ] }),
-      require("tailwindcss/nesting"),
       require("tailwindcss")(tailwindConfig),
       require("postcss-flexbugs-fixes"),
       require("postcss-preset-env")({
