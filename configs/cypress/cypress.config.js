@@ -18,6 +18,7 @@ const defaultConfig = {
   e2e: {
     specPattern: "cypress/e2e/**/*.{js,jsx,ts,tsx}",
     experimentalStudio: true,
+    experimentalRunAllSpecs: true,
 
     setupNodeEvents (on, config) {
       require(pluginPath)(on, config);
