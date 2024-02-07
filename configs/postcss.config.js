@@ -24,10 +24,15 @@ const configBuilder = (tailwindConfigTransformer = defaultConfigTransformer) => 
   const postcssConfig = {
     parser: "postcss-scss",
     plugins: [
-      require("postcss-easy-import")({ path: [tsRailsPath, APP_ROOT], prefix: "_", extensions: [".css", ".scss"], plugins: [
-        require("tailwindcss/nesting"),
-        prefixComponentClasses,
-      ] }),
+      require("postcss-easy-import")({ 
+        path: [tsRailsPath, APP_ROOT], 
+        prefix: "_", 
+        extensions: [".css", ".scss"],
+        plugins: [
+          prefixComponentClasses,
+        ]
+      }),
+      require("tailwindcss/nesting"),
       require("tailwindcss")(tailwindConfig),
       require("postcss-flexbugs-fixes"),
       require("postcss-preset-env")({
@@ -39,6 +44,7 @@ const configBuilder = (tailwindConfigTransformer = defaultConfigTransformer) => 
         },
         stage: 3,
       }),
+      require("./postcss/cleanup-component-classes.js"),
       isProd ? require("cssnano")({ preset: "default" }) : null,
       require("postcss-reporter")({ clearReportedMessages: true }),
     ].filter(Boolean),
