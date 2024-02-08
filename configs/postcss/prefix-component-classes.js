@@ -9,8 +9,9 @@ const prefixComponentClasses = () => {
       // Do not transform CSS files from outside of the components folder
       if (!matches) return;
 
+      const filePath = matches[0].replace('frontend/components/', '');
       const identifier = matches[1].replaceAll("/", "--").replaceAll("_", "-");
-      console.log('================= prefixing component classes for', clc.yellow(identifier));
+      console.log('================= prefixing component classes for', clc.yellow(filePath));
       let hasWrapperClass = false;
       root.walkRules(rule => {
         // console.log(`Rule: ${rule}`);
@@ -19,13 +20,13 @@ const prefixComponentClasses = () => {
          * All encapsulated component classes are expected to be nested within that.
          **/ 
         if (rule.selector == "._component") {
-          console.log(clc.green(`  Replacing ._component {} block with .${identifier} {}`));
+          console.log(clc.green(`  Replacing ._component block with .${identifier}`));
           hasWrapperClass = true;
           rule.selector = `.c-${identifier}`;
         }
       });
       if (!hasWrapperClass) {
-        console.log(clc.red(`  No ._component {} block found for ${identifier}. Classes will not be encapsulated.`))
+        console.log(clc.red(`  No '._component {}' block in ${filePath}. Classes will not be encapsulated.`))
       }
     },
   };
