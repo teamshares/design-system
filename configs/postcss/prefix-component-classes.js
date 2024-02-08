@@ -1,49 +1,40 @@
-const postcss = require('postcss');
-const prefixComponentClasses = postcss.plugin('prefix-component-classes', () => {
-    return (root, result) => {
-      const matches = result.opts.from.match(/frontend\/components\/?(.*)\/[^/]+?.s?css$/);
+var clc = require("cli-color");
+
+const prefixComponentClasses = () => {
+  return {
+    postcssPlugin: "prefix-component-classes",
+    Once (root, result) {
+      const matches = result.result.opts.from.match(/frontend\/components\/?(.*)\/[^/]+?.s?css$/);
 
       // Do not transform CSS files from outside of the components folder
       if (!matches) return;
 
+      const filePath = matches[0].replace('frontend/components/', '');
       const identifier = matches[1].replaceAll("/", "--").replaceAll("_", "-");
-
+      console.log('================= prefixing component classes for', clc.yellow(filePath));
+      let hasWrapperClass = false;
       root.walkRules(rule => {
-        // console.log(`[${identifier}] ${rule.selector}`);
-        // If the selector is our special `._base` rule, apply those styles directly to the generated class itself
-        if (rule.selector == "._base") {
+        // console.log(`Rule: ${rule}`);
+        /**
+         * If the selector is our special `._component` rule, that's the designated wrapper.
+         * All encapsulated component classes are expected to be nested within that.
+         **/ 
+        if (rule.selector == "._component") {
+          console.log(clc.green(`  Replacing ._component block with .${identifier}`));
+          hasWrapperClass = true;
           rule.selector = `.c-${identifier}`;
-        } else {
-          rule.selector = `.c-${identifier} ${rule.selector}`;
         }
       });
-    };
-});
+      if (!hasWrapperClass) {
+        console.log(clc.red(`  No '._component {}' block in ${filePath}. Classes will not be encapsulated.`))
+      }
+    },
+  };
+}
+prefixComponentClasses.postcss = true;
 
-// NOTE: in *theory* the code below should switch to above plugin from v7 to v8...
-// See migrations guide: https://evilmartians.com/chronicles/postcss-8-plugin-migration.
+module.exports = prefixComponentClasses;
 
-// Unfortunately, it starts throwing "CssSyntaxError: postcss-easy-import: <file>: Unknown word"
-// errors for // comments
 
-// const prefixComponentClasses = () => {
-//     return {
-//       postcssPlugin: "prefix-component-classes",
-//       Once (root, result) {
-//         const matches = result.opts.from.match(/frontend\/components\/?(.*)\/[^/]+?.s?css$/);
 
-//         // Do not transform CSS files from outside of the components folder
-//         if (!matches) return;
 
-//         const identifier = matches[1].replaceAll("/", "--").replaceAll("_", "-");
-
-//         root.walkRules(rule => {
-//           console.log(`[${identifier}] ${rule.selector}`);
-//           rule.selector = `.c-${identifier} ${rule.selector}`;
-//         });
-//       },
-//     };
-// }
-// prefixComponentClasses.postcss = true;
-
-module.exports = prefixComponentClasses
