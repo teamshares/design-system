@@ -1,14 +1,15 @@
-.table    { display: table; }
-.tr       { display: table-row; }
-.thead    { display: table-header-group; }
-.tbody    { display: table-row-group; }
-.tfoot    { display: table-footer-group; }
-.col      { display: table-column; }
-.colgroup { display: table-column-group; }
-.td, .th  { display: table-cell; }
-.caption  { display: table-caption; }
+.ts-table  { display: table; }
+.tr        { display: table-row; }
+.thead     { display: table-header-group; }
+.tbody     { display: table-row-group; }
+.tfoot     { display: table-footer-group; }
+.col       { display: table-column; }
+.colgroup  { display: table-column-group; }
+.td, .th   { display: table-cell; }
+.caption   { display: table-caption; }
 
-.table {
+.ts-table {
+  /** TODO: Should be using CSS variables from design system */
   --ts-color-row-bg-odd: #3331;
   --ts-color-row-bg-even: #ccc1;
   --ts-color-header-row-bg: #ccc;
@@ -28,24 +29,23 @@
   }
 
   .responsive-row-group, .responsive-column-group {
-    display: contents;
+    @apply contents;
   }
 
   .responsive-label {
-    display: none;
+    @apply hidden;
   }
 
   &, .thead, .tbody, .tfoot, .tr {
-    width: 100%;
+    @apply w-full;
   }
 
   .thead .tr {
-    position: sticky;
+    @apply sticky;
   }
 
   .th, .td {
-    white-space: nowrap;
-    overflow: hidden;
+    @apply whitespace-nowrap;
   }
 
   .th {
@@ -58,52 +58,154 @@
   }
 }
 
-*:has(> .table.responsive) {
-  container-type: size;
+/** Make the parent of any .ts-table.responsive element a query-eligible container */
+*:has(> .ts-table.responsive) {
+  @apply @container;
 }
 
-.table.responsive {
-  @container (max-width: 430px) {
-    &, .tr, .td {
-      display: block;
-      max-width: 100%;
+.ts-table.responsive {
+  /** Common across all container sizes */
+  .tr, .responsive-row-group, .responsive-column-group {
+    @apply flex-wrap;
+    column-gap: var(--ts-table-column-gap);
+    row-gap: var(--ts-table-row-gap);
+  }
 
-      &.inline {
-        display: inline-block;
-      }
-    }
+  /** Set up the responsive-first styles */
+  &, .tr, .td              { @apply flex; }
+  .tr                      { @apply flex-col; }
 
-    .responsive-row-group, .responsive-column-group {
-      display: flex;
-      column-gap: var(--ts-table-column-gap);
-      row-gap: var(--ts-table-row-gap);
-    }
+  .responsive-row-group,
+  .responsive-column-group { @apply flex; }
+  .responsive-row-group    { @apply flex-row; }
+  .responsive-column-group { @apply flex-col; }
+  .responsive-label        { @apply inline; }
+  .thead                   { @apply hidden; }
+  .tbody                   { @apply contents; }
+  .th                      { @apply hidden; }
 
-    .responsive-row-group {
-      flex-flow: column wrap;
-    }
+  /** Now use the Tailwind container queries to un-set the responsive styles */
+  /**
+    @xs	  @container (min-width: 20rem /* 320px )
+    @sm	  @container (min-width: 24rem /* 384px )
+    @md	  @container (min-width: 28rem /* 448px )
+    @lg	  @container (min-width: 32rem /* 512px )
+    @xl	  @container (min-width: 36rem /* 576px )
+    @2xl	@container (min-width: 42rem /* 672px )
+    @3xl	@container (min-width: 48rem /* 768px )
+    @4xl	@container (min-width: 56rem /* 896px )
+    @5xl	@container (min-width: 64rem /* 1024px )
+    @6xl	@container (min-width: 72rem /* 1152px )
+    @7xl	@container (min-width: 80rem /* 1280px )
+  **/
 
-    .responsive-column-group {
-      flex-flow: row wrap;
-    }
+  /** Default is to return to non-responsive above 5xl size */
+                             @apply @5xl:table;
+  .tr                      { @apply @5xl:table-row; } 
+  .td                      { @apply @5xl:table-cell; }
+  .responsive-row-group    { @apply @5xl:contents; }
+  .responsive-column-group { @apply @5xl:contents; }
+  .responsive-label        { @apply @5xl:hidden; }
+  .thead                   { @apply @5xl:table-header-group; }
+  .tbody                   { @apply @5xl:table-row-group; }
+  .th                      { @apply @5xl:table-cell; }
 
-    .responsive-label {
-      display: inline;
-    }
+  /** Otherwise, expect it to have one of the following container size classes */
+  &.container-xs {
+                               @apply @xs:table;
+    .tr                      { @apply @xs:table-row; } 
+    .td                      { @apply @xs:table-cell; }
+    .responsive-row-group    { @apply @xs:contents; }
+    .responsive-column-group { @apply @xs:contents; }
+    .responsive-label        { @apply @xs:hidden; }
+    .thead                   { @apply @xs:table-header-group; }
+    .tbody                   { @apply @xs:table-row-group; }
+    .th                      { @apply @xs:table-cell; }
+  }
 
-    .tr {
-      display: flex;
-      flex-flow: row wrap;
-      column-gap: 1rem;
-      row-gap: 0.25rem;
-    }
+  &.container-sm {
+                               @apply @sm:table;
+    .tr                      { @apply @sm:table-row; } 
+    .td                      { @apply @sm:table-cell; }
+    .responsive-row-group    { @apply @sm:contents; }
+    .responsive-column-group { @apply @sm:contents; }
+    .responsive-label        { @apply @sm:hidden; }
+    .thead                   { @apply @sm:table-header-group; }
+    .tbody                   { @apply @sm:table-row-group; }
+    .th                      { @apply @sm:table-cell; }
+  }
 
-    .td {
-      padding: var(--ts-table-cell-padding);
-    }
+  &.container-md {
+                               @apply @md:table;
+    .tr                      { @apply @md:table-row; } 
+    .td                      { @apply @md:table-cell; }
+    .responsive-row-group    { @apply @md:contents; }
+    .responsive-column-group { @apply @md:contents; }
+    .responsive-label        { @apply @md:hidden; }
+    .thead                   { @apply @md:table-header-group; }
+    .tbody                   { @apply @md:table-row-group; }
+    .th                      { @apply @md:table-cell; }
+  }
 
-    .th {
-      display: none;
-    }
+  &.container-lg {
+                               @apply @lg:table;
+    .tr                      { @apply @lg:table-row; } 
+    .td                      { @apply @lg:table-cell; }
+    .responsive-row-group    { @apply @lg:contents; }
+    .responsive-column-group { @apply @lg:contents; }
+    .responsive-label        { @apply @lg:hidden; }
+    .thead                   { @apply @lg:table-header-group; }
+    .tbody                   { @apply @lg:table-row-group; }
+    .th                      { @apply @lg:table-cell; }
+  }
+
+  &.container-xl {
+                               @apply @xl:table;
+    .tr                      { @apply @xl:table-row; } 
+    .td                      { @apply @xl:table-cell; }
+    .responsive-row-group    { @apply @xl:contents; }
+    .responsive-column-group { @apply @xl:contents; }
+    .responsive-label        { @apply @xl:hidden; }
+    .thead                   { @apply @xl:table-header-group; }
+    .tbody                   { @apply @xl:table-row-group; }
+    .th                      { @apply @xl:table-cell; }
+  }
+
+  &.container-2xl {
+                               @apply @2xl:table;
+    .tr                      { @apply @2xl:table-row; } 
+    .td                      { @apply @2xl:table-cell; }
+    .responsive-row-group    { @apply @2xl:contents; }
+    .responsive-column-group { @apply @2xl:contents; }
+    .responsive-label        { @apply @2xl:hidden; }
+    .thead                   { @apply @2xl:table-header-group; }
+    .tbody                   { @apply @2xl:table-row-group; }
+    .th                      { @apply @2xl:table-cell; }
+  }
+
+  &.container-3xl {
+                               @apply @3xl:table;
+    .tr                      { @apply @3xl:table-row; } 
+    .td                      { @apply @3xl:table-cell; }
+    .responsive-row-group    { @apply @3xl:contents; }
+    .responsive-column-group { @apply @3xl:contents; }
+    .responsive-label        { @apply @3xl:hidden; }
+    .thead                   { @apply @3xl:table-header-group; }
+    .tbody                   { @apply @3xl:table-row-group; }
+    .th                      { @apply @3xl:table-cell; }
+  }
+
+  &.container-4xl {
+                               @apply @4xl:table;
+    .tr                      { @apply @4xl:table-row; } 
+    .td                      { @apply @4xl:table-cell; }
+    .responsive-row-group    { @apply @4xl:contents; }
+    .responsive-column-group { @apply @4xl:contents; }
+    .responsive-label        { @apply @4xl:hidden; }
+    .thead                   { @apply @4xl:table-header-group; }
+    .tbody                   { @apply @4xl:table-row-group; }
+    .th                      { @apply @4xl:table-cell; }
   }
 }
+
+
