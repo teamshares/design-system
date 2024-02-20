@@ -45,12 +45,19 @@
 
   &.sticky-header {
     .thead .tr {
-      @apply sticky;
+      @apply bg-white sticky top-0 z-10 border-none;
+      background-image: repeating-linear-gradient(
+        0deg,
+        var(--ts-color-gray-300),
+        var(--ts-color-gray-300) 1px,
+        transparent 1px,
+        transparent 1000px
+      )
     }
   }
 
   .tr {
-    @apply py-4;
+    @apply py-4 border-b border-gray-200;
 
     &.clickable {
       @apply hover:bg-gray-100 cursor-pointer;
@@ -123,7 +130,7 @@
   @apply flex-col;
 
   .responsive-row-group, .responsive-column-group {
-    @apply flex flex-wrap;
+    @apply flex-wrap;
     gap: var(--ts-table-row-gap);
   }
 }
@@ -137,8 +144,8 @@
     --ts-table-column-gap: 0;
     &, .tr, .td              { @apply flex; }
     .tr                      { @apply flex-col py-3; }
-    .responsive-row-group    { @apply flex-row; }
-    .responsive-column-group { @apply flex-col; }
+    .responsive-row-group    { @apply flex flex-row; }
+    .responsive-column-group { @apply flex flex-col; }
     .responsive-label        { @apply inline; }
     .thead                   { @apply hidden; }
     .tbody                   { @apply contents; }
@@ -185,8 +192,8 @@
     --ts-table-tr-padding-y: 0.75rem;
     &, .tr, .td              { @apply flex;}
     .tr                      { @apply flex-col py-3; }
-    .responsive-row-group    { @apply flex-row; }
-    .responsive-column-group { @apply flex-col; }
+    .responsive-row-group    { @apply flex flex-row; }
+    .responsive-column-group { @apply flex flex-col; }
     .responsive-label        { @apply inline; }
     .thead                   { @apply hidden; }
     .tbody                   { @apply contents; }
@@ -233,8 +240,8 @@
     --ts-table-tr-padding-y: 0.75rem;
     &, .tr, .td              { @apply flex; }
     .tr                      { @apply flex-col py-3; }
-    .responsive-row-group    { @apply flex-row; }
-    .responsive-column-group { @apply flex-col; }
+    .responsive-row-group    { @apply flex flex-row; }
+    .responsive-column-group { @apply flex flex-col; }
     .responsive-label        { @apply inline; }
     .thead                   { @apply hidden; }
     .tbody                   { @apply contents; }
@@ -281,8 +288,8 @@
     --ts-table-tr-padding-y: 0.75rem;
     &, .tr, .td              { @apply flex; }
     .tr                      { @apply flex-col py-3; }
-    .responsive-row-group    { @apply flex-row; }
-    .responsive-column-group { @apply flex-col; }
+    .responsive-row-group    { @apply flex flex-row; }
+    .responsive-column-group { @apply flex flex-col; }
     .responsive-label        { @apply inline; }
     .thead                   { @apply hidden; }
     .tbody                   { @apply contents; }
@@ -329,8 +336,8 @@
     --ts-table-tr-padding-y: 0.75rem;
     &, .tr, .td              { @apply flex; }
     .tr                      { @apply flex-col py-3; }
-    .responsive-row-group    { @apply flex-row; }
-    .responsive-column-group { @apply flex-col; }
+    .responsive-row-group    { @apply flex flex-row; }
+    .responsive-column-group { @apply flex flex-col; }
     .responsive-label        { @apply inline; }
     .thead                   { @apply hidden; }
     .tbody                   { @apply contents; }
@@ -376,8 +383,8 @@
     --ts-table-tr-padding-y: 0.75rem;
     &, .tr, .td              { @apply flex; }
     .tr                      { @apply flex-col py-3; }
-    .responsive-row-group    { @apply flex-row; }
-    .responsive-column-group { @apply flex-col; }
+    .responsive-row-group    { @apply flex flex-row; }
+    .responsive-column-group { @apply flex flex-col; }
     .responsive-label        { @apply inline; }
     .thead                   { @apply hidden; }
     .tbody                   { @apply contents; }
@@ -423,8 +430,8 @@
     --ts-table-tr-padding-y: 0.75rem;
     &, .tr, .td              { @apply flex; }
     .tr                      { @apply flex-col py-3; }
-    .responsive-row-group    { @apply flex-row; }
-    .responsive-column-group { @apply flex-col; }
+    .responsive-row-group    { @apply flex flex-row; }
+    .responsive-column-group { @apply flex flex-col; }
     .responsive-label        { @apply inline; }
     .thead                   { @apply hidden; }
     .tbody                   { @apply contents; }
@@ -470,8 +477,8 @@
     --ts-table-tr-padding-y: 0.75rem;
     &, .tr, .td              { @apply flex; }
     .tr                      { @apply flex-col py-3; }
-    .responsive-row-group    { @apply flex-row; }
-    .responsive-column-group { @apply flex-col; }
+    .responsive-row-group    { @apply flex flex-row; }
+    .responsive-column-group { @apply flex flex-col; }
     .responsive-label        { @apply inline; }
     .thead                   { @apply hidden; }
     .tbody                   { @apply contents; }
@@ -518,8 +525,8 @@
     --ts-table-tr-padding-y: 0.75rem;
     &, .tr, .td              { @apply flex; }
     .tr                      { @apply flex-col py-3; }
-    .responsive-row-group    { @apply flex-row; }
-    .responsive-column-group { @apply flex-col; }
+    .responsive-row-group    { @apply flex flex-row; }
+    .responsive-column-group { @apply flex flex-col; }
     .responsive-label        { @apply inline; }
     .thead                   { @apply hidden; }
     .tbody                   { @apply contents; }
