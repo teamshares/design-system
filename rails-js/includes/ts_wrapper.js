@@ -22,12 +22,38 @@ class TsWrapper extends HTMLElement {
     const wrappedController = topLevelElement.getAttribute("data-controller");
     topLevelElement.setAttribute("data-controller", wrappedController ? `${controller} ${wrappedController}` : controller);
 
+    // Find generic data-action attributes and inject the controller name
+    this.replaceDataAttributes(topLevelElement, controller);
+
     // Add the generated class as the first in the list
     topLevelElement.classList = `${this.className} ${topLevelElement.classList}`;
 
     // Re-parent the top-level element and remove the ts-wrapper element from the DOM
     this.parentNode.insertBefore(topLevelElement, this);
     this.remove();
+  }
+
+  replaceDataAttributes (rootNode, controller) {
+    function traverse (node) {
+      if (node.nodeType === Node.ELEMENT_NODE) {
+        if (node.hasAttribute("data-action")) {
+          const dataActionAttr = node.getAttribute("data-action").replace("->controller#", `->${controller}#`);
+          node.setAttribute("data-action", dataActionAttr);
+        }
+        if (node.hasAttribute("data-controller-target")) {
+          const dataTargetAttr = node.getAttribute("data-controller-target");
+          node.setAttribute(`data-${controller}-target`, dataTargetAttr);
+          node.removeAttribute("data-controller-target");
+        }
+      }
+      for (let i = 0; i < node.childNodes.length; i++) {
+        // Once we hit a child node with a <ts-wrapper>, stop traversing, since that node will have its own controller
+        if (node.nodeName !== "TS-WRAPPER") {
+          traverse(node.childNodes[i]);
+        }
+      }
+    }
+    traverse(rootNode);
   }
 }
 
