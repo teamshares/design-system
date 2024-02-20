@@ -11,8 +11,8 @@
   display: table; border-collapse: collapse;
 
   /** TODO: Should be using CSS variables from design system */
-  --ts-color-row-bg-odd: #3331;
-  --ts-color-row-bg-even: #ccc1;
+  --ts-color-row-bg-odd: #8881;
+  --ts-color-row-bg-even: #fff1;
   --ts-color-header-row-bg: #ccc;
   --ts-table-row-gap: 0.25rem;
   --ts-table-column-gap: 1rem;
@@ -36,7 +36,7 @@
   }
 
   .responsive-label {
-    @apply hidden;
+    @apply hidden mr-1;
   }
 
   &, .thead, .tbody, .tfoot, .tr {
@@ -75,13 +75,22 @@
   }
 
   .th {
-    @apply font-semibold;
+    @apply font-semibold whitespace-nowrap;
     padding: var(--ts-table-th-padding);
   }
 
   .td {
-    @apply align-top ts-body-2;
+    @apply align-top ts-body-2 leading-loose;
     padding: var(--ts-table-td-padding);
+
+    &:has(sl-icon), &:has(sl-button) {
+      @apply align-middle;
+    }
+
+    form {
+      /* Override Tailwind setting, which adds margin on button_to forms */
+      margin-block-end: 0;
+    }
   }
 }
 
@@ -152,7 +161,7 @@
     .th                      { @apply hidden; }
 
     .td {
-      @apply py-1;
+      @apply py-1 leading-tight;
 
       &.pos-tr-1 {
         @apply absolute right-0;
@@ -200,7 +209,7 @@
     .th                      { @apply hidden; }
 
     .td {
-      @apply py-1;
+      @apply py-1 leading-tight;
 
       &.pos-tr-1 {
         @apply absolute right-0;
@@ -248,7 +257,7 @@
     .th                      { @apply hidden; }
 
     .td {
-      @apply py-1;
+      @apply py-1 leading-tight;
 
       &.pos-tr-1 {
         @apply absolute right-0;
@@ -296,7 +305,7 @@
     .th                      { @apply hidden; }
 
     .td {
-      @apply py-1;
+      @apply py-1 leading-tight;
 
       &.pos-tr-1 {
         @apply absolute right-0;
@@ -344,7 +353,7 @@
     .th                      { @apply hidden; }
 
     .td {
-      @apply py-1;
+      @apply py-1 leading-tight;
 
       &.pos-tr-1 {
         @apply absolute right-0;
@@ -391,7 +400,7 @@
     .th                      { @apply hidden; }
 
     .td {
-      @apply py-1;
+      @apply py-1 leading-tight;
 
       &.pos-tr-1 {
         @apply absolute right-0;
@@ -438,7 +447,7 @@
     .th                      { @apply hidden; }
 
     .td {
-      @apply py-1;
+      @apply py-1 leading-tight;
 
       &.pos-tr-1 {
         @apply absolute right-0;
@@ -485,7 +494,7 @@
     .th                      { @apply hidden; }
 
     .td {
-      @apply py-1;
+      @apply py-1 leading-tight;
 
       &.pos-tr-1 {
         @apply absolute right-0;
@@ -533,7 +542,7 @@
     .th                      { @apply hidden; }
 
     .td {
-      @apply py-1;
+      @apply py-1 leading-tight;
 
       &.pos-tr-1 {
         @apply absolute right-0;
