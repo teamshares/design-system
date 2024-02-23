@@ -33,17 +33,29 @@ class TsWrapper extends HTMLElement {
     this.remove();
   }
 
+  /**
+   * Iterate through the Stimulus data- values (targets, actions, values, outlets)
+   * and replace "controller" with the generated controller name.
+   */
   replaceDataAttributes (rootNode, controller) {
     function traverse (node) {
-      if (node.nodeType === Node.ELEMENT_NODE) {
-        if (node.hasAttribute("data-action")) {
-          const dataActionAttr = node.getAttribute("data-action").replace("->controller#", `->${controller}#`);
-          node.setAttribute("data-action", dataActionAttr);
+      if (node.nodeType === Node.ELEMENT_NODE && node.hasAttributes()) {
+        // We need a copy because if we iterate through the attrs directly, the length keeps growing as we change the names
+        const originalAttributes = [];
+        for (const attr of node.attributes) {
+          if (attr.specified && attr.name.startsWith("data-")) {
+            originalAttributes.push(attr);
+          }
         }
-        if (node.hasAttribute("data-controller-target")) {
-          const dataTargetAttr = node.getAttribute("data-controller-target");
-          node.setAttribute(`data-${controller}-target`, dataTargetAttr);
-          node.removeAttribute("data-controller-target");
+        for (let i = 0; i < originalAttributes.length; i++) {
+          const attr = originalAttributes[i];
+          // console.log(attr.name + " = " + attr.value);
+          // Matches data-controller-target, data-controller-[something]-value, and data-controller-[something]-outlet
+          const name = attr.name.replace("-controller-", `-${controller}-`);
+          // Matches only data-action values
+          const value = attr.value.replace("->controller#", `->${controller}#`);
+          // console.log("   -> ", name + " = " + value);
+          node.setAttribute(name, value);
         }
       }
       for (let i = 0; i < node.childNodes.length; i++) {
