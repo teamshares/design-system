@@ -16,10 +16,10 @@
   --ts-color-header-row-bg: #ccc;
   --ts-table-row-gap: 0.25rem;
   --ts-table-column-gap: 1rem;
-  --ts-table-th-padding: var(--spacing-x-small, 0.5rem) 0rem;
-  --ts-table-td-padding-y: 0.75rem;
-  --ts-table-td-padding-x: 0;
-  --ts-table-td-padding: var(--ts-table-td-padding-y) var(--ts-table-td-padding-x);
+  --ts-table-cell-padding-y: 0.75rem;
+  --ts-table-cell-padding-x: calc(var(--ts-table-column-gap)/2);
+  --ts-table-th-padding: var(--sl-spacing-x-small, 0.5rem) var(--ts-table-cell-padding-x);
+  --ts-table-td-padding: var(--ts-table-cell-padding-y) var(--ts-table-cell-padding-x);
 
   &.alternating-rows {
     .tr:nth-child(odd) {
@@ -61,16 +61,6 @@
 
     &.clickable {
       @apply hover:bg-gray-100 cursor-pointer;
-    }
-  }
-
-  .th, .td {
-    &:not(:first-of-type) {
-      padding-left: calc(var(--ts-table-column-gap)/2);
-    }
-
-    &:not(:last-of-type) {
-      padding-right: calc(var(--ts-table-column-gap)/2);
     }
   }
 
