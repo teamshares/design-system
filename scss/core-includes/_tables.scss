@@ -80,7 +80,7 @@
   }
 
   .td {
-    @apply align-top ts-body-2 leading-loose;
+    @apply align-top ts-body-2;
     padding: var(--ts-table-td-padding);
 
     &:has(sl-icon), &:has(sl-button) {
