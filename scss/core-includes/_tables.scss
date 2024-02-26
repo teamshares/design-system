@@ -15,7 +15,7 @@
   --ts-color-row-bg-even: #fff1;
   --ts-color-header-row-bg: #ccc;
   --ts-table-row-gap: 0.25rem;
-  --ts-table-column-gap: 1rem;
+  --ts-table-column-gap: 1.5rem;
   --ts-table-cell-padding-y: 0.75rem;
   --ts-table-cell-padding-x: calc(var(--ts-table-column-gap)/2);
   --ts-table-th-padding: var(--sl-spacing-x-small, 0.5rem) var(--ts-table-cell-padding-x);
@@ -66,12 +66,18 @@
 
   .th {
     @apply font-semibold whitespace-nowrap;
-    padding: var(--ts-table-th-padding);
+
+    &:not(:empty) {
+      padding: var(--ts-table-th-padding);
+    }
   }
 
   .td {
     @apply align-top ts-body-2;
-    padding: var(--ts-table-td-padding);
+
+    &:not(:empty) {
+      padding: var(--ts-table-td-padding);
+    }
 
     &:has(sl-icon), &:has(sl-button) {
       @apply align-middle;
@@ -155,12 +161,12 @@
 
       &.pos-tr-1 {
         @apply absolute right-0;
-        top: calc(var(--ts-table-td-padding-y));
+        top: calc(var(--ts-table-cell-padding-y));
       }
 
       &.pos-tr-2 {
         @apply absolute right-0;
-        top: calc(var(--ts-table-td-padding-y) + 1.5rem);
+        top: calc(var(--ts-table-cell-padding-y) + 1.5rem);
       }
 
       &:has(sl-button):last-of-type {
@@ -203,12 +209,12 @@
 
       &.pos-tr-1 {
         @apply absolute right-0;
-        top: calc(var(--ts-table-td-padding-y));
+        top: calc(var(--ts-table-cell-padding-y));
       }
 
       &.pos-tr-2 {
         @apply absolute right-0;
-        top: calc(var(--ts-table-td-padding-y) + 1.5rem);
+        top: calc(var(--ts-table-cell-padding-y) + 1.5rem);
       }
 
       &:has(sl-button):last-of-type {
@@ -251,12 +257,12 @@
 
       &.pos-tr-1 {
         @apply absolute right-0;
-        top: calc(var(--ts-table-td-padding-y));
+        top: calc(var(--ts-table-cell-padding-y));
       }
 
       &.pos-tr-2 {
         @apply absolute right-0;
-        top: calc(var(--ts-table-td-padding-y) + 1.5rem);
+        top: calc(var(--ts-table-cell-padding-y) + 1.5rem);
       }
 
       &:has(sl-button):last-of-type {
@@ -299,12 +305,12 @@
 
       &.pos-tr-1 {
         @apply absolute right-0;
-        top: calc(var(--ts-table-td-padding-y));
+        top: calc(var(--ts-table-cell-padding-y));
       }
 
       &.pos-tr-2 {
         @apply absolute right-0;
-        top: calc(var(--ts-table-td-padding-y) + 1.5rem);
+        top: calc(var(--ts-table-cell-padding-y) + 1.5rem);
       }
 
       &:has(sl-button):last-of-type {
@@ -347,12 +353,12 @@
 
       &.pos-tr-1 {
         @apply absolute right-0;
-        top: calc(var(--ts-table-td-padding-y));
+        top: calc(var(--ts-table-cell-padding-y));
       }
 
       &.pos-tr-2 {
         @apply absolute right-0;
-        top: calc(var(--ts-table-td-padding-y) + 1.5rem);
+        top: calc(var(--ts-table-cell-padding-y) + 1.5rem);
       }
 
       &:has(sl-button):last-of-type {
@@ -394,12 +400,12 @@
 
       &.pos-tr-1 {
         @apply absolute right-0;
-        top: calc(var(--ts-table-td-padding-y));
+        top: calc(var(--ts-table-cell-padding-y));
       }
 
       &.pos-tr-2 {
         @apply absolute right-0;
-        top: calc(var(--ts-table-td-padding-y) + 1.5rem);
+        top: calc(var(--ts-table-cell-padding-y) + 1.5rem);
       }
 
       &:has(sl-button):last-of-type {
@@ -441,12 +447,12 @@
 
       &.pos-tr-1 {
         @apply absolute right-0;
-        top: calc(var(--ts-table-td-padding-y));
+        top: calc(var(--ts-table-cell-padding-y));
       }
 
       &.pos-tr-2 {
         @apply absolute right-0;
-        top: calc(var(--ts-table-td-padding-y) + 1.5rem);
+        top: calc(var(--ts-table-cell-padding-y) + 1.5rem);
       }
 
       &:has(sl-button):last-of-type {
@@ -488,12 +494,12 @@
 
       &.pos-tr-1 {
         @apply absolute right-0;
-        top: calc(var(--ts-table-td-padding-y));
+        top: calc(var(--ts-table-cell-padding-y));
       }
 
       &.pos-tr-2 {
         @apply absolute right-0;
-        top: calc(var(--ts-table-td-padding-y) + 1.5rem);
+        top: calc(var(--ts-table-cell-padding-y) + 1.5rem);
       }
 
       &:has(sl-button):last-of-type {
@@ -536,12 +542,12 @@
 
       &.pos-tr-1 {
         @apply absolute right-0;
-        top: calc(var(--ts-table-td-padding-y));
+        top: calc(var(--ts-table-cell-padding-y));
       }
 
       &.pos-tr-2 {
         @apply absolute right-0;
-        top: calc(var(--ts-table-td-padding-y) + 1.5rem);
+        top: calc(var(--ts-table-cell-padding-y) + 1.5rem);
       }
 
       &:has(sl-button):last-of-type {
