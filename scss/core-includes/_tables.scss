@@ -36,7 +36,7 @@
   }
 
   .responsive-label {
-    @apply hidden mr-1;
+    @apply mr-1;
   }
 
   &, .thead, .tbody, .tfoot, .tr {
@@ -133,6 +133,10 @@
 .table.container-5xl {
   /** Common across all container sizes, before responsive breakpoint */
   @apply flex-col;
+
+  .responsive-label {
+    @apply hidden;
+  }
 
   .responsive-row-group, .responsive-column-group {
     @apply flex-wrap;
