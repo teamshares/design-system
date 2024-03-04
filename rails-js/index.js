@@ -43,8 +43,12 @@ export default class Teamshares {
   static Rails = Rails;
   static stimulusApplication = application;
 
+  static isDev = (Teamshares.env === "development");
+  static isProd = (Teamshares.env === "staging");
+  static isStaging = (Teamshares.env === "production");
+
   static start (config = {}) {
-    console.debug("Initializing Teamshares JS");
+    console.debug(`Initializing Teamshares JS. Environment: ${Teamshares.env}`);
 
     if (config.disableTurboSessionDrive) {
       // This line disables Turbo Drive globally, which some apps have done
@@ -56,7 +60,7 @@ export default class Teamshares {
       Turbo.session.drive = false;
     }
 
-    if (Teamshares.env === "production") {
+    if (Teamshares.isProd) {
       if (!HONEYBADGER_JS_API_KEY) {
         console.log(`Honeybadger not configured -- set HONEYBADGER_JS_API_KEY to enable (for ${HEROKU_APP_NAME})`);
       } else {
