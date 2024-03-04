@@ -56,7 +56,7 @@ class TsWrapper extends HTMLElement {
           const attr = originalAttributes[i];
           // console.log(attr.name + " = " + attr.value);
           const originalName = attr.name;
-          /** Match data-controller-target, data-controller-[something]-value, and data-controller-[something]-outlet */
+          /** Match data-controller-target, data-controller-[something]-value, data-controller-[something]-param, and data-controller-[something]-outlet */
           const name = attr.name.replace("-controller-", `-${controller}-`);
           /** Match all data-action values "event->controller#action" */
           let value = attr.value.replaceAll("->controller#", `->${controller}#`);
