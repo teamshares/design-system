@@ -23,6 +23,7 @@ const configBuilder = (tailwindConfigTransformer = defaultConfigTransformer) => 
   const postcssConfig = {
     parser: "postcss-scss",
     plugins: [
+      require('postcss-mixins'),
       require("postcss-easy-import")({ path: [tsRailsPath, APP_ROOT], prefix: "_", extensions: [".css", ".scss"], plugins: [
         prefixComponentClasses,
       ] }),

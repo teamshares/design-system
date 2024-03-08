@@ -36,7 +36,7 @@
   }
 
   .responsive-label {
-    @apply mr-1;
+    @apply mr-1 font-semibold;
   }
 
   &, .thead, .tbody, .tfoot, .tr {
@@ -73,14 +73,20 @@
   }
 
   .td {
-    @apply align-top ts-body-2;
+    @apply align-top;
+    font-size: 0.875rem;
+    font-weight: 400;;
 
     &:not(:empty) {
       padding: var(--ts-table-td-padding);
     }
 
-    &:has(sl-icon), &:has(sl-button) {
-      @apply align-middle;
+    &:has(sl-icon):last-of-type, &:has(sl-button):last-of-type {
+      @apply align-middle whitespace-nowrap;
+
+      sl-button:not(:last-of-type) {
+        @apply mr-2;
+      }
     }
 
     form {
@@ -134,447 +140,106 @@
   /** Common across all container sizes, before responsive breakpoint */
   @apply flex-col;
 
+  .show-at-responsive {
+    @apply hidden;
+  }
+
   .responsive-label {
     @apply hidden;
   }
 
   .responsive-row-group, .responsive-column-group {
-    @apply flex-wrap;
+    @apply flex-wrap justify-between;
+    margin-block-end: var(--ts-table-row-gap);
     gap: var(--ts-table-row-gap);
-  }
-}
 
-/**
- * TODO: DRY this via mixin or partial
- * TODO: Add variables for breakpoints
-**/
-.table.container-xs {
-  @container (max-width: 20rem) {
-    --ts-table-column-gap: 0;
-    &, .tr, .td              { @apply flex; }
-    .tr                      { @apply flex-col py-3; }
-    .responsive-row-group    { @apply flex flex-row; }
-    .responsive-column-group { @apply flex flex-col; }
-    .responsive-label        { @apply inline; }
-    .thead                   { @apply hidden; }
-    .tbody                   { @apply contents; }
-    .th                      { @apply hidden; }
-
-    .td {
-      @apply py-1 leading-tight;
-
-      &.pos-tr-1 {
-        @apply absolute right-0;
-        top: calc(var(--ts-table-cell-padding-y));
-      }
-
-      &.pos-tr-2 {
-        @apply absolute right-0;
-        top: calc(var(--ts-table-cell-padding-y) + 1.5rem);
-      }
-
-      &:has(sl-button):last-of-type {
-        @apply justify-end mt-3;
-
-        sl-button {
-          @apply w-full @md:w-auto;
-        }
-      }
-    }
-
-    sl-button {
-      &::part(label) {
-        @apply text-sm leading-9;
-        padding: 0 var(--ts-spacing-2x-large);
-      }
-
-      &::part(base) {
-        @apply h-10;
-      }
+    .td, .th {
+      flex-grow: 1;
     }
   }
 }
 
-.table.container-sm {
-  @container (max-width: 24rem) {
-    --ts-table-column-gap: 0;
-    --ts-table-tr-padding-y: 0.75rem;
-    &, .tr, .td              { @apply flex;}
-    .tr                      { @apply flex-col py-3; }
-    .responsive-row-group    { @apply flex flex-row; }
-    .responsive-column-group { @apply flex flex-col; }
-    .responsive-label        { @apply inline; }
-    .thead                   { @apply hidden; }
-    .tbody                   { @apply contents; }
-    .th                      { @apply hidden; }
+@define-mixin responsive-table $size, $max {
+  .table.container-$(size) {
+    @container (max-width: $(max)) {
+      --ts-table-row-padding-y: 0.75rem;
+      --ts-table-cell-padding-y: 0.25rem;
+      --line-height: 1.25rem;
+      --pos-row-height: calc(var(--line-height) + (2 * var(--ts-table-cell-padding-y)));
 
-    .td {
-      @apply py-1 leading-tight;
+      &, .tr, .td              { @apply flex; }
+      .tr                      { @apply flex-col py-3; }
+      .responsive-row-group    { @apply flex flex-row; }
+      .responsive-column-group { @apply flex flex-col; }
+      .responsive-label        { display: initial; }
+      .show-at-responsive      { display: initial; }
+      .hide-at-responsive      { @apply hidden; }
+      .thead                   { @apply hidden; }
+      .tbody                   { @apply contents; }
+      .th                      { @apply hidden; }
 
-      &.pos-tr-1 {
-        @apply absolute right-0;
-        top: calc(var(--ts-table-cell-padding-y));
-      }
+      .td {
+        line-height: var(--line-height);
 
-      &.pos-tr-2 {
-        @apply absolute right-0;
-        top: calc(var(--ts-table-cell-padding-y) + 1.5rem);
-      }
+        &.pos-tr-1, &.pos-tr-2, &.pos-tr-3 {
+          @apply absolute right-0;
+        }
+        &.pos-tr-1 { top: calc(var(--ts-table-row-padding-y)); }
+        &.pos-tr-2 { top: calc(var(--ts-table-row-padding-y) + var(--pos-row-height)); }
+        &.pos-tr-3 { top: calc(var(--ts-table-row-padding-y) + (2 * var(--pos-row-height))); }
 
-      &:has(sl-button):last-of-type {
-        @apply justify-end mt-3;
+        &.pos-br-1, &.pos-br-2, &.pos-br-3 {
+          @apply absolute right-0;
+        }
+        &.pos-br-1 { bottom: calc(var(--ts-table-row-padding-y)); }
+        &.pos-br-2 { bottom: calc(var(--ts-table-row-padding-y) + var(--pos-row-height)); }
+        &.pos-br-3 { bottom: calc(var(--ts-table-row-padding-y) + (2 * var(--pos-row-height))); }
 
-        sl-button {
-          @apply w-full @md:w-auto;
+        &:has(sl-button):last-of-type {
+          @apply justify-end mt-3;
+
+          sl-button {
+            @apply w-full @md:w-auto;
+          }
         }
       }
-    }
 
-    sl-button {
-      &::part(label) {
-        @apply text-sm leading-9;
-        padding: 0 var(--ts-spacing-2x-large);
-      }
+      sl-button {
+        &::part(label) {
+          @apply text-sm leading-9;
+          padding: 0 var(--ts-spacing-2x-large);
+        }
 
-      &::part(base) {
-        @apply h-10;
+        &::part(base) {
+          @apply h-10;
+        }
       }
     }
   }
 }
 
-.table.container-md {
-  @container (max-width: 28rem) {
-    --ts-table-column-gap: 0;
-    --ts-table-tr-padding-y: 0.75rem;
-    &, .tr, .td              { @apply flex; }
-    .tr                      { @apply flex-col py-3; }
-    .responsive-row-group    { @apply flex flex-row; }
-    .responsive-column-group { @apply flex flex-col; }
-    .responsive-label        { @apply inline; }
-    .thead                   { @apply hidden; }
-    .tbody                   { @apply contents; }
-    .th                      { @apply hidden; }
-
-    .td {
-      @apply py-1 leading-tight;
-
-      &.pos-tr-1 {
-        @apply absolute right-0;
-        top: calc(var(--ts-table-cell-padding-y));
-      }
-
-      &.pos-tr-2 {
-        @apply absolute right-0;
-        top: calc(var(--ts-table-cell-padding-y) + 1.5rem);
-      }
-
-      &:has(sl-button):last-of-type {
-        @apply justify-end mt-3;
-
-        sl-button {
-          @apply w-full @md:w-auto;
-        }
-      }
-    }
-
-    sl-button {
-      &::part(label) {
-        @apply text-sm leading-9;
-        padding: 0 var(--ts-spacing-2x-large);
-      }
-
-      &::part(base) {
-        @apply h-10;
-      }
-    }
-  }
-}
-
-.table.container-lg {
-  @container (max-width: 32rem) {
-    --ts-table-column-gap: 0;
-    --ts-table-tr-padding-y: 0.75rem;
-    &, .tr, .td              { @apply flex; }
-    .tr                      { @apply flex-col py-3; }
-    .responsive-row-group    { @apply flex flex-row; }
-    .responsive-column-group { @apply flex flex-col; }
-    .responsive-label        { @apply inline; }
-    .thead                   { @apply hidden; }
-    .tbody                   { @apply contents; }
-    .th                      { @apply hidden; }
-
-    .td {
-      @apply py-1 leading-tight;
-
-      &.pos-tr-1 {
-        @apply absolute right-0;
-        top: calc(var(--ts-table-cell-padding-y));
-      }
-
-      &.pos-tr-2 {
-        @apply absolute right-0;
-        top: calc(var(--ts-table-cell-padding-y) + 1.5rem);
-      }
-
-      &:has(sl-button):last-of-type {
-        @apply justify-end mt-3;
-
-        sl-button {
-          @apply w-full @md:w-auto;
-        }
-      }
-    }
-
-    sl-button {
-      &::part(label) {
-        @apply text-sm leading-9;
-        padding: 0 var(--ts-spacing-2x-large);
-      }
-
-      &::part(base) {
-        @apply h-10;
-      }
-    }
-  }
-}
-
-.table.container-xl {
-  @container (max-width: 36rem) {
-    --ts-table-column-gap: 0;
-    --ts-table-tr-padding-y: 0.75rem;
-    &, .tr, .td              { @apply flex; }
-    .tr                      { @apply flex-col py-3; }
-    .responsive-row-group    { @apply flex flex-row; }
-    .responsive-column-group { @apply flex flex-col; }
-    .responsive-label        { @apply inline; }
-    .thead                   { @apply hidden; }
-    .tbody                   { @apply contents; }
-    .th                      { @apply hidden; }
-
-    .td {
-      @apply py-1 leading-tight;
-
-      &.pos-tr-1 {
-        @apply absolute right-0;
-        top: calc(var(--ts-table-cell-padding-y));
-      }
-
-      &.pos-tr-2 {
-        @apply absolute right-0;
-        top: calc(var(--ts-table-cell-padding-y) + 1.5rem);
-      }
-
-      &:has(sl-button):last-of-type {
-        @apply justify-end mt-3;
-
-        sl-button {
-          @apply w-full @md:w-auto;
-        }
-      }
-    }
-
-    sl-button {
-      &::part(label) {
-        @apply text-sm leading-9;
-        padding: 0 var(--ts-spacing-2x-large);
-      }
-
-      &::part(base) {
-        @apply h-10;
-      }
-    }
-  }  }
-
-.table.container-2xl {
-  @container (max-width: 42rem) {
-    --ts-table-column-gap: 0;
-    --ts-table-tr-padding-y: 0.75rem;
-    &, .tr, .td              { @apply flex; }
-    .tr                      { @apply flex-col py-3; }
-    .responsive-row-group    { @apply flex flex-row; }
-    .responsive-column-group { @apply flex flex-col; }
-    .responsive-label        { @apply inline; }
-    .thead                   { @apply hidden; }
-    .tbody                   { @apply contents; }
-    .th                      { @apply hidden; }
-
-    .td {
-      @apply py-1 leading-tight;
-
-      &.pos-tr-1 {
-        @apply absolute right-0;
-        top: calc(var(--ts-table-cell-padding-y));
-      }
-
-      &.pos-tr-2 {
-        @apply absolute right-0;
-        top: calc(var(--ts-table-cell-padding-y) + 1.5rem);
-      }
-
-      &:has(sl-button):last-of-type {
-        @apply justify-end mt-3;
-
-        sl-button {
-          @apply w-full @md:w-auto;
-        }
-      }
-    }
-
-    sl-button {
-      &::part(label) {
-        @apply text-sm leading-9;
-        padding: 0 var(--ts-spacing-2x-large);
-      }
-
-      &::part(base) {
-        @apply h-10;
-      }
-    }
-  }  }
-
-.table.container-3xl {
-  @container (max-width: 48rem) {
-    --ts-table-column-gap: 0;
-    --ts-table-tr-padding-y: 0.75rem;
-    &, .tr, .td              { @apply flex; }
-    .tr                      { @apply flex-col py-3; }
-    .responsive-row-group    { @apply flex flex-row; }
-    .responsive-column-group { @apply flex flex-col; }
-    .responsive-label        { @apply inline; }
-    .thead                   { @apply hidden; }
-    .tbody                   { @apply contents; }
-    .th                      { @apply hidden; }
-
-    .td {
-      @apply py-1 leading-tight;
-
-      &.pos-tr-1 {
-        @apply absolute right-0;
-        top: calc(var(--ts-table-cell-padding-y));
-      }
-
-      &.pos-tr-2 {
-        @apply absolute right-0;
-        top: calc(var(--ts-table-cell-padding-y) + 1.5rem);
-      }
-
-      &:has(sl-button):last-of-type {
-        @apply justify-end mt-3;
-
-        sl-button {
-          @apply w-full @md:w-auto;
-        }
-      }
-    }
-
-    sl-button {
-      &::part(label) {
-        @apply text-sm leading-9;
-        padding: 0 var(--ts-spacing-2x-large);
-      }
-
-      &::part(base) {
-        @apply h-10;
-      }
-    }
-  }  }
-
-.table.container-4xl {
-  @container (max-width: 56rem) {
-    --ts-table-column-gap: 0;
-    --ts-table-tr-padding-y: 0.75rem;
-    &, .tr, .td              { @apply flex; }
-    .tr                      { @apply flex-col py-3; }
-    .responsive-row-group    { @apply flex flex-row; }
-    .responsive-column-group { @apply flex flex-col; }
-    .responsive-label        { @apply inline; }
-    .thead                   { @apply hidden; }
-    .tbody                   { @apply contents; }
-    .th                      { @apply hidden; }
-
-    .td {
-      @apply py-1 leading-tight;
-
-      &.pos-tr-1 {
-        @apply absolute right-0;
-        top: calc(var(--ts-table-cell-padding-y));
-      }
-
-      &.pos-tr-2 {
-        @apply absolute right-0;
-        top: calc(var(--ts-table-cell-padding-y) + 1.5rem);
-      }
-
-      &:has(sl-button):last-of-type {
-        @apply justify-end mt-3;
-
-        sl-button {
-          @apply w-full @md:w-auto;
-        }
-      }
-    }
-
-    sl-button {
-      &::part(label) {
-        @apply text-sm leading-9;
-        padding: 0 var(--ts-spacing-2x-large);
-      }
-
-      &::part(base) {
-        @apply h-10;
-      }
-    }
-  }
-}
-
-.table.container-4xl {
-  @container (max-width: 64rem) {
-    --ts-table-column-gap: 0;
-    --ts-table-tr-padding-y: 0.75rem;
-    &, .tr, .td              { @apply flex; }
-    .tr                      { @apply flex-col py-3; }
-    .responsive-row-group    { @apply flex flex-row; }
-    .responsive-column-group { @apply flex flex-col; }
-    .responsive-label        { @apply inline; }
-    .thead                   { @apply hidden; }
-    .tbody                   { @apply contents; }
-    .th                      { @apply hidden; }
-
-    .td {
-      @apply py-1 leading-tight;
-
-      &.pos-tr-1 {
-        @apply absolute right-0;
-        top: calc(var(--ts-table-cell-padding-y));
-      }
-
-      &.pos-tr-2 {
-        @apply absolute right-0;
-        top: calc(var(--ts-table-cell-padding-y) + 1.5rem);
-      }
-
-      &:has(sl-button):last-of-type {
-        @apply justify-end mt-3;
-
-        sl-button {
-          @apply w-full @md:w-auto;
-        }
-      }
-    }
-
-    sl-button {
-      &::part(label) {
-        @apply text-sm leading-9;
-        padding: 0 var(--ts-spacing-2x-large);
-      }
-
-      &::part(base) {
-        @apply h-10;
-      }
-    }
-  }
-}
+/** 
+ * Note: VSCode shows an error for the following lines, but its just a 
+ * VSCode thing. The syntax compiles fine.
+*/
+@mixin responsive-table xs, 20rem;
+@mixin responsive-table sm, 24rem;
+@mixin responsive-table md, 28rem;
+@mixin responsive-table lg, 32rem;
+@mixin responsive-table xl, 36rem;
+@mixin responsive-table 2xl, 42rem;
+@mixin responsive-table 3xl, 48rem;
+@mixin responsive-table 4xl, 56rem;
+@mixin responsive-table 5xl, 64rem;
 
 
-
+/** New utility classes that really should exist in Tailwind */
+.w-xs  {width: 20rem;}
+.w-sm  {width: 24rem;}
+.w-md  {width: 28rem;}
+.w-lg  {width: 32rem;}
+.w-xl  {width: 36rem;}
+.w-2xl {width: 42rem;}
+.w-3xl {width: 48rem;}
+.w-4xl {width: 56rem;}
+.w-5xl {width: 64rem;}
