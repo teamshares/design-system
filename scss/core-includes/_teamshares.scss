@@ -29,7 +29,7 @@ body {
   font-size: 1rem;
   letter-spacing: -0.01rem;
   line-height: 1.75rem;
-  @apply font-normal;
+  @apply font-normal ts-text-default antialiased;
 }
 
 a {
