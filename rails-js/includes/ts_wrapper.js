@@ -11,6 +11,10 @@ class TsWrapper extends HTMLElement {
     let topLevelElement;
 
     if (this.children.length === 1) {
+      /**
+       * If the VC has a single root node, use that as the top level element, keeping its attributes,
+       * including any additional controllers
+       */
       topLevelElement = this.children[0];
     } else {
       /**
@@ -23,6 +27,7 @@ class TsWrapper extends HTMLElement {
     }
 
     /** Add the generated controller to the top level, along with any existing controllers */
+    /** Note: existing controllers will only be migrated upward if there's an existing single root node to start with */
     const controller = this.getAttribute("data-controller");
     const wrappedController = topLevelElement.getAttribute("data-controller");
     topLevelElement.setAttribute("data-controller", wrappedController ? `${controller} ${wrappedController}` : controller);
