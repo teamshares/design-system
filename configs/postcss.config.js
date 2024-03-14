@@ -5,7 +5,6 @@ const isProd = process.env.RAILS_ENV === "production" || process.env.NODE_ENV ==
 console.log(`Preparing to bundle CSS in ${isProd ? "PRODUCTION" : "development mode"}`);
 APP_ROOT = process.cwd();
 
-const path = require("path");
 const { getTeamsharesRailsPath } = require("../lib/teamshares-rails-path");
 const tsRailsPath = getTeamsharesRailsPath();
 
@@ -24,6 +23,7 @@ const configBuilder = (tailwindConfigTransformer = defaultConfigTransformer) => 
   const postcssConfig = {
     parser: "postcss-scss",
     plugins: [
+      require('postcss-mixins'),
       require("postcss-easy-import")({ path: [tsRailsPath, APP_ROOT], prefix: "_", extensions: [".css", ".scss"], plugins: [
         prefixComponentClasses,
       ] }),

@@ -1,0 +1,108 @@
+@layer base {
+  /** ***************** */
+  /** Drawer components */
+  /** ***************** */
+
+  .ts-drawer__section {
+    .ts-drawer {
+      @apply bg-white;
+      height: 0;
+      overflow-x: hidden;
+      position: fixed;
+      top: 0;
+      transition: width 400ms;
+      width: 0;
+      z-index: 9;
+    }
+
+    &.dir-left .ts-drawer {
+      border-left: 1px solid #fff;
+      box-shadow: -8px 0 4px -2px rgba(0, 0, 0, 0.1);
+      height: 100%;
+      right: 0;
+      @apply border-l-gray-400;
+    }
+
+    &.dir-right .ts-drawer {
+      border-right: 1px solid #fff;
+      box-shadow: 8px 0 4px -2px rgba(0, 0, 0, 0.1);
+      height: 100%;
+      left: 0;
+      @apply border-r-gray-400;
+    }
+
+    &.dir-down .ts-drawer {
+      height: 0;
+      left: 0;
+      right: 0;
+      top: 4.6rem;
+      transition: height 500ms;
+      width: 100%;
+    }
+
+    &.dir-down.open .ts-drawer {
+      height: 100%;
+    }
+  }
+
+  .ts-drawer__article {
+    @apply flex items-center p-6 border-b border-gray-300;
+  }
+
+  .ts-drawer__article p {
+    @apply pr-4 mb-0;
+    font-size: 0.875rem;
+    line-height: 1.375rem;
+
+    span {
+      @apply font-semibold;
+    }
+  }
+
+  .ts-drawer__header {
+    @apply border-b border-gray-300 flex justify-between top-0 bg-white;
+    padding: 1.8rem;
+  }
+
+  .ts-drawer__section.open .ts-drawer__header {
+    //position: fixed;
+  }
+
+  .ts-drawer__header + div {
+    //margin-top: 4.6rem;
+  }
+
+  .ts-drawer__label {
+    @apply w-full px-6 py-3 bg-gray-100 border-b border-gray-300 text-xs font-semibold;
+  }
+
+  .ts-drawer__links {
+    padding: 1.5rem 1.5rem 0;
+
+    a {
+      @apply text-gray-900 font-medium;
+      background: url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 12 12' fill='%23111' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6.39205 11.483L11.6932 6.18181L6.39205 0.880676L5.36932 1.89772L8.92045 5.44318H0L0 6.92045H8.92045L5.36932 10.4716L6.39205 11.483Z' fill='%23111'/%3E%3C/svg%3E%0A")
+        right 8px top no-repeat;
+      background-size: auto 1rem;
+      border-bottom: 1px solid;
+      display: block;
+      line-height: 1rem;
+      margin-bottom: 1.5rem;
+      padding: 0 2rem 1.5rem 0;
+      text-overflow: ellipsis;
+    }
+  }
+
+  .ts-drawer.bg-blue-900 {
+    .ts-drawer__links a {
+      background-image: url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 12 12' fill='%23FFF' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6.39205 11.483L11.6932 6.18181L6.39205 0.880676L5.36932 1.89772L8.92045 5.44318H0L0 6.92045H8.92045L5.36932 10.4716L6.39205 11.483Z' fill='%23FFF'/%3E%3C/svg%3E%0A");
+      @apply border-white text-white;
+    }
+  }
+
+  .ts-drawer.bg-gray-100 {
+    .ts-drawer__links a {
+      @apply border-gray-600 text-gray-900;
+    }
+  }
+}
