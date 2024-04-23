@@ -7,6 +7,10 @@ const sharedComponentControllersGlob = require("@teamshares-rails/components/**/
 const appComponentControllersGlob = require("@app/components/**/controller.js");
 const appControllersGlob = require("@app/javascript/controllers/**/*_controller.js");
 
+// TODO: this is hardcoding for the health insurance onboarding engine - remove when app is extracted from OS
+const tempHealthEngineComponentControllersGlob = require("@health-engine/components/**/controller.js");
+const tempHealthEngineControllersGlob = require("@health-engine/javascript/controllers/**/*_controller.js");
+
 // NOTE: we could move the shared stimulus controllers in design-system back into teamshares_rails too,
 // but we haven't figured out how to manage any JS dependencies that might be needed by those controllers.
 // const sharedControllersGlob = require("@app/javascript/controllers/**.js");
@@ -37,9 +41,11 @@ const registerStimulusControllers = () => {
 
   // Auto-load all app controllers
   _registerControllersFromGlob(application, appControllersGlob, pathToStimulusControllerIdentifier);
+  _registerControllersFromGlob(application, tempHealthEngineControllersGlob, pathToStimulusControllerIdentifier);
 
   // Auto-load all app component controllers
   _registerControllersFromGlob(application, appComponentControllersGlob, pathToComponentControllerIdentifier);
+  _registerControllersFromGlob(application, tempHealthEngineComponentControllersGlob, pathToComponentControllerIdentifier);
 
   // Configure Stimulus development experience
   application.warnings = true;
