@@ -2,6 +2,7 @@ import { Application } from "@hotwired/stimulus";
 
 // Shared controllers
 import ToggleController from "./toggle_controller";
+import LauncherController from "./launcher_controller";
 
 const sharedComponentControllersGlob = require("@teamshares-rails/components/**/controller.js");
 const appComponentControllersGlob = require("@app/components/**/controller.js");
@@ -35,6 +36,7 @@ const registerStimulusControllers = () => {
 
   // Register the shared controllers
   application.register("toggle", ToggleController);
+  application.register("launcher", LauncherController);
 
   // Auto-load all shared component controllers
   _registerControllersFromGlob(application, sharedComponentControllersGlob, pathToComponentControllerIdentifier);
