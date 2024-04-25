@@ -219,37 +219,61 @@
 }
 
 // SimpleForm + Shoelace error styling
+
+// Add red-600 border for invalid input borders
 sl-input[data-user-invalid]::part(base),
 sl-select[data-user-invalid]::part(combobox),
 sl-checkbox[data-user-invalid]::part(control),
-sl-textarea[data-user-invalid]::part(textarea) {
-  @apply border-red-700;
+sl-textarea[data-user-invalid]::part(base) {
+  @apply border-red-600;
 }
 
-[data-user-invalid]::part(form-control-help-text) {
-  @apply text-red-700;
+// When an invalid input has focus, add an error focus ring
+sl-input:focus-within[data-user-invalid]::part(base),
+sl-select:focus-within[data-user-invalid]::part(combobox),
+sl-textarea:focus-within[data-user-invalid]::part(base) {
+  @apply border-red-600;
+  @apply ring-4 ring-red-400 ring-offset-0;
 }
 
-[data-user-invalid]::part(form-control-label) {
-  @apply border border-red-700;
+// sl-checkbox needs outline instead of box-shadow override
+sl-checkbox:focus-within[data-user-invalid]::part(control) {
+  @apply border-red-600;
+  @apply outline-red-600/50;
 }
 
 
+// Applies the same error styles based on 'field_with_errors' class rather than [data-user-invalid]
 .field_with_errors {
-  @apply text-red-700;
-
+  // Add red-600 border for input borders
   sl-input::part(base),
   sl-select::part(combobox),
   sl-checkbox::part(control),
-  sl-textarea::part(textarea) {
-    @apply border-red-700;
+  sl-textarea::part(base) {
+    @apply border-red-600;
   }
 
-  ::part(form-control-help-text), .ts-input__help {
+  // When an invalid input has focus, add an error focus ring
+  sl-input:focus-within::part(base),
+  sl-select:focus-within::part(combobox),
+  sl-textarea:focus-within::part(base) {
+    @apply border-red-600;
+    @apply ring-4 ring-red-400 ring-offset-0;
+  }
+
+  // sl-checkbox needs outline instead of box-shadow override
+  sl-checkbox:focus-within::part(control) {
+    @apply border-red-600;
+    @apply outline-red-600/50;
+  }
+
+  .error.ts-input__help {
+    @apply mt-2;
+    @apply ts-body-2;
     @apply text-red-700;
-  }
 
-  ::part(form-control-label) {
-    @apply border border-red-700;
+    &:first-letter  {
+      text-transform: capitalize;
+    }    
   }
 }
