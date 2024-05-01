@@ -5,11 +5,15 @@ const isProd = process.env.RAILS_ENV === "production" || process.env.NODE_ENV ==
 console.log(`Preparing to bundle CSS in ${isProd ? "PRODUCTION" : "development mode"}`);
 APP_ROOT = process.cwd();
 
+// TODO: this is hardcoding for the health insurance onboarding engine - remove when app is extracted from OS
+TEMP_HEALTH_INSURANCE_APP = `${APP_ROOT}/health_insurance`;
+
 const { getTeamsharesRailsPath } = require("../lib/teamshares-rails-path");
 const tsRailsPath = getTeamsharesRailsPath();
 
 const injectSharedCodePaths = (config) => {
   config.content.push(`${tsRailsPath}/{app,lib}/**/*.{html,js,rb,erb,slim,scss}`);
+  config.content.push(`${TEMP_HEALTH_INSURANCE_APP}/{app}/**/*.{html,js,rb,erb,slim,scss}`);
 
   return config;
 };
@@ -24,7 +28,7 @@ const configBuilder = (tailwindConfigTransformer = defaultConfigTransformer) => 
     parser: "postcss-scss",
     plugins: [
       require('postcss-mixins'),
-      require("postcss-easy-import")({ path: [tsRailsPath, APP_ROOT], prefix: "_", extensions: [".css", ".scss"], plugins: [
+      require("postcss-easy-import")({ path: [tsRailsPath, APP_ROOT, TEMP_HEALTH_INSURANCE_APP], prefix: "_", extensions: [".css", ".scss"], plugins: [
         prefixComponentClasses,
       ] }),
       require("tailwindcss/nesting"),

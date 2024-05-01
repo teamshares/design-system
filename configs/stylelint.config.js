@@ -6,7 +6,7 @@ module.exports = {
       ignore: ["custom-properties"],
     }],
     "max-nesting-depth": 4,
-    "selector-max-compound-selectors": 4,
+    "selector-max-compound-selectors": 5, // Adding one to account for auto-wrapping in view components
     "selector-max-id": 1,
     "selector-class-pattern": null,
     "selector-no-qualifying-type": [true, {
