@@ -13,7 +13,7 @@ const tsRailsPath = getTeamsharesRailsPath();
 
 const injectSharedCodePaths = (config) => {
   config.content.push(`${tsRailsPath}/{app,lib}/**/*.{html,js,rb,erb,slim,scss}`);
-  config.content.push(`${TEMP_HEALTH_INSURANCE_APP}/{app}/**/*.{html,js,rb,erb,slim,scss}`);
+  config.content.push(`${TEMP_HEALTH_INSURANCE_APP}/app/**/*.{html,js,rb,erb,slim,scss}`);
 
   return config;
 };
