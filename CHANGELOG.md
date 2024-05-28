@@ -3,6 +3,9 @@
 ## UNRELEASED
 * Add change description here
 
+## 1.3.1.1
+* Quick fix to also update yarn.lock when bumping to Sholelace 2.1.1
+
 ## 1.3.1
 * Bump to Shoelace 2.1.1 patch release
 
