@@ -30,13 +30,17 @@
       @apply focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-blue-500/50 focus-visible:ring-offset-0;
     }
 
-    &:not([href]) { /* disabled links */
-      &:not(.current) {
-        @apply opacity-0 cursor-default;
-      }
+    &:not([href])[aria-label="Previous"],
+    &:not([href])[aria-label="Next"] { /* disabled nav links */
+      @apply opacity-0 cursor-default;
     }
 
-    &.current {
+    &:not([href]) { /* other disabled links */
+      @apply text-gray-400 cursor-not-allowed;;
+    }
+
+    &.current,
+    &[aria-current="page"] { /* works with pagy 7 and pagy 8 */
       @apply text-blue-700 bg-gray-100 cursor-default;
     }
 
