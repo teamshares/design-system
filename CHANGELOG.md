@@ -3,6 +3,10 @@
 ## UNRELEASED
 * Add change description here
 
+## 1.4.0
+* Add `_pagination.scss` so that pagy styles can be shared across apps
+* Update styles in `_pagination.scss` so they work with pagy v8 and with pagy_helper in `cash-account-app`
+
 ## 1.3.2
 * Bump to Shoelace 2.1.2 patch release
 

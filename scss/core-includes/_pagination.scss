@@ -1,0 +1,74 @@
+// Based on https://ddnexus.github.io/pagy/docs/api/stylesheets/#pagy-tailwind-css
+
+.pagy {
+  @apply flex justify-center mt-8 space-x-4 font-medium ts-body-2 ts-text-default;
+
+  &.justified-layout {
+    @apply justify-between space-x-0;
+  }
+
+  & .pagination-info {
+    @apply block px-3 py-1 space-x-2;
+  }
+
+  & .disabled-icon {
+    @apply text-transparent px-2 py-1 text-base;
+  }
+
+  a:not(.gap) {
+    @apply block rounded-lg px-3 py-1 no-underline;
+
+    &:hover {
+      @apply bg-gray-100;
+    }
+
+    &:active {
+      @apply bg-gray-200;
+    }
+
+    &:focus {
+      @apply focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-blue-500/50 focus-visible:ring-offset-0;
+    }
+
+    &:not([href])[aria-label="Previous"],
+    &:not([href])[aria-label="Next"] { /* disabled nav links */
+      @apply opacity-0 cursor-default;
+    }
+
+    &:not([href]) { /* other disabled links */
+      @apply text-gray-400 cursor-not-allowed;;
+    }
+
+    &.current,
+    &[aria-current="page"] { /* works with pagy 7 and pagy 8 */
+      @apply text-blue-700 bg-gray-100 cursor-default;
+    }
+
+    &:not(.nav-icon)[aria-label="Previous"] {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 512' width='16' height='16' fill='%232e333c'%3E%3Cpath d='M47 239c-9.4 9.4-9.4 24.6 0 33.9L207 433c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9L97.9 256 241 113c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0L47 239z'/%3E%3C/svg%3E");
+      background-position: center;
+      background-repeat: no-repeat;
+      @apply pl-2 pr-3 text-transparent;
+    }
+        
+    &:not(.nav-icon)[aria-label="Next"] {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 512' width='16' height='16' fill='%232e333c'%3E%3Cpath d='M273 239c9.4 9.4 9.4 24.6 0 33.9L113 433c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l143-143L79 113c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0L273 239z'/%3E%3C/svg%3E");
+      background-position: center;
+      background-repeat: no-repeat;
+      @apply pl-2 pr-3 text-transparent;
+    }
+
+    &.nav-icon[aria-label="Previous"], &.nav-icon[aria-label="Next"] {
+        @apply px-2 py-1 text-base h-7;
+      }
+  }
+
+  /* Commenting out for now as we're not using an input element anywhere */
+  // label {
+  //   @apply inline-block whitespace-nowrap bg-gray-200 rounded-lg px-3 py-0.5;
+
+  //   input {
+  //     @apply bg-gray-100 border-none rounded-md;
+  //   }
+  // }
+}
