@@ -728,10 +728,10 @@
     lodash.merge "^4.6.2"
     postcss-selector-parser "6.0.10"
 
-"@teamshares/shoelace@^2.1.2":
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/@teamshares/shoelace/-/shoelace-2.1.2.tgz#da38b6c33675d327ecad58b9894fd2745ed08f66"
-  integrity sha512-5MYzYb/xg7psOX5bySWLqQ+1w2fVAeI7sHQh+Fsd/uEBHWxWcMf+aiZcSrd3Qz0cNjBrBFoI3FgOeQ/Gm1CUBA==
+"@teamshares/shoelace@^2.2.1":
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/@teamshares/shoelace/-/shoelace-2.2.1.tgz#00fb2f4c0b73e7204c090f0564ab9a3b54b70fd3"
+  integrity sha512-tEjJtpd9jqpCtIesQ7WWIZNAz4vHihFTQA2no0mUKYvgrV/Ea4ZhnfWpchrIiQ4kYWTMgov9bYn5Yif4nbnJkw==
   dependencies:
     "@ctrl/tinycolor" "^4.0.2"
     "@floating-ui/dom" "^1.5.3"
