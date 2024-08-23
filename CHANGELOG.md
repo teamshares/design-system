@@ -3,6 +3,10 @@
 ## UNRELEASED
 * Add change description here
 
+## 1.4.2
+* Patch fix to bump `design-system` to a bew version, as the previous version bumped Shoelace but missed bumping `design-system` itself
+* **No dependencies**. This release is okay to merge without `teamshares-rails`
+
 ## 1.4.1
 * Bump to Shoelace 2.2.1
 
