@@ -1,6 +1,8 @@
 // These commands are available to all cypress specs
 // (they reference paths added via teamshares-rails)
 
+import "./sl-commands";
+
 Cypress.Commands.add("factory", (name, opts = {}) => {
   const { traits, ...attributes } = opts;
   cy.request("POST", "teamshares/cypress/factories", {

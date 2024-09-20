@@ -18,7 +18,7 @@ const prefixComponentClasses = () => {
         /**
          * If the selector is our special `._component` rule, that's the designated wrapper.
          * All encapsulated component classes are expected to be nested within that.
-         **/ 
+         **/
         if (rule.selector == "._component") {
           // console.log(clc.green(`  Replacing ._component block with .${identifier}`));
           hasWrapperClass = true;
@@ -34,7 +34,3 @@ const prefixComponentClasses = () => {
 prefixComponentClasses.postcss = true;
 
 module.exports = prefixComponentClasses;
-
-
-
-
