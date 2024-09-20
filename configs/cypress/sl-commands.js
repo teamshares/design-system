@@ -10,7 +10,7 @@
 // ***************************
 
 // clear
-Cypress.Commands.add("slClear", (selector, element) => {
+Cypress.Commands.add("slClear", (selector, element="input") => {
   cy.get(selector).shadow().find(element).clear();
 });
 
