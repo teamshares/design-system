@@ -45,11 +45,7 @@ Cypress.Commands.add("slCheckboxCheck", (selector) => {
 
 // sl-checkbox uncheck
 Cypress.Commands.add("slCheckboxUncheck", (selector) => {
-  if (typeof selector === "string") {
-    cy.get(selector).shadow().find("input").uncheck({ force: true });
-  } else {
-    selector.shadow().find("input").uncheck({ force: true });
-  }
+  cy.slFocus(selector).uncheck({ force: true });
 });
 
 // sl-checkbox-group value
