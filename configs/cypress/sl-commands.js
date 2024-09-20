@@ -61,6 +61,11 @@ Cypress.Commands.add("slSelectByOptionText", (selector, text) => {
     .click({force: true});
 });
 
+// sl-select select by option text
+Cypress.Commands.add("slSelectValue", (selector) => {
+  cy.get(selector).invoke('val');
+});
+
 // sl-button click
 Cypress.Commands.add("slButtonClick", (selector, index = 0) => {
   if (typeof selector === "string") {
