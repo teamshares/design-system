@@ -29,9 +29,9 @@ const configBuilder = (tailwindConfigTransformer = defaultConfigTransformer) => 
     plugins: [
       require('postcss-mixins'),
       require("postcss-easy-import")({ path: [tsRailsPath, APP_ROOT, TEMP_HEALTH_INSURANCE_APP], prefix: "_", extensions: [".css", ".scss"], plugins: [
+        require("tailwindcss/nesting"),
         prefixComponentClasses,
       ] }),
-      require("tailwindcss/nesting"),
       require("tailwindcss")(tailwindConfig),
       require("postcss-flexbugs-fixes"),
       require("postcss-preset-env")({
