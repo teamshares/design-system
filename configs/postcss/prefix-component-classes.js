@@ -23,10 +23,13 @@ const prefixComponentClasses = () => {
         if (rule.selector == "._base") {
           if (debug) console.log(`\tReplacing ${rule.selector} with .c-${identifier}`);
           rule.selector = `.c-${identifier}`;
+        } else if (rule.selector.startsWith("._base")) {
+          console.log(clc.red("\tDROPPING SELECTOR:", clc.redBright(rule.selector), clc.red("(do not nest anything under ._base)")));
+          rule.remove();
         } else if (rule.selector.startsWith("._component")) {
           if (info) console.log(rule.selector)
           const new_selector = `.c-${identifier}${rule.selector.replace("._component", "")}`;
-          if (info) console.log(clc.yellow("\tIgnoring old-style '._component' wrapper:"), `replacing ${rule.selector} with ${new_selector}`);
+          if (info) console.log(clc.yellow("\tRemoving old-style '._component' wrapper:"), `replacing ${rule.selector} with ${new_selector}`);
           rule.selector = new_selector;
         } else {
           if (debug) console.log(`\tPrefixing ${rule.selector} with .c-${identifier}`);
