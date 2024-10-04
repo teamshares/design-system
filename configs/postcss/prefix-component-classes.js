@@ -1,24 +1,35 @@
 var clc = require("cli-color");
-const DEBUG = process.env.LOG_CSS === "debug";
-const INFO = DEBUG || process.env.LOG_CSS === "info";
+
+const isProd = process.env.RAILS_ENV === "production" || process.env.NODE_ENV === "production";
+const LOG_LEVEL = process.env.CSS_LOG || (isProd ? "warn" : "info");
+
+const logger = {
+  debug: (...msgs) => { if (LOG_LEVEL == "debug") console.log(...msgs); },
+  info: (...msgs) => { if (LOG_LEVEL == "debug" || LOG_LEVEL == "info") console.log(...msgs); },
+  warn: (...msgs) => { console.log(...msgs); },
+}
+
+const tracker = { numRules: 0 };
 
 const parseRule = (wrapper) => (rule) => {
+  tracker.numRules++;
+
   if (rule.selector == "._base") {
     // If the selector is our special `._base` rule, apply those styles directly to the generated class itself
-    if (DEBUG) console.log(`\tReplacing ${clc.whiteBright(rule.selector)} with ${clc.whiteBright(wrapper)}`);
+    logger.debug(`\tReplacing ${clc.whiteBright(rule.selector)} with ${clc.whiteBright(wrapper)}`);
     rule.selector = wrapper;
   } else if (rule.selector.startsWith("._base")) {
     // We do not support nesting anything under ._base (just make it a top-level rule and it'll be auto-nested)
-    console.log(clc.red("\tDROPPING SELECTOR:", clc.redBright(rule.selector), clc.red("(do not nest anything under ._base)")));
+    logger.warn(clc.red("\tDROPPING SELECTOR:", clc.redBright(rule.selector), clc.red("(do not nest anything under ._base)")));
     rule.remove();
   } else if (rule.selector.startsWith("._component")) {
     // DEPRECATED: ideally we'd remove all ._component selectors, but for now we'll just strip the wrapper
     const new_selector = `${wrapper}${rule.selector.replace("._component", "")}`;
-    if (INFO) console.log(clc.yellow(`\tRemoving old-style ._component wrapper from ${clc.yellowBright(rule.selector)}`));
+    logger.info(clc.yellow(`\tIgnoring deprecated ._component wrapper on ${clc.yellowBright(rule.selector)}`));
     rule.selector = new_selector;
   } else {
     // Default case: prefix the selector with the component class
-    if (DEBUG) console.log(clc.white(`\tPrefixing ${clc.whiteBright(rule.selector)}`));
+    logger.debug(clc.white(`\tPrefixing ${clc.whiteBright(rule.selector)}`));
     rule.selector = `${wrapper} ${rule.selector}`;
   }
 };
@@ -36,8 +47,10 @@ const prefixComponentClasses = () => {
       const identifier = matches[1].replaceAll("/", "--").replaceAll("_", "-");
       const wrapper = `.c-${identifier}`;
 
-      if (INFO) console.log("================= Prefixing selectors in component", clc.cyanBright(filePath), "with", clc.cyan(wrapper));
+      logger.info("================= Prefixing selectors in component", clc.cyanBright(filePath), "with", clc.cyan(wrapper));
+      tracker.numRules = 0;
       root.walkRules(parseRule(wrapper));
+      logger.debug(`\tProcessed ${tracker.numRules} rules`);
     },
   };
 }
