@@ -1,5 +1,5 @@
 ## Ticket
-[Notion](url)
+[Ticket](url)
 
 
 ## Description
