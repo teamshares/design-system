@@ -24,13 +24,25 @@ const parseRule = (wrapper) => (rule) => {
     rule.remove();
   } else if (rule.selector.startsWith("._component")) {
     // DEPRECATED: ideally we'd remove all ._component selectors, but for now we'll just strip the wrapper
+    // TODO: we don't support rules with commas here, so remove this once confirmed removed from all components
     const new_selector = `${wrapper}${rule.selector.replace("._component", "")}`;
     logger.info(clc.yellow(`\tIgnoring deprecated ._component wrapper on ${clc.yellowBright(rule.selector)}`));
     rule.selector = new_selector;
   } else {
-    // Default case: prefix the selector with the component class
-    logger.debug(clc.white(`\tPrefixing ${clc.whiteBright(rule.selector)}`));
-    rule.selector = `${wrapper} ${rule.selector}`;
+    if (!rule.selector.includes(",")) {
+      // Default case: prefix the selector with the component class
+      logger.debug(clc.white(`\tPrefixing ${clc.whiteBright(rule.selector)}`));
+      rule.selector = `${wrapper} ${rule.selector}`;
+    } else {
+      // Default case, but a bit more complex -- we need to explode the selector into multiple rules
+      rule.selector.split(",").forEach((selector, i) => {
+        logger.debug(clc.white(`\tPrefixing ${clc.whiteBright(rule.selector)}: ${clc.yellowBright(selector.trim())}`));
+        const newRule = rule.clone();
+        newRule.selector = `${wrapper} ${selector.trim()}`;
+        rule.before(newRule)
+      });
+      rule.remove();
+    }
   }
 };
 
