@@ -3,6 +3,11 @@
 ## UNRELEASED
 * Add change description here
 
+## 1.6.0
+* ViewComponent sidecar styles no longer require wrapping in `._component` class [@kdonovan]
+
+## 1.5.0 - Skipped to keep parity with teamshares-rails
+
 ## 1.4.3
 * Test using tag with release for changelog
 

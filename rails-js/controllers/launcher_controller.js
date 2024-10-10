@@ -29,7 +29,7 @@ export default class extends Controller {
 
   /** Empty event handler so callers can short-circuit a launch action on a parent element */
   doNothing (event) {
-    if (Teamshares.isDev) {
+    if (Teamshares.isDev || Teamshares.isTest) {
       console.log("launcher#doNothing", event);
     }
   }
@@ -37,14 +37,15 @@ export default class extends Controller {
   getTarget (event) {
     const target = event.params.target;
     if (!target) {
-      if (Teamshares.isDev) {
+      console.log("launcher_controller: No target specified for event.", { event });
+      if (Teamshares.isDev || Teamshares.isTest) {
         console.error(`launcher_controller: Trigger element ${event.target.tagName} is missing a data-launcher-target-param.`, { element: event.target });
       }
       return false;
     } else {
       const launchable = document.getElementById(target);
       if (!launchable) {
-        if (Teamshares.isDev) {
+        if (Teamshares.isDev || Teamshares.isTest) {
           console.error(`launcher_controller: No launchable element with id "${target}" found.`);
         }
         return false;
@@ -63,7 +64,7 @@ export default class extends Controller {
     if (typeof launchable[action] === "function") {
       launchable[action]();
     } else {
-      if (Teamshares.isDev) {
+      if (Teamshares.isDev || Teamshares.isTest) {
         console.error(`launcher_controller: ${launchable.id}.${action}() is not a function.`);
       }
     }

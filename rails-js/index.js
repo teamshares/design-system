@@ -43,6 +43,7 @@ export default class Teamshares {
   static Rails = Rails;
   static stimulusApplication = application;
 
+  static isTest = (Teamshares.env === "test");
   static isDev = (Teamshares.env === "development");
   static isProd = (Teamshares.env === "staging");
   static isStaging = (Teamshares.env === "production");
