@@ -3,6 +3,9 @@
 ## UNRELEASED
 * Add change description here
 
+## 1.6.1
+* [Bugfix] Fix reorganization of scss includes to allow building css
+
 ## 1.6.0
 * ViewComponent sidecar styles no longer require wrapping in `._component` class [@kdonovan]
 
