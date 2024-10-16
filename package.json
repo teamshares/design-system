@@ -24,7 +24,7 @@
     "@hotwired/turbo-rails": "7.3.0",
     "@rails/ujs": "7.0.8",
     "@tailwindcss/container-queries": "^0.1.1",
-    "@tailwindcss/forms": "0.5.7",
+    "@tailwindcss/forms": "0.5.9",
     "@tailwindcss/typography": "0.5.13",
     "@teamshares/shoelace": "^2.2.1",
     "cli-color": "^2.0.3",
