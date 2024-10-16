@@ -3,6 +3,9 @@
 ## UNRELEASED
 * Add change description here
 
+## 1.7.0
+* Update asset pipeline dependencies
+
 ## 1.6.1
 * [Bugfix] Fix reorganization of scss includes to allow building css
 

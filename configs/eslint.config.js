@@ -54,7 +54,8 @@ const buildConfigs = (customRules) => {
     globals: {
       Teamshares: "readonly",
       require: "readonly", // NOTE: used as entrypoint to our internal glob require (for stimulus controllers)
-      ...globals.browser
+      ...globals.browser,
+      ...globals.es2020,
     },
   };
 
