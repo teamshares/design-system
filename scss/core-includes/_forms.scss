@@ -272,7 +272,7 @@ sl-checkbox:focus-within[data-user-invalid]::part(control) {
     @apply ts-body-2;
     @apply text-red-700;
 
-    &:first-letter  {
+    &::first-letter  {
       text-transform: capitalize;
     }    
   }
