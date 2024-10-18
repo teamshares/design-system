@@ -4,7 +4,7 @@
 * Add change description here
 
 ## 1.6.2
-* Bump to Shoelace 2.2.1
+* Bump to Shoelace 2.3.0
 * **Note!** Before merging this release, make sure `teamshares-rails` is 1.6.1 or above
 
 ## 1.6.1
