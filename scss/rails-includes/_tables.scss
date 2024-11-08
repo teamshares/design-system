@@ -1,14 +1,17 @@
-.tr        { display: table-row; }
-.thead     { display: table-header-group; }
-.tbody     { display: table-row-group; }
-.tfoot     { display: table-footer-group; }
-.col       { display: table-column; }
-.colgroup  { display: table-column-group; }
-.td, .th   { display: table-cell; }
-.caption   { display: table-caption; }
+.tr { display: table-row; }
+.thead { display: table-header-group; }
+.tbody { display: table-row-group; }
+.tfoot { display: table-footer-group; }
+.col { display: table-column; }
+.colgroup { display: table-column-group; }
+
+.td,
+.th { display: table-cell; }
+.caption { display: table-caption; }
 
 .table {
-  display: table; border-collapse: collapse;
+  display: table;
+  border-collapse: collapse;
 
   /** TODO: Should be using CSS variables from design system */
   --ts-color-row-bg-odd: #8881;
@@ -31,7 +34,8 @@
     }
   }
 
-  .responsive-row-group, .responsive-column-group {
+  .responsive-row-group,
+  .responsive-column-group {
     @apply contents;
   }
 
@@ -39,20 +43,22 @@
     @apply mr-1 font-semibold;
   }
 
-  &, .thead, .tbody, .tfoot, .tr {
+  &,
+  .thead,
+  .tbody,
+  .tfoot,
+  .tr {
     @apply w-full relative;
   }
 
   &.sticky-header {
     .thead .tr {
       @apply bg-white sticky top-0 z-10 border-none;
-      background-image: repeating-linear-gradient(
-        0deg,
-        var(--ts-color-gray-300),
-        var(--ts-color-gray-300) 1px,
-        transparent 1px,
-        transparent 1000px
-      )
+      background-image: repeating-linear-gradient(0deg,
+      var(--ts-color-gray-300),
+      var(--ts-color-gray-300) 1px,
+      transparent 1px,
+      transparent 1000px);
     }
   }
 
@@ -75,13 +81,14 @@
   .td {
     @apply align-top;
     font-size: 0.875rem;
-    font-weight: 400;;
+    font-weight: 400;
 
     &:not(:empty) {
       padding: var(--ts-table-td-padding);
     }
 
-    &:has(sl-icon):last-of-type, &:has(sl-button):last-of-type {
+    &:has(sl-icon):last-of-type,
+    &:has(sl-button):last-of-type {
       @apply align-middle whitespace-nowrap;
 
       sl-button:not(:last-of-type) {
@@ -115,16 +122,16 @@
 
 /** Make the direct parent of any .table.container-xx element a query-eligible container */
 *:has(
-    > .table.container-xs,
-    > .table.container-sm,
-    > .table.container-md,
-    > .table.container-lg,
-    > .table.container-xl,
-    > .table.container-2xl,
-    > .table.container-3xl,
-    > .table.container-4xl,
-    > .table.container-5xl
-  ) {
+> .table.container-xs,
+> .table.container-sm,
+> .table.container-md,
+> .table.container-lg,
+> .table.container-xl,
+> .table.container-2xl,
+> .table.container-3xl,
+> .table.container-4xl,
+> .table.container-5xl
+) {
   @apply @container;
 }
 
@@ -148,12 +155,14 @@
     @apply hidden;
   }
 
-  .responsive-row-group, .responsive-column-group {
+  .responsive-row-group,
+  .responsive-column-group {
     @apply flex-wrap justify-between;
     margin-block-end: var(--ts-table-row-gap);
     gap: var(--ts-table-row-gap);
 
-    .td, .th {
+    .td,
+    .th {
       flex-grow: 1;
     }
   }
@@ -167,28 +176,34 @@
       --line-height: 1.25rem;
       --pos-row-height: calc(var(--line-height) + (2 * var(--ts-table-cell-padding-y)));
 
-      &, .tr, .td              { @apply flex; }
-      .tr                      { @apply flex-col py-3; }
-      .responsive-row-group    { @apply flex flex-row; }
+      &,
+      .tr,
+      .td { @apply flex; }
+      .tr { @apply flex-col py-3; }
+      .responsive-row-group { @apply flex flex-row; }
       .responsive-column-group { @apply flex flex-col; }
-      .responsive-label        { display: initial; }
-      .show-at-responsive      { display: initial; }
-      .hide-at-responsive      { @apply hidden; }
-      .thead                   { @apply hidden; }
-      .tbody                   { @apply contents; }
-      .th                      { @apply hidden; }
+      .responsive-label { display: initial; }
+      .show-at-responsive { display: initial; }
+      .hide-at-responsive { @apply hidden; }
+      .thead { @apply hidden; }
+      .tbody { @apply contents; }
+      .th { @apply hidden; }
 
       .td {
         line-height: var(--line-height);
 
-        &.pos-tr-1, &.pos-tr-2, &.pos-tr-3 {
+        &.pos-tr-1,
+        &.pos-tr-2,
+        &.pos-tr-3 {
           @apply absolute right-0;
         }
         &.pos-tr-1 { top: calc(var(--ts-table-row-padding-y)); }
         &.pos-tr-2 { top: calc(var(--ts-table-row-padding-y) + var(--pos-row-height)); }
         &.pos-tr-3 { top: calc(var(--ts-table-row-padding-y) + (2 * var(--pos-row-height))); }
 
-        &.pos-br-1, &.pos-br-2, &.pos-br-3 {
+        &.pos-br-1,
+        &.pos-br-2,
+        &.pos-br-3 {
           @apply absolute right-0;
         }
         &.pos-br-1 { bottom: calc(var(--ts-table-row-padding-y)); }
@@ -234,11 +249,11 @@
 
 
 /** New utility classes that really should exist in Tailwind */
-.w-xs  {width: 20rem;}
-.w-sm  {width: 24rem;}
-.w-md  {width: 28rem;}
-.w-lg  {width: 32rem;}
-.w-xl  {width: 36rem;}
+.w-xs {width: 20rem;}
+.w-sm {width: 24rem;}
+.w-md {width: 28rem;}
+.w-lg {width: 32rem;}
+.w-xl {width: 36rem;}
 .w-2xl {width: 42rem;}
 .w-3xl {width: 48rem;}
 .w-4xl {width: 56rem;}

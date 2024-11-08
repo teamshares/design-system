@@ -1,6 +1,7 @@
 # Changelog
 
 ## UNRELEASED
+* Update asset pipeline dependencies
 * Add change description here
 
 ## 1.6.2
