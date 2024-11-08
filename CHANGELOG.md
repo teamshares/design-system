@@ -1,8 +1,11 @@
 # Changelog
 
 ## UNRELEASED
-* Update asset pipeline dependencies
 * Add change description here
+
+## 1.7.0
+* Update asset pipeline dependencies
+* Fix pre-commit script for Husky@9 compatibility
 
 ## 1.6.2
 * Bump to Shoelace 2.3.0
