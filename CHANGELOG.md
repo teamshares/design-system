@@ -3,6 +3,22 @@
 ## UNRELEASED
 * Add change description here
 
+## 1.7.0
+* Update asset pipeline dependencies
+* Fix pre-commit script for Husky@9 compatibility
+
+## 1.6.2
+* Bump to Shoelace 2.3.0
+* **Note!** Before merging this release, make sure `teamshares-rails` is 1.6.1 or above
+
+## 1.6.1
+* [Bugfix] Fix reorganization of scss includes to allow building css
+
+## 1.6.0
+* ViewComponent sidecar styles no longer require wrapping in `._component` class [@kdonovan]
+
+## 1.5.0 - Skipped to keep parity with teamshares-rails
+
 ## 1.4.3
 * Test using tag with release for changelog
 
