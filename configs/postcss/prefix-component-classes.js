@@ -69,7 +69,3 @@ const prefixComponentClasses = () => {
 prefixComponentClasses.postcss = true;
 
 module.exports = prefixComponentClasses;
-
-
-
-

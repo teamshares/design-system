@@ -3,6 +3,9 @@
 ## UNRELEASED
 * Add change description here
 
+## 1.8.0
+* Add shared cypress helpers
+
 ## 1.7.0
 * Update asset pipeline dependencies
 * Fix pre-commit script for Husky@9 compatibility
