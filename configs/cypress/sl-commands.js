@@ -30,7 +30,7 @@ Cypress.Commands.add("slInputType", (selector, text = "") => {
 
 // sl-textarea type
 Cypress.Commands.add("slTextAreaType", (selector, text = "") => {
-  cy.slFocus(selector, "textarea").type(text, { force: true });
+  cy.slFocus(selector, "textarea").clear().type(text, { force: true });
 });
 
 // sl-textarea clear
