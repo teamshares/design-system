@@ -3,6 +3,9 @@
 ## UNRELEASED
 * Add change description here
 
+## 1.8.1
+* Switch to pinned versions (updated) to resolve downstream yarn audit issues
+
 ## 1.8.0
 * Add shared cypress helpers
 
