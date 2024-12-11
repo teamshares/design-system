@@ -1318,10 +1318,10 @@
     lodash.merge "^4.6.2"
     postcss-selector-parser "6.0.10"
 
-"@teamshares/shoelace@2.3.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@teamshares/shoelace/-/shoelace-2.3.0.tgz#28d3f41fe81cca2d7e5affae63ac688172cb85be"
-  integrity sha512-MGE37bQ7EcQn4VhSC+vD50ZS69JrZoOI8uQUjXqcPy2gV3ZQyO44zdwJqgn7kQjTYg77rEw83UESQxB8Z8Fofw==
+"@teamshares/shoelace@2.3.1":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@teamshares/shoelace/-/shoelace-2.3.1.tgz#03d9e3df0e924c9b0b5ad9bd9bac9c5c0e3793a7"
+  integrity sha512-iOnWZNcL+I7WFMSOB1UgqEbKvmtmTPwPM5HItbRhZa9vzA/WM6cALNsO66RBbRbMoqBbETF2sK5FxvsKDpwQtw==
   dependencies:
     "@ctrl/tinycolor" "^4.0.2"
     "@figma/code-connect" "^1.2.0"
