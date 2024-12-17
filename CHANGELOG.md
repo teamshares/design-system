@@ -4,7 +4,7 @@
 * Add change description here
 
 ## 1.8.3
-* Update cypress helpers
+* Update cypress helpers to use `force: true`
 
 ## 1.8.2
 * Update shoelace for yarn audit issues
