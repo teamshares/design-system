@@ -11,12 +11,12 @@
 
 // clear
 Cypress.Commands.add("slClear", (selector, element="input") => {
-  cy.get(selector).shadow().find(element).clear();
+  cy.get(selector).shadow().find(element).clear({ force: true });
 });
 
 // focus
 Cypress.Commands.add("slFocus", (selector, element="input") => {
-  cy.get(selector).shadow().find(element).focus();
+  cy.get(selector).shadow().find(element).focus({ force: true });
 });
 
 // ***************************
@@ -25,12 +25,12 @@ Cypress.Commands.add("slFocus", (selector, element="input") => {
 
 // sl-input type
 Cypress.Commands.add("slInputType", (selector, text = "") => {
-  cy.slFocus(selector).clear().type(text);
+  cy.slFocus(selector).clear({ force: true }).type(text);
 });
 
 // sl-textarea type
 Cypress.Commands.add("slTextAreaType", (selector, text = "") => {
-  cy.slFocus(selector, "textarea").clear().type(text, { force: true });
+  cy.slFocus(selector, "textarea").clear({ force: true }).type(text, { force: true });
 });
 
 // sl-textarea clear
