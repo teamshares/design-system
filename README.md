@@ -65,4 +65,17 @@ When you're done doing local development you _can_ undo this config.
 * From _within the linked Rails app_: `yarn unlink @teamshares/design-system` and then `yarn install --force` to re-install the previously-linked package from remote instead.
 
 ## After merging your PR
-Your changes _won't go live_ in any consuming Rails apps until their `yarn.lock` is updated to point to the newest-released git SHA (i.e. you merge a PR in that app in which you've run `yarn add https://github.com/teamshares/design-system.git#main`).
+
+Your changes _won't go live_ in any consuming Rails apps until:
+* a new release is cut
+* that consuming rails app increments the version in their `package.json`
+
+## Releasing a new version
+When changes are ready to be released to downstream apps, you'll need to:
+* Push up a PR incrementing the version in `package.json` and updating `changelog.md` to document the changes
+* _After that PR is merged_, pull down the latest `main` locally and create a new version tag (`git tag YOUR VERSION`, e.g. `git tag v1.2.3`)
+* Push that tag up to github: `git push origin --tags`
+
+NOTE: if your release includes breaking changes, you'll need to coordinate with all existing apps to ensure they're aware of the steps needed (where plausible, usually this means opening PRs to implement those changes directly so that context isn't lost/forgotten in the future).
+
+NOTE: any questions in the process, reach out to @kdonovan or @kathleenteamshares.
