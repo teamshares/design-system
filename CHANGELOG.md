@@ -1,7 +1,7 @@
 # Changelog
 
 ## UNRELEASED
-* Add change description here
+* [DOC] Add release instructions to README
 
 ## 1.8.3
 * Update cypress helpers to use `force: true`
