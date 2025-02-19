@@ -3,6 +3,9 @@
 ## UNRELEASED
 * [DOC] Add release instructions to README
 
+## 1.8.4
+* Update renovates (including esbuild security release)
+
 ## 1.8.3
 * Update cypress helpers to use `force: true`
 
