@@ -3,6 +3,9 @@
 ## UNRELEASED
 * [DOC] Add release instructions to README
 
+## 1.8.5
+* Update to Shoelace 2.3.2 (fixes Code Connect yarn audit issue)
+
 ## 1.8.4
 * Update renovates (including esbuild security release)
 
