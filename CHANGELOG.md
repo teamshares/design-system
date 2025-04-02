@@ -3,6 +3,9 @@
 ## UNRELEASED
 * [DOC] Add release instructions to README
 
+## 1.8.6.1
+* BUGFIX: report Teamshares.isProd correctly (and removed unused isStaging)
+
 ## 1.8.6
 * Update to Shoelace 2.4.0
 
