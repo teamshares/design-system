@@ -45,7 +45,6 @@ export default class Teamshares {
 
   static isTest = (Teamshares.env === "test");
   static isDev = (Teamshares.env === "development");
-  static isStaging = (Teamshares.env === "staging");
   static isProd = (Teamshares.env === "production");
 
   static start (config = {}) {
