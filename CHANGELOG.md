@@ -3,7 +3,7 @@
 ## UNRELEASED
 * [DOC] Add release instructions to README
 
-## 1.8.6.1
+## 1.8.7
 * BUGFIX: report Teamshares.isProd correctly (and removed unused isStaging)
 
 ## 1.8.6
