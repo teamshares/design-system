@@ -4,7 +4,7 @@
     "type": "git",
     "url": "https://github.com/teamshares/design-system.git"
   },
-  "version": "1.8.6",
+  "version": "1.8.6.1",
   "private": true,
   "files": [
     "scss/**/*.scss",

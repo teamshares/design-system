@@ -45,8 +45,7 @@ export default class Teamshares {
 
   static isTest = (Teamshares.env === "test");
   static isDev = (Teamshares.env === "development");
-  static isProd = (Teamshares.env === "staging");
-  static isStaging = (Teamshares.env === "production");
+  static isProd = (Teamshares.env === "production");
 
   static start (config = {}) {
     console.debug(`Initializing Teamshares JS. Environment: ${Teamshares.env}`);
