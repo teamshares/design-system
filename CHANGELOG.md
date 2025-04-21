@@ -3,6 +3,10 @@
 ## UNRELEASED
 * [DOC] Add release instructions to README
 
+## 1.8.8
+* Update to Shoelace 2.5.0
+* Update `ts-card` styles to match `sl-card`
+
 ## 1.8.7
 * BUGFIX: report Teamshares.isProd correctly (and removed unused isStaging)
 
