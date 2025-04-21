@@ -35,7 +35,7 @@
     "esbuild-plugin-resolve": "2.0.0",
     "eslint": "9.23.0",
     "eslint-config-standard": "17.1.0",
-    "eslint-plugin-cypress": "4.2.0",
+    "eslint-plugin-cypress": "4.2.1",
     "eslint-plugin-import": "2.31.0",
     "eslint-plugin-jest": "28.11.0",
     "eslint-plugin-n": "17.17.0",
@@ -46,7 +46,7 @@
     "postcss-flexbugs-fixes": "5.0.2",
     "postcss-mixins": "11.0.3",
     "postcss-modules": "6.0.1",
-    "postcss-preset-env": "10.1.5",
+    "postcss-preset-env": "10.1.6",
     "postcss-reporter": "7.1.0",
     "stylelint": "16.15.0",
     "stylelint-config-sass-guidelines": "12.1.0",
@@ -57,6 +57,6 @@
     "cypress": ">= 13.3.0",
     "cypress-split": ">= 1.24.6",
     "husky": "9.1.7",
-    "lint-staged": "15.5.0"
+    "lint-staged": "15.5.1"
   }
 }
