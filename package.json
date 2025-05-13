@@ -40,7 +40,7 @@
     "eslint-plugin-jest": "28.11.0",
     "eslint-plugin-n": "17.17.0",
     "eslint-plugin-promise": "7.2.1",
-    "globals": "16.0.0",
+    "globals": "16.1.0",
     "postcss": "8.5.3",
     "postcss-easy-import": "4.0.0",
     "postcss-flexbugs-fixes": "5.0.2",
