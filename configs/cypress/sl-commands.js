@@ -10,12 +10,12 @@
 // ***************************
 
 // clear
-Cypress.Commands.add("slClear", (selector, element="input") => {
+Cypress.Commands.add("slClear", (selector, element = "input") => {
   cy.get(selector).shadow().find(element).clear({ force: true });
 });
 
 // focus
-Cypress.Commands.add("slFocus", (selector, element="input") => {
+Cypress.Commands.add("slFocus", (selector, element = "input") => {
   cy.get(selector).shadow().find(element).focus({ force: true });
 });
 
@@ -50,20 +50,20 @@ Cypress.Commands.add("slCheckboxUncheck", (selector) => {
 
 // sl-checkbox-group value
 Cypress.Commands.add("slCheckboxGroupValue", (selector, expectedValue) => {
-  cy.get(selector).invoke('val').should('deep.equal', expectedValue);
+  cy.get(selector).invoke("val").should("deep.equal", expectedValue);
 });
 
 // sl-select select by option text
 Cypress.Commands.add("slSelectByOptionText", (selector, text) => {
   cy.get(selector)
-    .click({force: true})
+    .click({ force: true })
     .then($select => $select.find(`sl-option:contains("${text}")`))
-    .click({force: true});
+    .click({ force: true });
 });
 
 // sl-select select by option text
 Cypress.Commands.add("slSelectValue", (selector) => {
-  cy.get(selector).invoke('val');
+  cy.get(selector).invoke("val");
 });
 
 // sl-button click
