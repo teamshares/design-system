@@ -59,7 +59,7 @@ const prefixComponentClasses = () => {
       const identifier = matches[1].replaceAll("/", "--").replaceAll("_", "-");
       const wrapper = `.c-${identifier}`;
 
-      logger.info("================= Prefixing selectors in component", clc.cyanBright(filePath), "with", clc.cyan(wrapper));
+      logger.debug("================= Prefixing selectors in component", clc.cyanBright(filePath), "with", clc.cyan(wrapper));
       tracker.numRules = 0;
       root.walkRules(parseRule(wrapper));
       logger.debug(`\tProcessed ${tracker.numRules} rules`);
