@@ -41,7 +41,7 @@
     "eslint-plugin-n": "17.19.0",
     "eslint-plugin-promise": "7.2.1",
     "globals": "16.2.0",
-    "postcss": "8.5.5",
+    "postcss": "8.5.6",
     "postcss-easy-import": "4.0.0",
     "postcss-flexbugs-fixes": "5.0.2",
     "postcss-mixins": "11.0.3",
@@ -57,6 +57,6 @@
     "cypress": ">= 13.3.0",
     "cypress-split": ">= 1.24.6",
     "husky": "9.1.7",
-    "lint-staged": "16.1.0"
+    "lint-staged": "16.1.2"
   }
 }
