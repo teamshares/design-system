@@ -3,6 +3,9 @@
 ## UNRELEASED
 * [DOC] Add release instructions to README
 
+## 1.8.9
+* Update to Shoelace 2.6.0
+
 ## 1.8.8
 * Update to Shoelace 2.5.0
 * Update `ts-card` styles to match `sl-card`
