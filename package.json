@@ -28,7 +28,7 @@
     "@tailwindcss/typography": "0.5.16",
     "@teamshares/shoelace": "2.6.0",
     "cli-color": "2.0.4",
-    "cssnano": "7.0.7",
+    "cssnano": "7.1.0",
     "esbuild": "0.25.8",
     "esbuild-plugin-copy": "2.1.1",
     "esbuild-plugin-import-glob": "0.1.1",
