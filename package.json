@@ -28,7 +28,7 @@
     "@tailwindcss/typography": "0.5.16",
     "@teamshares/shoelace": "2.6.0",
     "cli-color": "2.0.4",
-    "cssnano": "7.1.0",
+    "cssnano": "7.1.1",
     "esbuild": "0.25.9",
     "esbuild-plugin-copy": "2.1.1",
     "esbuild-plugin-import-glob": "0.1.1",
@@ -53,10 +53,10 @@
     "tailwindcss": "3.4.17"
   },
   "devDependencies": {
-    "concurrently": "9.2.0",
+    "concurrently": "9.2.1",
     "cypress": ">= 13.3.0",
     "cypress-split": ">= 1.24.6",
     "husky": "9.1.7",
-    "lint-staged": "16.1.5"
+    "lint-staged": "16.1.6"
   }
 }
