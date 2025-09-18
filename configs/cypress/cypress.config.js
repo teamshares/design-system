@@ -1,8 +1,5 @@
 const { defineConfig } = require("cypress");
 const cypressSplit = require("cypress-split");
-const path = require("path");
-
-const pluginPath = path.join(process.cwd(), "cypress/plugins/index.js");
 
 const defaultConfig = {
   screenshotsFolder: "tmp/cypress_screenshots",
@@ -15,24 +12,22 @@ const defaultConfig = {
     openMode: 0,
   },
   chromeWebSecurity: false,
+  defaultCommandTimeout: 10000,
   e2e: {
     specPattern: "cypress/e2e/**/*.{js,jsx,ts,tsx}",
+    supportFile: "cypress/support/e2e.js",
+    baseUrl: "http://localhost:5678",
     experimentalStudio: true,
     experimentalRunAllSpecs: true,
 
     setupNodeEvents (on, config) {
-      require(pluginPath)(on, config);
       cypressSplit(on, config);
       return config;
     },
   },
 };
 
-const defineConfigWithTeamsharesDefaults = (overrides) => {
-  if (!overrides || !overrides.projectId) {
-    throw new Error("You must provide a projectId (and optionally config overrides) when calling defineConfigWithTeamsharesDefaults");
-  }
-
+const defineConfigWithTeamsharesDefaults = (overrides = {}) => {
   return defineConfig(Object.assign({}, defaultConfig, overrides));
 };
 

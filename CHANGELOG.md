@@ -1,7 +1,12 @@
 # Changelog
 
 ## UNRELEASED
+* N/A
+
+## 1.8.9.1
 * [DOC] Add release instructions to README
+* Consolidate cypress configs for new cypress-on-rails approach
+* Misc. Renovates
 
 ## 1.8.9
 * Update to Shoelace 2.6.0
