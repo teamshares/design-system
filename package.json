@@ -19,13 +19,13 @@
     "precommit": "lint-staged --quiet"
   },
   "dependencies": {
-    "@honeybadger-io/js": "6.12.1",
+    "@honeybadger-io/js": "6.12.2",
     "@hotwired/stimulus": "3.2.2",
     "@hotwired/turbo-rails": "7.3.0",
     "@rails/ujs": "7.0.8",
     "@tailwindcss/container-queries": "0.1.1",
     "@tailwindcss/forms": "0.5.10",
-    "@tailwindcss/typography": "0.5.16",
+    "@tailwindcss/typography": "0.5.18",
     "@teamshares/shoelace": "2.6.0",
     "cli-color": "2.0.4",
     "cssnano": "7.1.1",
@@ -33,12 +33,12 @@
     "esbuild-plugin-copy": "2.1.1",
     "esbuild-plugin-import-glob": "0.1.1",
     "esbuild-plugin-resolve": "2.0.0",
-    "eslint": "9.35.0",
+    "eslint": "9.36.0",
     "eslint-config-standard": "17.1.0",
     "eslint-plugin-cypress": "5.1.1",
     "eslint-plugin-import": "2.32.0",
     "eslint-plugin-jest": "28.14.0",
-    "eslint-plugin-n": "17.23.0",
+    "eslint-plugin-n": "17.23.1",
     "eslint-plugin-promise": "7.2.1",
     "globals": "16.4.0",
     "postcss": "8.5.6",
@@ -46,7 +46,7 @@
     "postcss-flexbugs-fixes": "5.0.2",
     "postcss-mixins": "11.0.3",
     "postcss-modules": "6.0.1",
-    "postcss-preset-env": "10.3.1",
+    "postcss-preset-env": "10.4.0",
     "postcss-reporter": "7.1.0",
     "stylelint": "15.11.0",
     "stylelint-config-sass-guidelines": "12.1.0",
@@ -57,6 +57,6 @@
     "cypress": ">= 13.3.0",
     "cypress-split": ">= 1.24.6",
     "husky": "9.1.7",
-    "lint-staged": "16.1.6"
+    "lint-staged": "16.2.0"
   }
 }
