@@ -3,8 +3,5 @@
   extends: [ "github>teamshares/renovate-config:lib.json5" ],
   "ignoreDeps": [
     "@rails/ujs",  // We don't want to update past 7.0.8 until this bug has been resolved: https://github.com/rails/rails/pull/49668
-    "stylelint",  // Pinned to 15.11.0 due to compatibility issues with @stylistic/stylelint-plugin@3.1.1
-                  // stylelint 16.x removed stylistic rules and has breaking changes that cause flatCache.load errors
-                  // Check if stylelint-config-sass-guidelines has been updated to support stylelint 16.x before upgrading
   ]
 }
