@@ -3,7 +3,10 @@
 ## UNRELEASED
 * N/A
 
-## 1.8.9.1
+## 1.8.11
+* Update stylelint to v16
+
+## 1.8.10
 * [DOC] Add release instructions to README
 * Consolidate cypress configs for new cypress-on-rails approach
 * Misc. Renovates
