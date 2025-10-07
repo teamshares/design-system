@@ -11,15 +11,6 @@ const logger = {
 
 const tracker = { numRules: 0 };
 
-// Simple function to find Shoelace components based on common patterns
-// This is a basic implementation that can be enhanced later
-const findShoelaceComponent = (wrapper) => {
-  // For now, we'll use a simple approach that looks for sl-card
-  // This matches the pattern in the exit steps component: sl-card.w-full.company-exit-steps
-  // We'll construct a selector that targets the Shoelace component with the wrapper class
-  return `${wrapper} sl-card`;
-};
-
 const parseRule = (wrapper) => (rule) => {
   tracker.numRules++;
 
@@ -30,17 +21,11 @@ const parseRule = (wrapper) => (rule) => {
   } else if (rule.selector.startsWith("._base")) {
     // Check if this is a ::part() selector that should be handled specially
     if (rule.selector.includes("::part(")) {
-      // For ::part() selectors, we need to find the Shoelace component in the template
-      // For now, we'll use a simple approach that looks for common Shoelace components
-      const shoelaceComponent = findShoelaceComponent(wrapper);
-      if (shoelaceComponent) {
-        const newSelector = rule.selector.replace("._base", shoelaceComponent);
-        logger.debug(`\tReplacing ${clc.whiteBright(rule.selector)} with ${clc.whiteBright(newSelector)} (Shoelace component)`);
-        rule.selector = newSelector;
-      } else {
-        logger.warn(clc.red("\tDROPPING SELECTOR:", clc.redBright(rule.selector), clc.red("(could not find Shoelace component for ::part() selector)")));
-        rule.remove();
-      }
+      // For ::part() selectors, just replace ._base with the wrapper class
+      // The ::part() will target the Shoelace component inside the wrapper
+      const newSelector = rule.selector.replace("._base", wrapper);
+      logger.debug(`\tReplacing ${clc.whiteBright(rule.selector)} with ${clc.whiteBright(newSelector)} (::part() selector)`);
+      rule.selector = newSelector;
     } else {
       // We do not support nesting anything under ._base (just make it a top-level rule and it'll be auto-nested)
       logger.warn(clc.red("\tDROPPING SELECTOR:", clc.redBright(rule.selector), clc.red("(do not nest anything under ._base)")));
