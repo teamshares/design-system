@@ -3,6 +3,9 @@
 ## UNRELEASED
 * N/A
 
+## 1.8.12
+* Fix ::part() selectors under ._base for Shoelace components
+
 ## 1.8.11
 * Update stylelint to v16
 
