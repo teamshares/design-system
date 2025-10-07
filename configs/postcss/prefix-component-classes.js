@@ -11,6 +11,30 @@ const logger = {
 
 const tracker = { numRules: 0 };
 
+// Simple function to find Shoelace components based on common patterns
+// This is a basic implementation that can be enhanced later
+const findShoelaceComponent = (wrapper) => {
+  // Common Shoelace components that might be root elements
+  const commonShoelaceComponents = [
+    'sl-card',
+    'sl-button',
+    'sl-input',
+    'sl-select',
+    'sl-dialog',
+    'sl-drawer',
+    'sl-dropdown',
+    'sl-menu',
+    'sl-tab-group',
+    'sl-details',
+    'sl-accordion'
+  ];
+
+  // For now, we'll use a simple approach that looks for sl-card with a class
+  // This matches the pattern in the exit steps component: sl-card.w-full.company-exit-steps
+  // We'll construct a selector that targets the Shoelace component with the wrapper class
+  return `${wrapper} sl-card`;
+};
+
 const parseRule = (wrapper) => (rule) => {
   tracker.numRules++;
 
@@ -19,9 +43,24 @@ const parseRule = (wrapper) => (rule) => {
     logger.debug(`\tReplacing ${clc.whiteBright(rule.selector)} with ${clc.whiteBright(wrapper)}`);
     rule.selector = wrapper;
   } else if (rule.selector.startsWith("._base")) {
-    // We do not support nesting anything under ._base (just make it a top-level rule and it'll be auto-nested)
-    logger.warn(clc.red("\tDROPPING SELECTOR:", clc.redBright(rule.selector), clc.red("(do not nest anything under ._base)")));
-    rule.remove();
+    // Check if this is a ::part() selector that should be handled specially
+    if (rule.selector.includes("::part(")) {
+      // For ::part() selectors, we need to find the Shoelace component in the template
+      // For now, we'll use a simple approach that looks for common Shoelace components
+      const shoelaceComponent = findShoelaceComponent(wrapper);
+      if (shoelaceComponent) {
+        const newSelector = rule.selector.replace("._base", shoelaceComponent);
+        logger.debug(`\tReplacing ${clc.whiteBright(rule.selector)} with ${clc.whiteBright(newSelector)} (Shoelace component)`);
+        rule.selector = newSelector;
+      } else {
+        logger.warn(clc.red("\tDROPPING SELECTOR:", clc.redBright(rule.selector), clc.red("(could not find Shoelace component for ::part() selector)")));
+        rule.remove();
+      }
+    } else {
+      // We do not support nesting anything under ._base (just make it a top-level rule and it'll be auto-nested)
+      logger.warn(clc.red("\tDROPPING SELECTOR:", clc.redBright(rule.selector), clc.red("(do not nest anything under ._base)")));
+      rule.remove();
+    }
   } else if (rule.selector.startsWith("._component")) {
     // DEPRECATED: ideally we'd remove all ._component selectors, but for now we'll just strip the wrapper
     // TODO: we don't support rules with commas here, so remove this once confirmed removed from all components
