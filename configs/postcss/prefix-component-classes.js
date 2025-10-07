@@ -19,9 +19,9 @@ const parseRule = (wrapper) => (rule) => {
     logger.debug(`\tReplacing ${clc.whiteBright(rule.selector)} with ${clc.whiteBright(wrapper)}`);
     rule.selector = wrapper;
   } else if (rule.selector.startsWith("._base")) {
-    // Check if this is a ::part() selector that should be handled specially
-    if (rule.selector.includes("::part(")) {
-      // For ::part() selectors, just replace ._base with the wrapper class
+    // Check if this is a ::part() selector directly under ._base (e.g., ._base::part(header))
+    if (rule.selector.match(/^\._base::part\(/)) {
+      // For ::part() selectors directly under ._base, just replace ._base with the wrapper class
       // The ::part() will target the Shoelace component inside the wrapper
       const newSelector = rule.selector.replace("._base", wrapper);
       logger.debug(`\tReplacing ${clc.whiteBright(rule.selector)} with ${clc.whiteBright(newSelector)} (::part() selector)`);
