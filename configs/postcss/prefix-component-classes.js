@@ -14,22 +14,7 @@ const tracker = { numRules: 0 };
 // Simple function to find Shoelace components based on common patterns
 // This is a basic implementation that can be enhanced later
 const findShoelaceComponent = (wrapper) => {
-  // Common Shoelace components that might be root elements
-  const commonShoelaceComponents = [
-    'sl-card',
-    'sl-button',
-    'sl-input',
-    'sl-select',
-    'sl-dialog',
-    'sl-drawer',
-    'sl-dropdown',
-    'sl-menu',
-    'sl-tab-group',
-    'sl-details',
-    'sl-accordion'
-  ];
-
-  // For now, we'll use a simple approach that looks for sl-card with a class
+  // For now, we'll use a simple approach that looks for sl-card
   // This matches the pattern in the exit steps component: sl-card.w-full.company-exit-steps
   // We'll construct a selector that targets the Shoelace component with the wrapper class
   return `${wrapper} sl-card`;
