@@ -19,9 +19,18 @@ const parseRule = (wrapper) => (rule) => {
     logger.debug(`\tReplacing ${clc.whiteBright(rule.selector)} with ${clc.whiteBright(wrapper)}`);
     rule.selector = wrapper;
   } else if (rule.selector.startsWith("._base")) {
-    // We do not support nesting anything under ._base (just make it a top-level rule and it'll be auto-nested)
-    logger.warn(clc.red("\tDROPPING SELECTOR:", clc.redBright(rule.selector), clc.red("(do not nest anything under ._base)")));
-    rule.remove();
+    // Check if this is a ::part() selector directly under ._base (e.g., ._base::part(header))
+    if (rule.selector.match(/^\._base::part\(/)) {
+      // For ::part() selectors directly under ._base, just replace ._base with the wrapper class
+      // The ::part() will target the Shoelace component inside the wrapper
+      const newSelector = rule.selector.replace("._base", wrapper);
+      logger.debug(`\tReplacing ${clc.whiteBright(rule.selector)} with ${clc.whiteBright(newSelector)} (::part() selector)`);
+      rule.selector = newSelector;
+    } else {
+      // We do not support nesting anything under ._base (just make it a top-level rule and it'll be auto-nested)
+      logger.warn(clc.red("\tDROPPING SELECTOR:", clc.redBright(rule.selector), clc.red("(do not nest anything under ._base)")));
+      rule.remove();
+    }
   } else if (rule.selector.startsWith("._component")) {
     // DEPRECATED: ideally we'd remove all ._component selectors, but for now we'll just strip the wrapper
     // TODO: we don't support rules with commas here, so remove this once confirmed removed from all components
