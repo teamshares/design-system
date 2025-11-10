@@ -29,7 +29,7 @@
     "@teamshares/shoelace": "2.6.0",
     "cli-color": "2.0.4",
     "cssnano": "7.1.2",
-    "esbuild": "0.25.12",
+    "esbuild": "0.27.0",
     "esbuild-plugin-copy": "2.1.1",
     "esbuild-plugin-import-glob": "0.1.1",
     "esbuild-plugin-resolve": "2.0.0",
