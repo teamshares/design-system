@@ -3,6 +3,9 @@
 ## UNRELEASED
 * N/A
 
+## 1.8.13
+* [Renovates](https://github.com/teamshares/design-system/compare/v1.8.12...1.8.13)
+
 ## 1.8.12
 * Fix ::part() selectors under ._base for Shoelace components
 
