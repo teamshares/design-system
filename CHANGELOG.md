@@ -3,6 +3,10 @@
 ## UNRELEASED
 * N/A
 
+## 1.8.14
+* **PostCSS `prefix-component-classes`:** support `._base.<modifier>` compound selectors on the generated wrapper (e.g. `._base.warning` → `.c-….warning`), matching the former `._component` behavior.
+* **Breaking for sidecar SCSS still using `._component`:** the `._component` branch is removed — migrate `._component.foo` → `._base.foo`.
+
 ## 1.8.13
 * [Renovates](https://github.com/teamshares/design-system/compare/v1.8.12...1.8.13)
 

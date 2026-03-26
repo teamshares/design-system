@@ -26,17 +26,16 @@ const parseRule = (wrapper) => (rule) => {
       const newSelector = rule.selector.replace("._base", wrapper);
       logger.debug(`\tReplacing ${clc.whiteBright(rule.selector)} with ${clc.whiteBright(newSelector)} (::part() selector)`);
       rule.selector = newSelector;
+    } else if (rule.selector.match(/^\._base\./)) {
+      // Compound selectors on the wrapper root, e.g. ._base.warning → .c-path.warning (same as former ._component)
+      const newSelector = rule.selector.replace(/^\._base/, wrapper);
+      logger.debug(`\tReplacing ${clc.whiteBright(rule.selector)} with ${clc.whiteBright(newSelector)} (._base modifier compound)`);
+      rule.selector = newSelector;
     } else {
       // We do not support nesting anything under ._base (just make it a top-level rule and it'll be auto-nested)
       logger.warn(clc.red("\tDROPPING SELECTOR:", clc.redBright(rule.selector), clc.red("(do not nest anything under ._base)")));
       rule.remove();
     }
-  } else if (rule.selector.startsWith("._component")) {
-    // DEPRECATED: ideally we'd remove all ._component selectors, but for now we'll just strip the wrapper
-    // TODO: we don't support rules with commas here, so remove this once confirmed removed from all components
-    const new_selector = `${wrapper}${rule.selector.replace("._component", "")}`;
-    logger.info(clc.yellow(`\tIgnoring deprecated ._component wrapper on ${clc.yellowBright(rule.selector)}`));
-    rule.selector = new_selector;
   } else {
     if (!rule.selector.includes(",")) {
       // Default case: prefix the selector with the component class
