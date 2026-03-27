@@ -243,7 +243,8 @@ sl-checkbox:focus-within[data-user-invalid]::part(control) {
 }
 
 
-// Applies the same error styles based on 'field_with_errors' class rather than [data-user-invalid]
+// Rails SimpleForm + SharedUI ts_form_for: `:shoelace_default` wrapper uses `error_class: :field_with_errors`.
+// Applies the same error styles as [data-user-invalid] when the server re-renders invalid fields.
 .field_with_errors {
   // Add red-600 border for input borders
   sl-input::part(base),
