@@ -78,7 +78,6 @@ const sharedConfig = {
     EsbuildPluginResolve({
       "@teamshares-rails": path.join(tsRailsPath, "app/frontend"),
       "@app": path.join(APP_ROOT, "app/frontend"),
-      "@health-engine": path.join(APP_ROOT, "health_insurance/app/frontend"),
     }),
     importGlobPlugin.default(),
     copy({
