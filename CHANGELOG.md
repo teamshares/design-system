@@ -3,6 +3,9 @@
 ## UNRELEASED
 * N/A
 
+## 1.8.15
+* Remove hard-coded workarounds for OS's health_insurance engine (no longer necessary)
+
 ## 1.8.14
 * **PostCSS `prefix-component-classes`:** support `._base.<modifier>` compound selectors on the generated wrapper (e.g. `._base.warning` → `.c-….warning`), matching the former `._component` behavior.
 * **Breaking for sidecar SCSS still using `._component`:** the `._component` branch is removed — migrate `._component.foo` → `._base.foo`.
