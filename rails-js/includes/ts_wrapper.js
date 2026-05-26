@@ -39,6 +39,10 @@ class TsWrapper extends HTMLElement {
     topLevelElement.classList = `${this.className} ${topLevelElement.classList}`;
 
     /** Re-parent the top-level element and remove the ts-wrapper element from the DOM */
+    // parentNode can be null when Turbo connects elements into a detached subtree during
+    // frame rendering (e.g. Bardo's preservingPermanentElements). Safe to bail out: the
+    // element is not in the document so there is nothing to unwrap.
+    if (!this.parentNode) return;
     this.parentNode.insertBefore(topLevelElement, this);
     this.remove();
   }
