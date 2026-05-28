@@ -374,3 +374,16 @@ sl-checkbox:focus-within[data-user-invalid]::part(control) {
     @apply border-red-600;
   }
 }
+
+// Tailwind base resets list-style globally; restore inside ActionText rendered output.
+.trix-content {
+  ul {
+    list-style-type: disc;
+    padding-left: 2em;
+  }
+
+  ol {
+    list-style-type: decimal;
+    padding-left: 2em;
+  }
+}
