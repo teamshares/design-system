@@ -3,6 +3,14 @@
 ## UNRELEASED
 * N/A
 
+## 1.9.0
+* Major dependency updates — eslint v10, stylelint v17, eslint-plugin-n v18, eslint-plugin-cypress v6, eslint-plugin-jest v29, postcss-mixins v12 (verified no new lint errors in downstream apps)
+* Fix: `configs/eslint.config.js` — use `require("eslint-plugin-n").default` for eslint-plugin-n v18 ESM compat
+* Fix: rename `.lintstagedrc` → `.lintstagedrc.json` for lint-staged v17 YAML/JSON disambiguation
+* Fix TsWrapper: guard against null parentNode in connectedCallback
+* Bump Node.js to 24.15.0
+* [Renovates](https://github.com/teamshares/design-system/compare/v1.8.15...v1.9.0)
+
 ## 1.8.15
 * Remove hard-coded workarounds for OS's health_insurance engine (no longer necessary)
 
