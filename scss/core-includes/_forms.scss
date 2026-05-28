@@ -292,7 +292,7 @@ sl-checkbox:focus-within[data-user-invalid]::part(control) {
 }
 
 .ts-rich-text {
-  @apply border border-gray-600 rounded-md;
+  @apply border border-gray-300 rounded-md;
   position: relative;
 
   trix-toolbar {
@@ -359,7 +359,7 @@ sl-checkbox:focus-within[data-user-invalid]::part(control) {
   }
 
   &:focus-within {
-    @apply border-gray-900;
+    @apply border-gray-600;
   }
 
   &:has(.field_with_errors) {
