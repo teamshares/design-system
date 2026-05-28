@@ -301,12 +301,20 @@ sl-checkbox:focus-within[data-user-invalid]::part(control) {
     border-radius: 0.375rem 0.375rem 0 0;
     @apply bg-gray-50 border-b border-gray-200;
 
+    // Remove Trix's default bordered button-group boxes — the toolbar bg + bottom
+    // border already provide the visual separation we need.
     .trix-button-group {
-      @apply border-gray-200;
+      @apply border-0 rounded-none mb-0;
+    }
+
+    // Remove Trix's per-button left-border separators; use subtle divider instead.
+    .trix-button-group:not(:first-child) {
+      @apply border-l border-gray-200;
     }
 
     .trix-button {
       @apply text-gray-700 bg-transparent border-0;
+      line-height: normal;
 
       &:not(:disabled):hover {
         @apply bg-gray-100 text-gray-900;
@@ -327,6 +335,7 @@ sl-checkbox:focus-within[data-user-invalid]::part(control) {
     }
   }
 
+  // Remove Trix's own border — our .ts-rich-text wrapper provides the single outer border.
   trix-editor {
     @apply border-0 rounded-none;
     display: block;
