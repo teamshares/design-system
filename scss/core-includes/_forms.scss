@@ -297,24 +297,24 @@ sl-checkbox:focus-within[data-user-invalid]::part(control) {
 
   trix-toolbar {
     // Match outer border-radius on top so toolbar background doesn't bleed
-    // through corners. Avoids overflow: hidden which would clip the link dialog.
+    // through corners. position: relative anchors the absolutely-positioned
+    // link dialog to the toolbar, not to the outer .ts-rich-text container.
     border-radius: 0.375rem 0.375rem 0 0;
+    position: relative;
     @apply bg-gray-50 border-b border-gray-200;
 
-    // Remove Trix's default bordered button-group boxes — the toolbar bg + bottom
-    // border already provide the visual separation we need.
+    // Remove Trix's default bordered button-group boxes.
     .trix-button-group {
       @apply border-0 rounded-none mb-0;
     }
 
-    // Remove Trix's per-button left-border separators; use subtle divider instead.
+    // Subtle divider between groups only.
     .trix-button-group:not(:first-child) {
       @apply border-l border-gray-200;
     }
 
     .trix-button {
       @apply text-gray-700 bg-transparent border-0;
-      line-height: normal;
 
       &:not(:disabled):hover {
         @apply bg-gray-100 text-gray-900;
@@ -345,6 +345,17 @@ sl-checkbox:focus-within[data-user-invalid]::part(control) {
     font-family: inherit;
     line-height: 1.5rem;
     outline: none;
+
+    // Tailwind base resets list-style to none; restore for editor content.
+    ul {
+      list-style-type: disc;
+      padding-left: 2em;
+    }
+
+    ol {
+      list-style-type: decimal;
+      padding-left: 2em;
+    }
   }
 
   &:focus-within {
