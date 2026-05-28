@@ -6,7 +6,7 @@ const jestPlugin = require("eslint-plugin-jest");
 const standard = require("eslint-config-standard");
 
 // These three are required by eslint-plugin-standard's rules
-const nPlugin = require("eslint-plugin-n");
+const nPlugin = require("eslint-plugin-n").default;
 const promisePlugin = require("eslint-plugin-promise");
 const importPlugin = require("eslint-plugin-import");
 
