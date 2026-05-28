@@ -308,8 +308,8 @@ sl-checkbox:focus-within[data-user-invalid]::part(control) {
       @apply border-0 rounded-none mb-0;
     }
 
-    // Subtle divider between groups only.
-    .trix-button-group:not(:first-child) {
+    // Subtle divider between toolbar groups only (not inside the link dialog).
+    .trix-button-row .trix-button-group:not(:first-child) {
       @apply border-l border-gray-200;
     }
 
