@@ -19,6 +19,7 @@
     "precommit": "lint-staged --quiet"
   },
   "dependencies": {
+    "@eslint/js": "10.0.1",
     "@honeybadger-io/js": "6.14.0",
     "@hotwired/stimulus": "3.2.2",
     "@hotwired/turbo-rails": "7.3.0",
@@ -33,7 +34,6 @@
     "esbuild-plugin-copy": "2.1.1",
     "esbuild-plugin-import-glob": "0.1.1",
     "esbuild-plugin-resolve": "2.0.0",
-    "@eslint/js": "10.0.1",
     "eslint": "10.4.0",
     "eslint-config-standard": "17.1.0",
     "eslint-plugin-cypress": "6.4.1",
@@ -51,7 +51,8 @@
     "postcss-reporter": "7.1.0",
     "stylelint": "17.12.0",
     "stylelint-config-sass-guidelines": "13.0.0",
-    "tailwindcss": "3.4.19"
+    "tailwindcss": "3.4.19",
+    "trix": "2.1.19"
   },
   "devDependencies": {
     "concurrently": "10.0.0",
