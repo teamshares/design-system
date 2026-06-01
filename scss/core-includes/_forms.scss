@@ -283,7 +283,7 @@ sl-checkbox:focus-within[data-user-invalid]::part(control) {
 
 .ts-rich-text-field {
   .ts-input__label {
-    @apply block mb-1;
+    @apply block mb-1 text-sm;
   }
 
   .ts-rich-text__required {
@@ -306,6 +306,11 @@ sl-checkbox:focus-within[data-user-invalid]::part(control) {
     // Remove Trix's default bordered button-group boxes.
     .trix-button-group {
       @apply border-0 rounded-none mb-0;
+    }
+
+    // Add vertical breathing room to the toolbar row.
+    .trix-button-row {
+      @apply py-1;
     }
 
     // Subtle divider between toolbar groups only (not inside the link dialog).
@@ -385,5 +390,17 @@ sl-checkbox:focus-within[data-user-invalid]::part(control) {
   ol {
     list-style-type: decimal;
     padding-left: 2em;
+  }
+
+  a {
+    @apply text-blue-500;
+  }
+
+  blockquote {
+    @apply border-l-4 border-gray-300 m-1 pl-2.5;
+  }
+
+  figcaption {
+    display: none;
   }
 }
