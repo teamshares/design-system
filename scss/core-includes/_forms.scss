@@ -275,6 +275,132 @@ sl-checkbox:focus-within[data-user-invalid]::part(control) {
 
     &::first-letter {
       text-transform: capitalize;
-    }    
+    }
+  }
+}
+
+// ts-rich-text: shoelace-consistent wrapper for form.rich_text_area (SharedUI::FormHelper::FormBuilder)
+
+.ts-rich-text-field {
+  .ts-input__label {
+    @apply block mb-1 text-sm;
+  }
+
+  .ts-rich-text__required {
+    @apply text-red-600;
+  }
+}
+
+.ts-rich-text {
+  @apply border border-gray-300 rounded-md;
+  position: relative;
+
+  trix-toolbar {
+    // Match outer border-radius on top so toolbar background doesn't bleed
+    // through corners. position: relative anchors the absolutely-positioned
+    // link dialog to the toolbar, not to the outer .ts-rich-text container.
+    border-radius: 0.375rem 0.375rem 0 0;
+    position: relative;
+    @apply bg-gray-50 border-b border-gray-200;
+
+    // Remove Trix's default bordered button-group boxes.
+    .trix-button-group {
+      @apply border-0 rounded-none mb-0;
+    }
+
+    // Add vertical breathing room to the toolbar row.
+    .trix-button-row {
+      @apply py-1;
+    }
+
+    // Subtle divider between toolbar groups only (not inside the link dialog).
+    .trix-button-row .trix-button-group:not(:first-child) {
+      @apply border-l border-gray-200;
+    }
+
+    // Icon toolbar buttons — borderless, subtle opacity on icons
+    .trix-button:not(.trix-button--dialog) {
+      @apply text-gray-700 bg-transparent border-0;
+
+      &:not(:disabled):hover {
+        @apply bg-gray-100 text-gray-900;
+      }
+
+      &.trix-active {
+        @apply bg-gray-100 text-gray-900;
+      }
+    }
+
+    .trix-button--icon::before {
+      opacity: 0.6;
+    }
+
+    .trix-button--icon.trix-active::before,
+    .trix-button--icon:not(:disabled):hover::before {
+      opacity: 0.9;
+    }
+
+    // Link dialog — inset slightly so it doesn't span the exact wrapper width
+    .trix-dialog {
+      left: 0.25rem;
+      right: 0.25rem;
+      border-radius: 0 0 0.375rem 0.375rem;
+    }
+  }
+
+  // Remove Trix's own border — our .ts-rich-text wrapper provides the single outer border.
+  trix-editor {
+    @apply border-0 rounded-none;
+    display: block;
+    min-height: 10rem;
+    padding: 0.5rem 0.75rem;
+    font-size: 1rem;
+    font-family: inherit;
+    line-height: 1.5rem;
+    outline: none;
+
+    // Tailwind base resets list-style to none; restore for editor content.
+    ul {
+      list-style-type: disc;
+      padding-left: 2em;
+    }
+
+    ol {
+      list-style-type: decimal;
+      padding-left: 2em;
+    }
+  }
+
+  &:focus-within {
+    @apply border-gray-600;
+  }
+
+  &:has(.field_with_errors) {
+    @apply border-red-600;
+  }
+}
+
+// Tailwind base resets list-style globally; restore inside ActionText rendered output.
+.trix-content {
+  ul {
+    list-style-type: disc;
+    padding-left: 2em;
+  }
+
+  ol {
+    list-style-type: decimal;
+    padding-left: 2em;
+  }
+
+  a {
+    @apply text-blue-500;
+  }
+
+  blockquote {
+    @apply border-l-4 border-gray-300 m-1 pl-2.5;
+  }
+
+  figcaption {
+    display: none;
   }
 }
