@@ -1,3 +1,6 @@
+// process.env.RAILS_ENV is replaced at compile time by esbuild (see configs/esbuild.config.js)
+/* global process */
+
 /**
   * All view components will be wrapped in this element.
  *
@@ -139,7 +142,10 @@ class TsWrapper extends HTMLElement {
   hoistOrphanedValues (mount, controller) {
     const prefix = `data-${controller}-`;
     const isValue = (name) => name.startsWith(prefix) && name.endsWith("-value");
-    const devMode = window.Teamshares?.isDev || window.Teamshares?.isTest;
+    // process.env.RAILS_ENV is a compile-time constant (esbuild define) — using it here avoids
+    // a timing issue where connectedCallback fires (when customElements.define upgrades existing
+    // elements) before window.Teamshares is set, which happens later in index.js evaluation.
+    const devMode = process.env.RAILS_ENV !== "production";
 
     const walk = (node) => {
       for (const child of node.children) {
