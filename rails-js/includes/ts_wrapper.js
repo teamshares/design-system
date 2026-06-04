@@ -6,6 +6,27 @@
  * It also provides a hook for us to add shared logging, etc. in the future.
  */
 
+/**
+ * Rewrite `controller` placeholder attributes and action values in a cloned HTML string,
+ * replacing them with the real Stimulus identifier.
+ *
+ * Use this when inserting <template> content at runtime — template fragment children live in
+ * `template.content` (a DocumentFragment outside the regular DOM tree), so ts-wrapper's hydration
+ * traversal never enters them and any `controller` placeholders survive verbatim into cloned chunks.
+ *
+ * Example:
+ *   const html = Teamshares.tsWrapper.rewriteCloned(this.rowTemplateTarget.innerHTML, this.identifier);
+ *   this.listTarget.insertAdjacentHTML("beforeend", html);
+ *
+ * Note: the bare `controller#action` shorthand (without a preceding `->`) is not rewritten here
+ * because template contexts are action-descriptor strings, not standalone prefixes.
+ */
+export function rewriteCloned (html, identifier) {
+  return html
+    .replaceAll("->controller#", `->${identifier}#`)
+    .replaceAll(/data-controller-([a-z0-9-]+)/g, `data-${identifier}-$1`);
+}
+
 class TsWrapper extends HTMLElement {
   connectedCallback () {
     let topLevelElement;

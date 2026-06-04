@@ -4,7 +4,7 @@ import Honeybadger from "@honeybadger-io/js";
 import Rails from "@rails/ujs";
 import { Turbo } from "@hotwired/turbo-rails";
 
-import "./includes/ts_wrapper";
+import { rewriteCloned } from "./includes/ts_wrapper";
 import { registerStimulusControllers } from "./controllers";
 
 /** ********************************************************** */
@@ -46,6 +46,9 @@ export default class Teamshares {
   static isTest = (Teamshares.env === "test");
   static isDev = (Teamshares.env === "development");
   static isProd = (Teamshares.env === "production");
+
+  /** Utilities for working with ts-wrapper in Stimulus controllers */
+  static tsWrapper = { rewriteCloned };
 
   static start (config = {}) {
     console.debug(`Initializing Teamshares JS. Environment: ${Teamshares.env}`);
