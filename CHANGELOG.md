@@ -1,7 +1,8 @@
 # Changelog
 
 ## UNRELEASED
-* N/A
+* TsWrapper: transparently hoist a Stimulus `*-value` attribute up to the controller mount when it lands on a descendant (Stimulus reads static values only from `this.element`; a value on a descendant silently fell back to the type default). Throws in dev/test when a conflict cannot be auto-resolved; resolves deterministically in production.
+* TsWrapper: add `Teamshares.tsWrapper.rewriteCloned(html, identifier)` — rewrite `controller` placeholder attributes and action values in a cloned HTML string, for use when inserting `<template>` content at runtime (ts-wrapper's hydration traversal does not enter inert template fragments).
 
 ## 1.9.0
 * Major dependency updates — eslint v10, stylelint v17, eslint-plugin-n v18, eslint-plugin-cypress v6, eslint-plugin-jest v29, postcss-mixins v12 (verified no new lint errors in downstream apps)

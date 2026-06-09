@@ -1,3 +1,6 @@
+// process.env.RAILS_ENV is replaced at compile time by esbuild (see configs/esbuild.config.js)
+/* global process */
+
 /**
   * All view components will be wrapped in this element.
  *
@@ -5,6 +8,27 @@
  * Stimulus controllers and a unique CSS class to target component styles.
  * It also provides a hook for us to add shared logging, etc. in the future.
  */
+
+/**
+ * Rewrite `controller` placeholder attributes and action values in a cloned HTML string,
+ * replacing them with the real Stimulus identifier.
+ *
+ * Use this when inserting <template> content at runtime — template fragment children live in
+ * `template.content` (a DocumentFragment outside the regular DOM tree), so ts-wrapper's hydration
+ * traversal never enters them and any `controller` placeholders survive verbatim into cloned chunks.
+ *
+ * Example:
+ *   const html = Teamshares.tsWrapper.rewriteCloned(this.rowTemplateTarget.innerHTML, this.identifier);
+ *   this.listTarget.insertAdjacentHTML("beforeend", html);
+ *
+ * Note: the bare `controller#action` shorthand (without a preceding `->`) is not rewritten here
+ * because template contexts are action-descriptor strings, not standalone prefixes.
+ */
+export function rewriteCloned (html, identifier) {
+  return html
+    .replaceAll("->controller#", `->${identifier}#`)
+    .replaceAll(/data-controller-([a-z0-9-]+)/g, `data-${identifier}-$1`);
+}
 
 class TsWrapper extends HTMLElement {
   connectedCallback () {
@@ -34,6 +58,17 @@ class TsWrapper extends HTMLElement {
 
     /** Find generic data-action attributes and inject the controller name */
     this.replaceDataAttributes(topLevelElement, controller);
+
+    /**
+     * Hoist any Stimulus *-value attributes that landed on a descendant of the mount up to the
+     * mount itself — Stimulus reads static values only from this.element (the controller root),
+     * so a value attribute on a descendant always silently falls back to the type default.
+     *
+     * Throws in dev/test when a conflict cannot be auto-resolved (the mount already has the same
+     * attribute with a different value, meaning two parts of the template disagree). In production,
+     * the mount value wins and the stray descendant copy is silently dropped.
+     */
+    this.hoistOrphanedValues(topLevelElement, controller);
 
     /** Add the generated class as the first in the list */
     topLevelElement.classList = `${this.className} ${topLevelElement.classList}`;
@@ -89,6 +124,63 @@ class TsWrapper extends HTMLElement {
       }
     }
     traverse(rootNode);
+  }
+
+  /**
+   * Move any `data-<controller>-*-value` attributes from descendants of the mount up to the
+   * mount element itself. Stimulus reads `static values` only from `this.element` (the controller
+   * root); the existing rewrite traversal correctly renames the attribute but cannot move it.
+   *
+   * Clean hoists (single occurrence, no pre-existing mount copy): always performed in all envs.
+   * Conflicts (mount already has the attribute with a different value, or two descendants disagree):
+   *   - dev/test  → throw with a descriptive message so the bug is surfaced at hydration.
+   *   - production → mount value wins; duplicate is silently dropped (deterministic, no throw).
+   *
+   * Nested <ts-wrapper> subtrees are skipped — they own their own controller identifier and value
+   * attributes; their presence cannot produce a conflict with ours.
+   */
+  hoistOrphanedValues (mount, controller) {
+    const prefix = `data-${controller}-`;
+    const isValue = (name) => name.startsWith(prefix) && name.endsWith("-value");
+    // process.env.RAILS_ENV is a compile-time constant (esbuild define) — using it here avoids
+    // a timing issue where connectedCallback fires (when customElements.define upgrades existing
+    // elements) before window.Teamshares is set, which happens later in index.js evaluation.
+    const devMode = process.env.RAILS_ENV !== "production";
+
+    const walk = (node) => {
+      for (const child of node.children) {
+        if (child.nodeName === "TS-WRAPPER") continue; // nested component owns its own values
+
+        // Snapshot attribute names first — mutating attributes while iterating the live NamedNodeMap
+        // changes the collection length and skips entries.
+        const names = [];
+        for (const attr of child.attributes) {
+          if (isValue(attr.name)) names.push(attr.name);
+        }
+
+        for (const name of names) {
+          const value = child.getAttribute(name);
+          if (mount.hasAttribute(name)) {
+            // The mount already carries this value (either set in the template markup directly, or
+            // hoisted here from an earlier descendant). If the values differ it's an author error.
+            if (devMode && mount.getAttribute(name) !== value) {
+              throw new Error(
+                `ts-wrapper: "${name}" is set on both the "${controller}" controller mount ` +
+                `("${mount.getAttribute(name)}") and a <${child.nodeName.toLowerCase()}> descendant ` +
+                `("${value}"). Stimulus reads static values only from the mount — remove the duplicate.`,
+              );
+            }
+            child.removeAttribute(name); // prod / identical values: mount wins, drop the stray copy
+          } else {
+            mount.setAttribute(name, value); // clean hoist
+            child.removeAttribute(name);
+          }
+        }
+
+        walk(child);
+      }
+    };
+    walk(mount);
   }
 }
 
