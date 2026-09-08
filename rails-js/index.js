@@ -84,7 +84,22 @@ export default class Teamshares {
     };
     Rails.linkClickSelector += ", sl-button[href][data-confirm], sl-button[href][data-method], sl-button[href][data-remote]:not([disabled]), sl-button[href][data-disable-with], sl-button[href][data-disable]";
     Rails.inputChangeSelector += ", sl-select[data-remote], sl-input[data-remote], sl-textarea[data-remote]";
-    Rails.formInputClickSelector += ", form:not([data-turbo=true]) sl-input[type=submit], form:not([data-turbo=true]) sl-input[type=image], form:not([data-turbo=true]) sl-button[type=submit], form:not([data-turbo=true]) sl-button:not([type]), sl-input[type=submit][form], sl-input[type=image][form], sl-button[type=submit][form], sl-button[form]:not([type])";
+    // Deliberately NOT extending formInputClickSelector with Shoelace elements. A Shoelace element
+    // cannot be a Rails UJS submitter: `form` on it is a plain string property (`@property()`, the
+    // attribute's value), not the HTMLFormElement that UJS's formSubmitButtonClick expects. It does
+    // `setData(button.form, "ujs:submit-button", …)`, so with a `form` attribute that assigns onto a
+    // string primitive and throws `Cannot set properties of undefined (setting 'ujs:submit-button')`;
+    // without one the property is undefined and it early-returns. It never recorded metadata either way.
+    //
+    // Nothing is lost. Shoelace's FormControlController.doAction appends a real <button type=submit>
+    // inside the form — copying name, value and the form* attributes — clicks it, and removes it. That
+    // native button is matched by UJS's own default fragments, so it is the submitter UJS sees.
+    //
+    // The selector's other delegates don't apply to Shoelace either: handleConfirm is a bubble-phase
+    // document delegate, but Shoelace submits from the inner button's own @click handler, so it would
+    // run after the form was already submitted (use a capture-phase listener for confirm-on-submitter);
+    // and handleDisabledElement is redundant because Shoelace disables its inner native button, which
+    // then dispatches no click at all.
     Rails.formDisableSelector += ", sl-input[data-disable-with]:enabled, sl-button[data-disable-with]:enabled, sl-textarea[data-disable-with]:enabled, sl-input[data-disable]:enabled, sl-button[data-disable]:enabled, sl-textarea[data-disable]:enabled";
     Rails.formEnableSelector += ", sl-input[data-disable-with]:disabled, sl-button[data-disable-with]:disabled, sl-textarea[data-disable-with]:disabled, sl-input[data-disable]:disabled, sl-button[data-disable]:disabled, sl-textarea[data-disable]:disabled";
     Rails.fileInputSelector += ", sl-input[name][type=file]:not([disabled])";

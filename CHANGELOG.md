@@ -1,6 +1,7 @@
 # Changelog
 
 ## UNRELEASED
+* Rails UJS: stop adding Shoelace elements to `formInputClickSelector`. `SlButton.form` is a plain string property, not an `HTMLFormElement`, so UJS's `formSubmitButtonClick` threw `Cannot set properties of undefined (setting 'ujs:submit-button')` on every external Shoelace submitter (`<sl-button type="submit" form="…">`) and early-returned on every other one — it never recorded submitter metadata. Shoelace's own temporary native `<button type=submit>`, appended inside the form with `name`/`value`/`form*` copied, is matched by UJS's default fragments and remains the submitter, so submissions and their metadata are unaffected.
 * TsWrapper: transparently hoist a Stimulus `*-value` attribute up to the controller mount when it lands on a descendant (Stimulus reads static values only from `this.element`; a value on a descendant silently fell back to the type default). Throws in dev/test when a conflict cannot be auto-resolved; resolves deterministically in production.
 * TsWrapper: add `Teamshares.tsWrapper.rewriteCloned(html, identifier)` — rewrite `controller` placeholder attributes and action values in a cloned HTML string, for use when inserting `<template>` content at runtime (ts-wrapper's hydration traversal does not enter inert template fragments).
 
