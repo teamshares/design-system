@@ -26,6 +26,16 @@ function git (args, { exitStatusIsTheAnswer = false } = {}) {
   }
 }
 
+// stdio inherit on stderr: git reports push results there ("* [new tag] …"), and swallowing it
+// would hide why a push failed.
+function gitShowingItsOutput (args) {
+  try {
+    return execFileSync("git", ["-C", ROOT, ...args], { encoding: "utf8", stdio: ["ignore", "pipe", "inherit"] }).trim();
+  } catch {
+    throw new ReleaseError(`\`git ${args.join(" ")}\` failed — see the output above.`);
+  }
+}
+
 function versionFromPackageJson () {
   const pkg = JSON.parse(readFileSync(path.join(ROOT, "package.json"), "utf8"));
   if (!pkg.version) throw new ReleaseError("package.json has no `version`.");
@@ -63,17 +73,27 @@ function ensureTagAvailable (tag) {
   }
 }
 
+// Catches the half-done release PR: package.json bumped, CHANGELOG's UNRELEASED entries not moved.
 function ensureChangelogDocumentsVersion (version) {
   const changelog = readFileSync(path.join(ROOT, "CHANGELOG.md"), "utf8");
-  if (!new RegExp(`^##\\s+v?${version.replace(/\./g, "\\.")}\\s*$`, "m").test(changelog)) {
+  if (!new RegExp(`^##\\s+v?${version.replace(/\./g, "\\.")}\\b`, "m").test(changelog)) {
     throw new ReleaseError(
       `CHANGELOG.md has no \`## ${version}\` heading — move the UNRELEASED entries under it before releasing.`,
     );
   }
 }
 
+function parseArgs (argv) {
+  const unknown = argv.filter((arg) => arg !== "--dry-run");
+  if (unknown.length > 0) {
+    throw new ReleaseError(`unknown argument(s): ${unknown.join(" ")} — the only flag is --dry-run.`);
+  }
+
+  return { dryRun: argv.includes("--dry-run") };
+}
+
 function main () {
-  const dryRun = process.argv.includes("--dry-run");
+  const { dryRun } = parseArgs(process.argv.slice(2));
   const version = versionFromPackageJson();
   const tag = `v${version}`;
 
@@ -93,7 +113,12 @@ function main () {
 
   console.log(`Tagging ${tag} at ${sha} and pushing to ${REMOTE}…`);
   git(["tag", tag]);
-  console.log(git(["push", REMOTE, tag]));
+  try {
+    console.log(gitShowingItsOutput(["push", REMOTE, tag]));
+  } catch (e) {
+    git(["tag", "--delete", tag]);
+    throw e;
+  }
   console.log(`✔ Released ${tag}`);
   console.log("");
   console.log("Next: bump the pin in each consuming app's package.json and run `yarn install`:");

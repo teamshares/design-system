@@ -107,9 +107,11 @@ consuming apps are **os-app** and **buyout-app**. Let each app's CI run before m
 design-system change reaches every form, modal, and Stimulus controller in the app, and the
 app suites are the only real regression coverage this repo has.
 
-Worth knowing which app exercises what, when deciding where to verify a change: os-app has no
-`data-remote` forms at all, so it never exercises Rails UJS's ajax path, while buyout-app has
-~50 — so a change to the UJS selectors or handlers needs buyout's suite to be meaningfully tested.
+Both apps depend on Rails UJS, in different places, so neither one alone verifies a UJS change.
+os-app has no `data-remote` *forms*, but `link_to_modal` defaults to `remote: true` and its modals
+are built on UJS's `ajax:success`, so the link path is load-bearing there. buyout-app uses
+`remote: true` on both forms and links across its admin surfaces. A change to the form-submitter
+selectors needs buyout; a change to link handling needs os-app.
 
 NOTE: if your release includes breaking changes, you'll need to coordinate with all existing apps to ensure they're aware of the steps needed (where plausible, usually this means opening PRs to implement those changes directly so that context isn't lost/forgotten in the future).
 
