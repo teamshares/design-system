@@ -87,8 +87,8 @@ export default class Teamshares {
     // No Shoelace fragments here: `form` on an sl-* element is a string, not the HTMLFormElement
     // that UJS's formSubmitButtonClick writes submitter metadata onto — so it threw, and never
     // recorded any. Shoelace's own temporary native submit button, appended inside the form, is
-    // the submitter UJS sees. Its confirm/disabled delegates were already unreachable here (they
-    // bubble; Shoelace submits from the inner button's own handler). PRO-3316.
+    // the submitter UJS sees. UJS's data-confirm never worked for these either: it is bubble-phase
+    // and Shoelace submits from the inner button's handler — use a capture-phase listener. PRO-3316.
     Rails.formDisableSelector += ", sl-input[data-disable-with]:enabled, sl-button[data-disable-with]:enabled, sl-textarea[data-disable-with]:enabled, sl-input[data-disable]:enabled, sl-button[data-disable]:enabled, sl-textarea[data-disable]:enabled";
     Rails.formEnableSelector += ", sl-input[data-disable-with]:disabled, sl-button[data-disable-with]:disabled, sl-textarea[data-disable-with]:disabled, sl-input[data-disable]:disabled, sl-button[data-disable]:disabled, sl-textarea[data-disable]:disabled";
     Rails.fileInputSelector += ", sl-input[name][type=file]:not([disabled])";
