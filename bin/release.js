@@ -26,11 +26,10 @@ function git (args, { exitStatusIsTheAnswer = false } = {}) {
   }
 }
 
-// stdio inherit on stderr: git reports push results there ("* [new tag] …"), and swallowing it
-// would hide why a push failed.
+// git reports push results on stderr ("* [new tag] …"); swallowing it would hide why a push failed.
 function gitShowingItsOutput (args) {
   try {
-    return execFileSync("git", ["-C", ROOT, ...args], { encoding: "utf8", stdio: ["ignore", "pipe", "inherit"] }).trim();
+    execFileSync("git", ["-C", ROOT, ...args], { stdio: ["ignore", "inherit", "inherit"] });
   } catch {
     throw new ReleaseError(`\`git ${args.join(" ")}\` failed — see the output above.`);
   }
@@ -76,7 +75,9 @@ function ensureTagAvailable (tag) {
 // Catches the half-done release PR: package.json bumped, CHANGELOG's UNRELEASED entries not moved.
 function ensureChangelogDocumentsVersion (version) {
   const changelog = readFileSync(path.join(ROOT, "CHANGELOG.md"), "utf8");
-  if (!new RegExp(`^##\\s+v?${version.replace(/\./g, "\\.")}\\b`, "m").test(changelog)) {
+  const escaped = version.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  // (?=\s|$) not \b: a word boundary would also accept `## 2.0.0-rc1` or `## 1.3.1.1` for 2.0.0/1.3.1.
+  if (!new RegExp(`^##\\s+v?${escaped}(?=\\s|$)`, "m").test(changelog)) {
     throw new ReleaseError(
       `CHANGELOG.md has no \`## ${version}\` heading — move the UNRELEASED entries under it before releasing.`,
     );
@@ -114,7 +115,7 @@ function main () {
   console.log(`Tagging ${tag} at ${sha} and pushing to ${REMOTE}…`);
   git(["tag", tag]);
   try {
-    console.log(gitShowingItsOutput(["push", REMOTE, tag]));
+    gitShowingItsOutput(["push", REMOTE, tag]);
   } catch (e) {
     git(["tag", "--delete", tag]);
     throw e;

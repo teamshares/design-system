@@ -110,7 +110,7 @@ app suites are the only real regression coverage this repo has.
 Both apps depend on Rails UJS, in different places, so neither one alone verifies a UJS change.
 os-app has no `data-remote` *forms*, but `link_to_modal` defaults to `remote: true` and its modals
 are built on UJS's `ajax:success`, so the link path is load-bearing there. buyout-app uses
-`remote: true` on both forms and links across its admin surfaces. A change to the form-submitter
+`data-remote` on both forms and links across its admin surfaces (written as `local: false` for forms and `remote: true` for links, so grep for the rendered attribute rather than either idiom). A change to the form-submitter
 selectors needs buyout; a change to link handling needs os-app.
 
 NOTE: if your release includes breaking changes, you'll need to coordinate with all existing apps to ensure they're aware of the steps needed (where plausible, usually this means opening PRs to implement those changes directly so that context isn't lost/forgotten in the future).
