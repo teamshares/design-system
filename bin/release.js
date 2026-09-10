@@ -1,18 +1,8 @@
 #!/usr/bin/env node
-// Tag-only release for @teamshares/design-system.
+// Tags v<package.json version> and pushes it. Consumers pin a git ref, so a release is just a tag —
+// nothing is published to a registry. Ported from teamshares_rails' `rake release`.
 //
-// This package isn't published to a registry — consumers pin a git ref in their package.json — so
-// a "release" is just an annotated-free git tag that downstream apps can point at. This automates
-// the manual `git tag vX.Y.Z` + `git push` steps, guarded so the tag always matches package.json on
-// a clean release branch that's in sync with the remote.
-//
-// Ported from teamshares_rails' `rake release` (TeamsharesRails::Releaser) so both shared repos
-// release the same way. Two guards are specific to this repo: package.json is the version source
-// (not a version.rb), and CHANGELOG.md must already carry a heading for the version being tagged,
-// since the release PR is supposed to update both.
-//
-//   yarn release            cut the release
-//   yarn release --dry-run  run every guard and print what would happen, without tagging
+//   yarn release [--dry-run]
 
 const { execFileSync } = require("child_process");
 const { readFileSync } = require("fs");
@@ -24,21 +14,22 @@ const ROOT = path.resolve(__dirname, "..");
 
 class ReleaseError extends Error {}
 
-function git (args, { quiet = false } = {}) {
+function git (args, { exitStatusIsTheAnswer = false } = {}) {
   try {
     return execFileSync("git", ["-C", ROOT, ...args], {
       encoding: "utf8",
-      stdio: quiet ? ["ignore", "pipe", "ignore"] : ["ignore", "pipe", "pipe"],
+      stdio: exitStatusIsTheAnswer ? ["ignore", "pipe", "ignore"] : ["ignore", "pipe", "pipe"],
     }).trim();
   } catch (e) {
-    if (quiet) return null;
+    if (exitStatusIsTheAnswer) return null;
     throw new ReleaseError(`\`git ${args.join(" ")}\` failed: ${(e.stderr || "").toString().trim()}`);
   }
 }
 
-function version () {
+function versionFromPackageJson () {
   const pkg = JSON.parse(readFileSync(path.join(ROOT, "package.json"), "utf8"));
   if (!pkg.version) throw new ReleaseError("package.json has no `version`.");
+
   return pkg.version;
 }
 
@@ -49,17 +40,14 @@ function ensureOnReleaseBranch () {
   }
 }
 
-// Only tracked files matter: untracked scratch files are common and don't end up in the tag.
-function ensureCleanWorktree () {
-  const dirty = git(["diff", "--quiet"], { quiet: true }) === null ||
-                git(["diff", "--cached", "--quiet"], { quiet: true }) === null;
+function ensureTrackedFilesClean () {
+  const dirty = git(["diff", "--quiet"], { exitStatusIsTheAnswer: true }) === null ||
+                git(["diff", "--cached", "--quiet"], { exitStatusIsTheAnswer: true }) === null;
   if (dirty) {
     throw new ReleaseError("working tree has uncommitted changes to tracked files — commit or stash first.");
   }
 }
 
-// Tag exactly what's on the remote release branch, so the tag never points at a local-only or
-// stale commit.
 function ensureInSyncWithRemote () {
   git(["fetch", "--quiet", REMOTE, RELEASE_BRANCH]);
   if (git(["rev-parse", "HEAD"]) !== git(["rev-parse", "FETCH_HEAD"])) {
@@ -75,28 +63,25 @@ function ensureTagAvailable (tag) {
   }
 }
 
-// The release PR is meant to bump package.json *and* move the CHANGELOG's `## UNRELEASED` entries
-// under the new version. Catch the half-done case, where downstream apps would adopt a version
-// whose changes are undocumented.
-function ensureChangelogEntry (ver) {
+function ensureChangelogDocumentsVersion (version) {
   const changelog = readFileSync(path.join(ROOT, "CHANGELOG.md"), "utf8");
-  if (!new RegExp(`^##\\s+v?${ver.replace(/\./g, "\\.")}\\s*$`, "m").test(changelog)) {
+  if (!new RegExp(`^##\\s+v?${version.replace(/\./g, "\\.")}\\s*$`, "m").test(changelog)) {
     throw new ReleaseError(
-      `CHANGELOG.md has no \`## ${ver}\` heading — move the UNRELEASED entries under it before releasing.`,
+      `CHANGELOG.md has no \`## ${version}\` heading — move the UNRELEASED entries under it before releasing.`,
     );
   }
 }
 
 function main () {
   const dryRun = process.argv.includes("--dry-run");
-  const ver = version();
-  const tag = `v${ver}`;
+  const version = versionFromPackageJson();
+  const tag = `v${version}`;
 
   ensureOnReleaseBranch();
-  ensureCleanWorktree();
+  ensureTrackedFilesClean();
   ensureInSyncWithRemote();
   ensureTagAvailable(tag);
-  ensureChangelogEntry(ver);
+  ensureChangelogDocumentsVersion(version);
 
   const sha = git(["rev-parse", "--short", "HEAD"]);
 
