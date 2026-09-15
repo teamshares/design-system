@@ -8,7 +8,7 @@ module.exports = [
     ...cypressConfig,
   },
   {
-    files: ["*.config.js", "lib/teamshares-rails-path.js"],
+    files: ["*.config.js", "lib/teamshares-rails-path.js", "bin/*.js"],
     ...nodeConfig,
   },
   {

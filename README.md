@@ -71,10 +71,50 @@ Your changes _won't go live_ in any consuming Rails apps until:
 * that consuming rails app increments the version in their `package.json`
 
 ## Releasing a new version
-When changes are ready to be released to downstream apps, you'll need to:
-* Push up a PR incrementing the version in `package.json` and updating `changelog.md` to document the changes
-* _After that PR is merged_, pull down the latest `main` locally and create a new version tag (`git tag YOUR VERSION`, e.g. `git tag v1.2.3`)
-* Push that tag up to github: `git push origin --tags`
+
+Consuming apps pin a git ref, so a "release" here is a git tag — nothing is published to a
+registry. Two PRs and one command:
+
+**1. Merge your change.** Add a bullet under `## UNRELEASED` in `CHANGELOG.md` describing it. Merging
+alone changes nothing downstream — a pinned app keeps resolving its own tag.
+
+**2. Open a release PR.** Bump `version` in `package.json`, and rename `## UNRELEASED` in
+`CHANGELOG.md` to the new version (starting a fresh empty `## UNRELEASED` above it). Follow semver:
+patch for fixes, minor for additive changes, major for anything a consuming app must react to.
+Branch naming convention is `release/vX.Y.Z`.
+
+**3. Cut the tag.** Once that PR is merged, from an up-to-date local `main`:
+
+```bash
+yarn release
+```
+
+This tags `v<package.json version>` and pushes just that tag. It refuses to run unless you're on
+`main`, your tracked files are clean, your `main` matches `origin/main`, the tag doesn't already
+exist, and `CHANGELOG.md` has a heading for the version being tagged — so a half-finished release
+PR can't produce a tag whose changes are undocumented. Use `yarn release --dry-run` to run every
+guard and see what it would do without tagging.
+
+**4. Adopt it in each consuming app.** Nothing is live until each app bumps its own pin:
+
+```jsonc
+// package.json
+"@teamshares/design-system": "teamshares/design-system.git#v1.2.3"
+```
+
+then `yarn install` (which updates `yarn.lock`) and open a PR per app. As of this writing the
+consuming apps are **os-app** and **buyout-app**. Let each app's CI run before merging — a
+design-system change reaches every form, modal, and Stimulus controller in the app, and the
+app suites are the only real regression coverage this repo has.
+
+Both apps depend on Rails UJS, in different places, so neither one alone verifies a UJS change.
+os-app has no `data-remote` *forms*, but `link_to_modal` defaults to `remote: true` and its modals
+are built on UJS's `ajax:success`, so the link path is load-bearing there. buyout-app has both,
+across its admin surfaces. A change to the form-submitter selectors needs buyout; a change to link
+handling needs os-app.
+
+Grep both Ruby idioms rather than the rendered `data-remote`, which mostly isn't written in the
+source: `local: false` finds the remote forms, `remote: true` finds the remote links and buttons.
 
 NOTE: if your release includes breaking changes, you'll need to coordinate with all existing apps to ensure they're aware of the steps needed (where plausible, usually this means opening PRs to implement those changes directly so that context isn't lost/forgotten in the future).
 
