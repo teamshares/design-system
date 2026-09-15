@@ -84,7 +84,11 @@ export default class Teamshares {
     };
     Rails.linkClickSelector += ", sl-button[href][data-confirm], sl-button[href][data-method], sl-button[href][data-remote]:not([disabled]), sl-button[href][data-disable-with], sl-button[href][data-disable]";
     Rails.inputChangeSelector += ", sl-select[data-remote], sl-input[data-remote], sl-textarea[data-remote]";
-    Rails.formInputClickSelector += ", form:not([data-turbo=true]) sl-input[type=submit], form:not([data-turbo=true]) sl-input[type=image], form:not([data-turbo=true]) sl-button[type=submit], form:not([data-turbo=true]) sl-button:not([type]), sl-input[type=submit][form], sl-input[type=image][form], sl-button[type=submit][form], sl-button[form]:not([type])";
+    // No Shoelace fragments here: `form` on an sl-* element is a string, not the HTMLFormElement
+    // that UJS's formSubmitButtonClick writes submitter metadata onto — so it throws, and never
+    // records any. Shoelace's own temporary native submit button, appended inside the form, is
+    // the submitter UJS sees. UJS's data-confirm can't reach these either: it is bubble-phase
+    // and Shoelace submits from the inner button's handler — use a capture-phase listener. PRO-3316.
     Rails.formDisableSelector += ", sl-input[data-disable-with]:enabled, sl-button[data-disable-with]:enabled, sl-textarea[data-disable-with]:enabled, sl-input[data-disable]:enabled, sl-button[data-disable]:enabled, sl-textarea[data-disable]:enabled";
     Rails.formEnableSelector += ", sl-input[data-disable-with]:disabled, sl-button[data-disable-with]:disabled, sl-textarea[data-disable-with]:disabled, sl-input[data-disable]:disabled, sl-button[data-disable]:disabled, sl-textarea[data-disable]:disabled";
     Rails.fileInputSelector += ", sl-input[name][type=file]:not([disabled])";
