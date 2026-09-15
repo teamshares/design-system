@@ -85,6 +85,11 @@ function ensureChangelogDocumentsVersion (version) {
 }
 
 function parseArgs (argv) {
+  // npm treats --dry-run as its own config flag and never forwards it, so the script would release for real.
+  if (process.env.npm_config_dry_run === "true" && !argv.includes("--dry-run")) {
+    throw new ReleaseError("npm swallowed --dry-run — use `yarn release --dry-run`, or `npm run release -- --dry-run`.");
+  }
+
   const unknown = argv.filter((arg) => arg !== "--dry-run");
   if (unknown.length > 0) {
     throw new ReleaseError(`unknown argument(s): ${unknown.join(" ")} — the only flag is --dry-run.`);
