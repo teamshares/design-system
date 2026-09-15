@@ -13,6 +13,7 @@
   ],
   "main": "scss/index.scss",
   "scripts": {
+    "release": "node bin/release.js",
     "lint": "concurrently 'yarn lint:css' 'yarn lint:js'",
     "lint:js": "eslint .",
     "lint:css": "stylelint --fix --color --config stylelint.config.js scss/",
