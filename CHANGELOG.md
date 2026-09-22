@@ -2,6 +2,9 @@
 
 ## UNRELEASED
 
+## 1.11.0
+* Bump `@teamshares/shoelace` to 2.8.0, which stops `sl-textarea`'s `resize="auto"` from throwing "ResizeObserver loop completed with undelivered notifications". Apps carrying their own workaround for that error — reveal-after-hidden textareas toggling `resize` by hand — can drop it. PRO-3325.
+
 ## 1.10.0
 * Rails UJS: stop adding Shoelace elements to `formInputClickSelector`. `SlButton.form` is a plain string property, not an `HTMLFormElement`, so UJS's `formSubmitButtonClick` threw `Cannot set properties of undefined (setting 'ujs:submit-button')` on every external Shoelace submitter (`<sl-button type="submit" form="…">`) and early-returned on every other one — it never recorded submitter metadata. Shoelace's own temporary native `<button type=submit>`, appended inside the form with `name`/`value`/`form*` copied, is matched by UJS's default fragments and remains the submitter, so submissions and their metadata are unaffected.
 * Add `yarn release` — tags `v<package.json version>` and pushes it, guarded so the tag matches package.json on a clean `main` that is in sync with the remote and has a CHANGELOG heading for that version. Ported from teamshares_rails' `rake release` so both shared repos release the same way. `yarn release --dry-run` checks the guards without tagging. The release + adoption process is now written out in the README.
