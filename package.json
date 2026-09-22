@@ -4,7 +4,7 @@
     "type": "git",
     "url": "https://github.com/teamshares/design-system.git"
   },
-  "version": "1.10.0",
+  "version": "1.11.0",
   "private": true,
   "files": [
     "scss/**/*.scss",
@@ -28,7 +28,7 @@
     "@tailwindcss/container-queries": "0.1.1",
     "@tailwindcss/forms": "0.5.11",
     "@tailwindcss/typography": "0.5.19",
-    "@teamshares/shoelace": "2.7.0",
+    "@teamshares/shoelace": "2.8.0",
     "cli-color": "2.0.4",
     "cssnano": "8.0.1",
     "esbuild": "0.28.0",
